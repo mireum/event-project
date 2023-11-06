@@ -3,6 +3,7 @@ import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
+import BookMark from './components/BookMark';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -29,7 +30,7 @@ function App() {
       <Routes>
         {/* 이 안에 Route 작성 */}
         <Route path='/' element={<Header />}>
-          <Route path='bk' element={<BookMark />} />
+          <Route path='/bk' element={<BookMark />} />
         </Route>
       </Routes>
     </>
