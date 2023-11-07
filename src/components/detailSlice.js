@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	festival: [],
+	selectedFestival: null
 };
 
 const detailSlice = createSlice({
@@ -12,4 +13,4 @@ const detailSlice = createSlice({
 	}
 });
 
-export const selectFestivalList = state => state.festival;
+export const selectSeletedFestival = state => state.festival.selectedFestival;
