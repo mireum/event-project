@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { AiFillFolderOpen, AiOutlineCalendar } from "react-icons/ai";
-import { MdLocationOn, MdRefresh } from "react-icons/md";
+import { AiFillFolderOpen, AiOutlineCalendar, AiOutlineSearch } from "react-icons/ai";
+import { MdLocationOn, MdRefresh, MdSubject } from "react-icons/md";
 
 
 const SearchBox = styled.div`
@@ -89,6 +89,7 @@ const RefreshBtn = styled.div`
   padding: 11px 10px;
   border-radius: 8px;
   color: #8fa1a1;
+  margin-right: 10px;
 `;
 
 const SearchBtnBox = styled.div`
@@ -111,13 +112,21 @@ const SearchBtn = styled.button`
   border: none;
 `;
 
+
 function MainDetailSearch(props) {
+
+  const [showSubjectOptions, setShowSubjectOptions] = useState(false);
+  const [subject, setSubject] = useState('전체');
   const [showMonthOptions, setShowMonthOptions] = useState(false);
   const [month, setMonth] = useState('시기');
   const [showLocateOptions, setShowLocateOptions] = useState(false);
   const [locate, setLocate] = useState('장소');
   const [showCategoryOptions, setShowCategoryOptions] = useState(false);
   const [category, setCategory] = useState('카테고리');
+
+  const handleSelectSubjectOptions = (e) => {
+    setSubject(e.target.innerText);
+  };
 
   const handleSelectMonthOptions = (e) => {
     setMonth(e.target.innerText);
@@ -136,6 +145,17 @@ function MainDetailSearch(props) {
     <>
       <section>
         <SearchBox>
+          <SelectBox id='subject' onClick={() => {setShowSubjectOptions((prev) => !prev)}}>
+            <SelectIcon>
+              <MdSubject />
+            </SelectIcon>
+            <Label htmlFor='subject'>{subject}</Label>
+            <SelectOptions show={showSubjectOptions}>
+              <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
+              <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>
+            </SelectOptions>
+          </SelectBox>
+
           <SelectBox id='month' onClick={() => {setShowMonthOptions((prev) => !prev)}}>
             <SelectIcon>
               <AiOutlineCalendar />
@@ -204,7 +224,8 @@ function MainDetailSearch(props) {
           </RefreshBtn>
 
           <SearchBtnBox>
-            {<SearchBtn>검색</SearchBtn>}
+            <SearchBtn>검색</SearchBtn>
+            <AiOutlineSearch style={{fontSize: 20}}/>
           </SearchBtnBox>
 
 
