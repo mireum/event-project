@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiFillFolderOpen, AiOutlineCalendar, AiOutlineSearch } from "react-icons/ai";
 import { MdLocationOn, MdRefresh, MdSubject } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
 
 
 const SearchBox = styled.div`
@@ -116,6 +118,11 @@ const SearchBtn = styled.button`
 
 
 function MainDetailSearch(props) {
+  const dispatch = useDispatch();
+  const selectSubject = useSelector(searchSubject);
+  const selectMonth = useSelector(searchMonth);
+  const selectLocation = useSelector(searchLocation);
+  const selectCategory = useSelector(searchCategory);
 
   const [showSubjectOptions, setShowSubjectOptions] = useState(false);
   const [subject, setSubject] = useState('전체');
@@ -142,6 +149,9 @@ function MainDetailSearch(props) {
     setCategory(e.target.innerText);
   };
 
+  const handleSubmitValue = (e) => {
+    // dispatch(getSubject(e.target.value))
+  };
 
   return (
     <>
@@ -225,7 +235,7 @@ function MainDetailSearch(props) {
             <MdRefresh />
           </RefreshBtn>
 
-          <SearchBtnBox>
+          <SearchBtnBox onClick={undefined}>
             <SearchBtn>검색</SearchBtn>
             <AiOutlineSearch style={{fontSize: 20}}/>
           </SearchBtnBox>
