@@ -183,7 +183,7 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <MdLocationOn />
             </SelectIcon>
-            <Label htmlFor='lotation'>{locate}</Label>
+            <Label htmlFor='location'>{locate}</Label>
             <SelectOptions show={showLocateOptions}>
               <Option value='서울' onClick={handleSelectlocateOptions}>서울</Option>
               <Option value='인천' onClick={handleSelectlocateOptions}>인천</Option>
