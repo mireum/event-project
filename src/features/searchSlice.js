@@ -26,7 +26,6 @@ const searchSlice = createSlice({
   }
 });
 
-
 // 액션 생성 함수
 export const { getSubject, getMonth, getLocation, getCategory } = searchSlice.actions;
 

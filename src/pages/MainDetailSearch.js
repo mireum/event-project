@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AiFillFolderOpen, AiOutlineCalendar, AiOutlineSearch } from "react-icons/ai";
 import { MdLocationOn, MdRefresh, MdSubject } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
-import { getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
+import { getCategory, getLocation, getMonth, getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
 
 
 const SearchBox = styled.div`
@@ -149,9 +149,14 @@ function MainDetailSearch(props) {
     setCategory(e.target.innerText);
   };
 
-  const handleSubmitValue = (e) => {
-    // dispatch(getSubject(e.target.value))
+  const handleSubmitValue = () => {
+    dispatch(getSubject(subject))
+    dispatch(getMonth(month.split('월')[0]))
+    dispatch(getLocation(locate))
+    dispatch(getCategory(category))
   };
+
+  console.log(selectSubject, selectMonth, selectLocation, selectCategory);
 
   return (
     <>
@@ -235,7 +240,7 @@ function MainDetailSearch(props) {
             <MdRefresh />
           </RefreshBtn>
 
-          <SearchBtnBox onClick={undefined}>
+          <SearchBtnBox className='cursor-pointer' onClick={handleSubmitValue}>
             <SearchBtn>검색</SearchBtn>
             <AiOutlineSearch style={{fontSize: 20}}/>
           </SearchBtnBox>
