@@ -221,7 +221,7 @@ function MainDetailSearch(props) {
             </SelectOptions>
           </SelectBox>
 
-          <RefreshBtn className='cursor-pointer'>
+          <RefreshBtn className='cursor-pointer' onClick={() => window.location.reload()}>
             <MdRefresh />
           </RefreshBtn>
 
@@ -229,7 +229,6 @@ function MainDetailSearch(props) {
             <SearchBtn>검색</SearchBtn>
             <AiOutlineSearch style={{fontSize: 20}}/>
           </SearchBtnBox>
-
 
         </SearchBox>
       </section>
