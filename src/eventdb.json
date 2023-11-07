@@ -15,6 +15,7 @@
       "위도":"37.3531849997",
       "경도":"126.9257606416",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_9ac39584-8887-42c7-89b1-8e341c2f82e2_1.jpg",
+      "카테고리": "연인과함께",
       "제공기관명":"경기도 군포시"
     },
     {
@@ -31,6 +32,7 @@
       "위도":"36.959560",
       "경도":"127.043999",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_85a1dd0a-7a8b-4074-bf97-45bf0631db1a_1.jpg",
+      "카테고리": "연인과함께",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -47,6 +49,7 @@
       "위도":"36.959560",
       "경도":"127.043999",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_ce84dd96-4dab-41df-a6b6-966d88f02f2c_1.JPG",
+      "카테고리": "인생샷",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -63,6 +66,7 @@
       "위도":"37.47664907",
       "경도":"126.6324297",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_1852e51d-5c6b-465b-ad7f-bcb72ad556a6_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"인천광역시 동구"
     },
     {
@@ -79,6 +83,7 @@
       "위도":"36.959560",
       "경도":"127.043999",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_634e27df-2979-4f56-b0b9-77d11d5e2399_1.jpg",
+      "카테고리": "예술",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -95,6 +100,7 @@
       "위도":"36.994639",
       "경도":"127.133968",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_8129adef-6a10-4b6e-857e-3390fd96d74a_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -111,6 +117,7 @@
       "위도":"37.0981447590",
       "경도":"127.0864860164",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_f4ded46a-f404-4ce7-a167-65e8565119fa_1.jpg",
+      "카테고리": "인생샷",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -127,6 +134,7 @@
       "위도":"36.959560",
       "경도":"127.043999",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_78c85b97-a15e-4b4c-a09c-96d31dcf6340_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -143,6 +151,7 @@
       "위도":"36.991134",
       "경도":"127.114086",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_df8c22a2-24cd-4504-9f5e-400ef9362737_1.jpg",
+      "카테고리": "예술",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -159,6 +168,7 @@
       "위도":"36.921442",
       "경도":"126.922226",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_4e70ff58-cba3-4484-8e2d-0704feac6136_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"경기도 평택시"
     },
     {
@@ -175,6 +185,7 @@
       "위도":"34.87801578",
       "경도":"126.9221016",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_8ccf08ba-3b3d-4df5-99da-cf9fcc6d403b_1.png",
+      "카테고리": "인생샷",
       "제공기관명":"전라남도 화순군"
     },
     {
@@ -191,6 +202,7 @@
       "위도":"35.11074053",
       "경도":"127.0794274",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_7cf80b70-1d05-486c-b033-7d9275d801ba_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"전라남도 화순군"
     },
     {
@@ -207,6 +219,7 @@
       "위도":"35.318767",
       "경도":"127.4705342214",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_8bceec16-bbe3-4d67-93cd-919058e6d7f4_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"전라남도 구례군"
     },
     {
@@ -223,6 +236,7 @@
       "위도":"35.2166161023",
       "경도":"127.4668741223",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_59f8cbef-2777-42bc-a1a0-afd6c5f49163_1.png",
+      "카테고리": "연인과함께",
       "제공기관명":"전라남도 구례군"
     },
     {
@@ -239,6 +253,7 @@
       "위도":"35.2166161023",
       "경도":"127.4668741223",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_6f649c3b-97fc-46b2-8809-a9b1e649e133_1.JPG",
+      "카테고리": "예술",
       "제공기관명":"전라남도 구례군"
     },
     {
@@ -255,6 +270,7 @@
       "위도":"35.435069",
       "경도":"129.2795088",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_7be130ae-d136-45d7-9a5c-de3af5691c16_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"울산광역시 울주군"
     },
     {
@@ -271,6 +287,7 @@
       "위도":"37.2060223900",
       "경도":"127.7482249000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_62bbfc61-0c83-4108-be6b-304cc3d471bc_1.jpg",
+      "카테고리": "연인과함께",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -287,6 +304,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_f08854b6-4f5d-471f-9a3f-fb340fd9da20_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"충청남도 계룡시"
     },
     {
@@ -303,6 +321,7 @@
       "위도":"37.45706565",
       "경도":"126.8960369",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_67563897-aa70-424e-8816-55f322e020b2_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"서울특별시 금천구"
     },
     {
@@ -319,6 +338,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_9f1838dd-f39e-4599-aafe-6c5ea3b8cc45_1.png",
+      "카테고리": "연인과함께",
       "제공기관명":"서울특별시 동대문구"
     },
     {
@@ -335,6 +355,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_216ba734-e68d-456d-ba76-1d1b35603f38_1.JPG",
+      "카테고리": "예술",
       "제공기관명":"서울특별시 동대문구"
     },
     {
@@ -351,6 +372,7 @@
       "위도":"37.6148099000",
       "경도":"127.0735260000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_d18ca54d-6d78-46c4-a7f6-d6bda804f736_1.jpg",
+      "카테고리": "연인과함께",
       "제공기관명":"서울특별시 중랑구"
     },
     {
@@ -367,6 +389,7 @@
       "위도":"37.5733350000",
       "경도":"127.0891250000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_a1d24d2e-80b0-4a60-a3d9-e334ae759dd1_1.jpg",
+      "카테고리": "예술",
       "제공기관명":"서울특별시 중랑구"
     },
     {
@@ -383,6 +406,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_e9ef4e08-085a-42ce-92fb-947ffe3533a3_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"서울특별시 광진구"
     },
     {
@@ -399,6 +423,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_7c00aac5-7d42-4a8e-9cce-8805711b58a9_1.jpg",
+      "카테고리": "인생샷",
       "제공기관명":"서울특별시 광진구"
     },
     {
@@ -415,6 +440,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_21318988-6590-40d5-a9ee-d17b806b89a1_1.jpeg",
+      "카테고리": "연인과함께",
       "제공기관명":"서울특별시 광진구"
     },
     {
@@ -431,6 +457,7 @@
       "위도":"",
       "경도":"",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_54bae595-4467-4c22-a955-d582b0601960_1.jpg",
+      "카테고리": "인생샷",
       "제공기관명":"서울특별시 광진구"
     },
     {
@@ -447,6 +474,7 @@
       "위도":"35.21195069",
       "경도":"129.090546",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_8c6cc2b4-e698-4f06-88ec-2ca3cff02d97_1.png",
+      "카테고리": "체험",
       "제공기관명":"부산광역시 동래구"
     },
     {
@@ -463,6 +491,7 @@
       "위도":"37.13754375",
       "경도":"126.9242565",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_d0187095-61a5-4ae2-ab27-5ece7161158b_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -479,6 +508,7 @@
       "위도":"37.19816756",
       "경도":"127.0866383",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_c0fd1d41-c129-4c93-9732-f11e0fc28c16_1.png",
+      "카테고리": "예술",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -495,6 +525,7 @@
       "위도":"37.11602908",
       "경도":"126.6812748",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_62e365af-5d53-4626-84ea-2badcb0163eb_1.png",
+      "카테고리": "체험",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -511,6 +542,7 @@
       "위도":"37.21170324",
       "경도":"126.9897651",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_a3258b0d-2166-446e-a377-74f37c1b5d28_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -527,6 +559,7 @@
       "위도":"37.20563857",
       "경도":"127.0635805",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_32671f4e-fd94-433c-bc9b-47d536827cf9_1.png",
+      "카테고리": "체험",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -543,6 +576,7 @@
       "위도":"37.16797761",
       "경도":"127.1046083",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_fcc519d2-0ca7-45b2-905d-1afe9a95203d_1.jpg",
+      "카테고리": "연인과함께",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -559,6 +593,7 @@
       "위도":"37.13754375",
       "경도":"126.9242565",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_d206b2e3-efaf-46da-8fce-f683a24a87e9_1.png",
+      "카테고리": "체험",
       "제공기관명":"경기도 화성시"
     },
     {
@@ -575,6 +610,7 @@
       "위도":"35.5027598",
       "경도":"129.3807994",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_31b55be8-1c46-49db-95f7-042013eaab4a_1.png",
+      "카테고리": "연인과함께",
       "제공기관명":"울산광역시 남구"
     },
     {
@@ -591,6 +627,7 @@
       "위도":"35.16777359",
       "경도":"127.1339121",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_5ee4d43b-ed46-4c39-9cd6-ce2c06389276_1.jpg",
+      "카테고리": "인생샷",
       "제공기관명":"전라남도 화순군"
     },
     {
@@ -607,6 +644,7 @@
       "위도":"34.91804535",
       "경도":"126.8776541",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_215b21cf-6783-4a5b-8778-f29bb2b2fe8a_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"전라남도 화순군"
     },
     {
@@ -623,6 +661,7 @@
       "위도":"37.3087155000",
       "경도":"127.8115249000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_7f12d188-43f3-4b96-b9cc-0c1be65ebf18_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -639,6 +678,7 @@
       "위도":"37.3364295000",
       "경도":"127.9462614000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_fc26911f-c3e8-40d6-9f5a-6604f735aa25_1.JPG",
+      "카테고리": "체험",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -655,6 +695,7 @@
       "위도":"37.3364295000",
       "경도":"127.9462614000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_f3026b60-0634-49ef-9ccb-8fb68d0e09a5_1.png",
+      "카테고리": "예술",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -671,6 +712,7 @@
       "위도":"37.3368381000",
       "경도":"127.9436870000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_d596ab59-9f1c-43b7-b349-3bb4d6e6d2e0_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -687,6 +729,7 @@
       "위도":"37.3364295000",
       "경도":"127.9462614000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_cb917c87-263e-4474-b578-b75564ed2eae_1.jpg",
+      "카테고리": "체험",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -703,6 +746,7 @@
       "위도":"37.3364295000",
       "경도":"127.9462614000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_e7e41e68-9d48-4c70-a918-c636f28bd6a6_1.JPG",
+      "카테고리": "문화관광",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -719,6 +763,7 @@
       "위도":"37.3515851000",
       "경도":"127.9467947000",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_2d792e1e-9866-4869-bda9-56e52445b507_1.png",
+      "카테고리": "체험",
       "제공기관명":"강원도 원주시"
     },
     {
@@ -735,6 +780,7 @@
       "위도":"33.452616",
       "경도":"126.517702",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_e21c4802-a014-414b-9b8b-174244c89e64_1.jpg",
+      "카테고리": "연인과함께",
       "제공기관명":"제주특별자치도"
     },
     {
@@ -751,6 +797,7 @@
       "위도":"33.45136457",
       "경도":"126.656711",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_f972d0b1-0cbe-4833-8bf5-fe8e7c2abf38_1.png",
+      "카테고리": "연인과함께",
       "제공기관명":"제주특별자치도"
     },
     {
@@ -767,6 +814,7 @@
       "위도":"33.45136457",
       "경도":"126.656711",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_6c600782-9c28-4e97-a824-0d0256315f5c_1.png",
+      "카테고리": "예술",
       "제공기관명":"제주특별자치도"
     },
     {
@@ -783,6 +831,7 @@
       "위도":"33.244302",
       "경도":"126.5689408",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_ddee73b5-d818-4d73-b06e-8d5294df701b_1.jpg",
+      "카테고리": "문화관광",
       "제공기관명":"제주특별자치도"
     },
     {
@@ -799,6 +848,7 @@
       "위도":"37.545044",
       "경도":"126.728998",
       "image": "https://cdn.visitkorea.or.kr/kfes/upload/contents/db/300_d09d856f-95d4-4b7d-88b4-1f2a7312f9a6_1.JPG",
+      "카테고리": "연인과함께",
       "제공기관명":"인천광역시 계양구"
     }
   ]
