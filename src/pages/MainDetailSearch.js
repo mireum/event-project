@@ -91,8 +91,24 @@ const RefreshBtn = styled.div`
   color: #8fa1a1;
 `;
 
-const SearchBtn = styled.div`
-  
+const SearchBtnBox = styled.div`
+  width: 152px;
+  height: 48px;
+  border-radius: 8px;
+  background: #7a45e5;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SearchBtn = styled.button`
+  outline: none;
+  background: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
 `;
 
 function MainDetailSearch(props) {
@@ -118,7 +134,7 @@ function MainDetailSearch(props) {
 
   return (
     <>
-      <section onClick={() => setShowMonthOptions(false)}>
+      <section>
         <SearchBox>
           <SelectBox id='month' onClick={() => {setShowMonthOptions((prev) => !prev)}}>
             <SelectIcon>
@@ -187,7 +203,9 @@ function MainDetailSearch(props) {
             <MdRefresh />
           </RefreshBtn>
 
-          
+          <SearchBtnBox>
+            {<SearchBtn>검색</SearchBtn>}
+          </SearchBtnBox>
 
 
         </SearchBox>
