@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Routes } from 'react-router-dom';
+import { getEventItem } from './api/eventAPI';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -21,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
+  console.log(getEventItem);
+
   return (
     <>
       <GlobalStyle />
