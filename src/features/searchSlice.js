@@ -31,4 +31,10 @@ const searchSlice = createSlice({
 export const { getSubject, getMonth, getLocation, getCategory } = searchSlice.actions;
 
 // 선택자 함수
-export const search
+export const searchSubject = (state) => state.search.subject;
+export const searchMonth = (state) => state.search.month;
+export const searchLocation = (state) => state.search.location;
+export const searchCategory = (state) => state.search.category;
+
+// 리듀서 함수
+export default searchSlice.reducer;

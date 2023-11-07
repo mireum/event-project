@@ -53,6 +53,7 @@ const Label = styled.label`
   display: block;
   margin: 0 auto;
   padding: 4px;
+  cursor: pointer;
 
 `;
 
@@ -67,6 +68,7 @@ const SelectOptions = styled.ul`
   padding: 0;
   text-align: center;
   max-height: ${(props) => (props.show ? "none" : "0")};
+  outline: ${(props) => (props.show ? "1px solid #111" : "0")};
 `;
 
 const Option = styled.li`
@@ -219,7 +221,7 @@ function MainDetailSearch(props) {
             </SelectOptions>
           </SelectBox>
 
-          <RefreshBtn>
+          <RefreshBtn className='cursor-pointer'>
             <MdRefresh />
           </RefreshBtn>
 
