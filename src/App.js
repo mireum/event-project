@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import FestivalList from './list/FestivalList';
-import { getFestivalItem } from './api/festivalListAPI';
+import { getFestivalItem, testdb } from './api/festivalListAPI';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
-
+  console.log(testdb);
   console.log(getFestivalItem);
   return (
     <>
