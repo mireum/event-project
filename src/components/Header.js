@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MdOutlineBookmarks, MdOutlineFestival, MdOutlineManageSearch } from "react-icons/md";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { MdOutlineManageSearch } from "react-icons/md";
+import { GoHeart, GoHeartFill } from "react-icons/go";
+import { PiHouseLine } from "react-icons/pi";
+import { Outlet, navigate, useNavigate } from 'react-router-dom';
 
 const HedaerInner = styled.div`
 	max-width: 1200px;
@@ -52,6 +54,18 @@ const HeaderRight = styled.div`
 
 	.bm-icon:hover {
 		color: lightcoral;
+		/* display: none; */
+	}
+
+	.fill {
+		font-size: 35px;
+		margin-right: 15px;
+		/* display: none; */
+
+	}
+
+	.fill:hover {
+		display: block;
 	}
 
 	.sh-icon {
@@ -66,7 +80,7 @@ function Header(props) {
 		<header>
 			<HedaerInner>
 				<HeaderLeft>
-					<MdOutlineFestival className='home-icon cursor-pointer'
+					<PiHouseLine className='home-icon cursor-pointer'
 						onClick={() => { navigate('/') }}
 					/>
 				</HeaderLeft>
@@ -77,11 +91,16 @@ function Header(props) {
 				</ul>
 
 				<HeaderRight>
-					<MdOutlineBookmarks className='bm-icon cursor-pointer'
-						onClick={() => { navigate('/bk') }}/>
+					<GoHeart className='bm-icon cursor-pointer'
+						onClick={() => { navigate('/bk') }} > 
+					<GoHeartFill className='fill'/>
+
+						</GoHeart>
 					<MdOutlineManageSearch className='sh-icon cursor-pointer'/>
 				</HeaderRight>
 			</HedaerInner>
+
+			<Outlet />
 		</header>
 	);
 }

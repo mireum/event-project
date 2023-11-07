@@ -3,15 +3,18 @@ import styled from 'styled-components';
 
 const BookMarkInner = styled.div`
 	max-width: 1200px;
-	height: 100px;
-	background-color: lightblue;
+	margin: 0 auto;
+
+	.BookMarkTitle {
+		font-size: 20px;
+	}
 `;
 
 function BookMark(props) {
 	return (
 		<section>
 			<BookMarkInner>
-				<h1>즐겨찾기</h1>
+				<p className='BookMarkTitle'>좋아요 한 축제💗</p>
 				{/* 즐겨찾기 한 축제 나열 */}
 			</BookMarkInner>
 		</section>

@@ -4,6 +4,8 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import BookMark from './components/BookMark';
+import Footer from './components/Footer';
+import Detail from './components/Detail';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -30,8 +32,13 @@ function App() {
       <Routes>
         {/* 이 안에 Route 작성 */}
         <Route path='/' element={<Header />}>
-          <Route path='/bk' element={<BookMark />} />
+          <Route path='/bk' element={<BookMark />} >
+            </Route>
+          <Route path='/detail' element={<Detail />}/>
+
+          <Route path='/' element={<Footer />}  />
         </Route>
+        
       </Routes>
     </>
   );
