@@ -21,7 +21,7 @@ function FestivalList(props) {
     <section>
       <MainDetailSearch />
       
-      <Container>
+      <Container style={{ marginTop: '40px', maxWidth: '1200px' }}>
         <Row>
           {getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>

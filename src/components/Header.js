@@ -8,11 +8,11 @@ import Footer from './Footer';
 
 const HedaerInner = styled.div`
 	max-width: 1200px;
-	margin: 0 auto;
+	margin: 20px auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	padding: 10px 0 20px 0;
+	/* margin: 10px 0 20px 0; */
 
 	.nav {
 		display: flex;

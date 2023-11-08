@@ -98,7 +98,7 @@ const SearchBtnBox = styled.div`
   width: 152px;
   height: 48px;
   border-radius: 8px;
-  background: #7a45e5;
+  background: #ffbfbf;
   color: #fff;
   display: flex;
   align-items: center;

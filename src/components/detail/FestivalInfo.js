@@ -59,13 +59,14 @@ const FestivalInfoWrapper = styled.div`
 
 const FestivalInfoTitle = styled.div`
 	span {
-		background-color: #eee;
-		padding: 5px 10px;
+		/* background-color: #eee; */
+		background-color: #ffbfbf;
+		padding: 7px 10px;
 		box-sizing: border-box;
 		border-radius: 20px;
-		font-size: 23px;
-		color: #333;
-		/* box-shadow: 3px 3px 3px #666; */
+		font-size: 20px;
+		color: #fff;
+		font-weight: bold;
 	}
 	
 	p {
@@ -75,15 +76,15 @@ const FestivalInfoTitle = styled.div`
 	}
 `;
 
-const HpLink = styled(NavLink)`
+const HpLink = styled.a`
 	text-decoration: none;
 	color: lightcoral;
+	cursor: pointer;
+	font-weight: bold;
 `;
 
 const FestivalInfoTextWrapper = styled.div`
 	display: flex;
-	align-items: center;
-
 
 	.thumbimg {
 		border-radius: 10px;
@@ -92,12 +93,14 @@ const FestivalInfoTextWrapper = styled.div`
 
 function FestivalInfo(props) {
 	const { detailItem} = props;
-	const { image, 축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축제내용, 주관기관명, 홈페이지주소, 카테고리, 축제명 }  = detailItem[0];
+	const { image, url,  축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축제내용, 주관기관명, 홈페이지주소, 카테고리, 축제명, 제공기관명 }  = detailItem[0];
+	// const pageurl = url;
 	console.log(props);
 
 	return (
 		<FestivalInfoWrapper>
 			<FestivalInfoTitle>
+				<span>{`#${제공기관명}`}</span>
 				<span>{`#${카테고리}`}</span>
 				<p>{축제명}</p>
 			</FestivalInfoTitle>
@@ -115,12 +118,11 @@ function FestivalInfo(props) {
 					</li>
 					<li>
 						<span className='megaphone imgstyle'></span>
-						<span>{축제내용}</span>
-						<span>{주관기관명}</span>
+						<span>{축제내용}<br />{주관기관명}</span>
 					</li>
 					<li>
 						<span className='computer imgstyle'></span>
-						<HpLink>{홈페이지주소}</HpLink>
+						<HpLink onClick={() => window.open(홈페이지주소)} target='_black'>공식 홈페이지</HpLink>
 					</li>
 				</ul>
 			</FestivalInfoTextWrapper>
