@@ -241,7 +241,7 @@ function MainDetailSearch(props) {
           </RefreshBtn>
 
           <SearchBtnBox className='cursor-pointer' onClick={handleSubmitValue}>
-            <SearchBtn>검색</SearchBtn>
+            <SearchBtn className='cursor-pointer'>검색</SearchBtn>
             <AiOutlineSearch style={{fontSize: 20}}/>
           </SearchBtnBox>
 
