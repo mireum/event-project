@@ -8,7 +8,14 @@ const MapItemContainer = styled(Container)`
 
 const MapItemInner = styled.div`
   display: block;
-  margin: 0 auto;
+  margin: 40px auto;
+  
+
+  h4 {
+    /* text-align: center; */
+    font-size: 30px;
+    font-weight: bold;
+  }
 `;
 
 
@@ -26,7 +33,9 @@ function MapItem(props) {
           style={{
             width: '800px',
             height: '500px',
-            border: '1px solid black'
+            border: '1px solid #787878',
+            borderRadius: '5px',
+            // margin: '0 auto'
           }}
           level={3}
         >

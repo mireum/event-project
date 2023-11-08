@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
 const ItemImage = styled.img`
   width: 100%;
   height: 180px;
