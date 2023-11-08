@@ -22,10 +22,11 @@ const searchSlice = createSlice({
     },
     getCategory: (state, action) => {
       state.category = action.payload;
-    },
+    }
   }
 });
 
+console.log(initialState.list);
 // 액션 생성 함수
 export const { getSubject, getMonth, getLocation, getCategory } = searchSlice.actions;
 
