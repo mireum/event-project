@@ -3,6 +3,7 @@ import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import MainDetailSearch from './pages/MainDetailSearch';
+import { getEventItem } from './api/eventAPI';
 
 
 const GlobalStyle = createGlobalStyle`
