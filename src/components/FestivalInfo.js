@@ -40,23 +40,26 @@ const FestivalInfoWrapper = styled.div`
 `;
 
 function FestivalInfo(props) {
+	console.log(props);
+	const { 축제시작일자, 축제종료일자, 개최장소 } = props;
 	// const dispatch = useDispatch();
 	// const item = useSelector(selectSeletedFestival);
 
-	const [item, setItem] = useState(0);
+	// const [item, setItem] = useState(0);
+	
 
 	return (
 		<FestivalInfoWrapper>
 			<ul>
 				<li>
 					<span className='calender'></span>
-					<span>{getEventItem[item].축제시작일자}</span>
+					<span>{축제시작일자}</span>
 					<span>~</span>
-					<span>{getEventItem[item].축제종료일자}</span>
+					<span>{축제종료일자}</span>
 				</li>
 				<li>
 					<span className='location'></span>
-					<span>{getEventItem[item].개최장소}</span>
+					<span>{개최장소}</span>
 				</li>
 		</ul>
 		</FestivalInfoWrapper>
