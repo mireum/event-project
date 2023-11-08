@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -34,14 +35,12 @@ function App() {
       <GlobalStyle />
 
       <Routes>
-        <Route index element={<FestivalList />} />
-        <Route path='/detail/:EventListId' element={<Map />} />
+        <Route path='/' element={<Header />}>
+          <Route index element={<FestivalList />} />
+          <Route path='/detail/:EventListId' element={<Map />} />
     
 
-        <Route path='/' element={<Header />}>
-
         </Route>
-
 
       </Routes>
     </>

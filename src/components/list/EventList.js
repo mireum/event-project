@@ -3,6 +3,7 @@ import { Button, Container, Row } from 'react-bootstrap';
 import { getEventItem } from '../../api/eventAPI';
 import FestivalListItem from './EventListItem';
 import styled from 'styled-components';
+import MainDetailSearch from '../MainDetailSearch';
 
 const MoreButton = styled(Button)`
   display: block;
@@ -18,6 +19,8 @@ function FestivalList(props) {
 
   return (
     <section>
+      <MainDetailSearch />
+      
       <Container>
         <Row>
           {getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}

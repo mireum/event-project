@@ -4,6 +4,7 @@ import { MdOutlineManageSearch } from "react-icons/md";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiHouseLine } from "react-icons/pi";
 import { Outlet, navigate, useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const HedaerInner = styled.div`
 	max-width: 1200px;
@@ -77,31 +78,37 @@ function Header(props) {
 	const navigate = useNavigate();
 
 	return (
-		<header>
-			<HedaerInner>
-				<HeaderLeft>
-					<PiHouseLine className='home-icon cursor-pointer'
-						onClick={() => { navigate('/') }}
-					/>
-				</HeaderLeft>
+		<>
+			<header>
+				<HedaerInner>
+					<HeaderLeft>
+						<PiHouseLine className='home-icon cursor-pointer'
+							onClick={() => { navigate('/') }}
+						/>
+					</HeaderLeft>
 
-				<ul className='nav'>
-					<li className='cursor-pointer'>진행중인 축제</li>
-					<li className='cursor-pointer'>무료 전시회</li>
-				</ul>
+					<ul className='nav'>
+						<li className='cursor-pointer'>진행중인 축제</li>
+						<li className='cursor-pointer'>무료 전시회</li>
+					</ul>
 
-				<HeaderRight>
-					<GoHeart className='bm-icon cursor-pointer'
-						onClick={() => { navigate('/bk') }} > 
-					<GoHeartFill className='fill'/>
+					<HeaderRight>
+						<GoHeart className='bm-icon cursor-pointer'
+							onClick={() => { navigate('/bk') }} > 
+						<GoHeartFill className='fill'/>
 
-						</GoHeart>
-					<MdOutlineManageSearch className='sh-icon cursor-pointer'/>
-				</HeaderRight>
-			</HedaerInner>
+							</GoHeart>
+						<MdOutlineManageSearch className='sh-icon cursor-pointer'/>
+					</HeaderRight>
+				</HedaerInner>
 
+			</header>
+			
 			<Outlet />
-		</header>
+
+			<Footer />
+		</>
+
 	);
 }
 
