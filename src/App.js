@@ -11,6 +11,7 @@ import Map from './components/detail/Map';
 import Detail from './components/detail/Detail';
 
 
+
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
   body {
@@ -19,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: inherit;
+
   }
 
   .cursor-pointer {

@@ -1,6 +1,8 @@
 import React from 'react';
 
 function DetailContainer(props) {
+	const { detailItem } = props;
+
 	return (
 		<>
 			<ul>
