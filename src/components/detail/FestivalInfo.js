@@ -93,7 +93,7 @@ const FestivalInfoTextWrapper = styled.div`
 
 function FestivalInfo(props) {
 	const { detailItem} = props;
-	const { image, url,  축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축제내용, 주관기관명, 홈페이지주소, 카테고리, 축제명, 제공기관명 }  = detailItem[0];
+	const { image, url,  축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축제내용, 주관기관명, 홈페이지주소, 카테고리, 축제명, 제공기관명, 유형 }  = detailItem[0];
 	// const pageurl = url;
 	console.log(props);
 
@@ -101,6 +101,7 @@ function FestivalInfo(props) {
 		<FestivalInfoWrapper>
 			<FestivalInfoTitle>
 				<span>{`#${제공기관명}`}</span>
+				<span>{`#${유형}`}</span>
 				<span>{`#${카테고리}`}</span>
 				<p>{축제명}</p>
 			</FestivalInfoTitle>
@@ -113,8 +114,8 @@ function FestivalInfo(props) {
 					</li>
 					<li>
 						<span className='location imgstyle'></span>
-						<span>{소재지도로명주소}</span>
-						<span>{개최장소}</span>
+						{/* <span>{소재지도로명주소}<br />{개최장소}</span> */}
+						<span>{`도로명주소: ${소재지도로명주소}`}</span>
 					</li>
 					<li>
 						<span className='megaphone imgstyle'></span>

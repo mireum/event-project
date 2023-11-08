@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -30,9 +31,8 @@ const InfoText = styled.div`
 
 function FestivalListItem(props) {
   const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
-
   const navigate = useNavigate();
-
+  
   return (
     <Col md={4} className='cursor-pointer'>
       <ItemImage 
@@ -47,6 +47,7 @@ function FestivalListItem(props) {
         <p>{제공기관명}</p>
       </InfoText> 
     </Col>
+    
   );
 }
 
