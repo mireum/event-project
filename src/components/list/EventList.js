@@ -29,7 +29,20 @@ function FestivalList(props) {
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
 
+  // const filteredEventList = (subject && month && location && category) && 
+  //   getEventItem.filter((event) => {
+  //     return (
+  //       (event.유형===subject &&  event.축제시작일자.split('-')[1]===month && 
+  //       event.소재지도로명주소.split(' ')[0]===location &&
+  //       event.카테고리===category)
+  //     );
+  // })
+  const filteredEventList = getEventItem.filter(event => event.유형 === subject)
+  .filter(event => event.카테고리 === category)
+  .filter(event => event.축제시작일자.split('-')[1] == month)
+  .filter(event => event.소재지도로명주소.split(' ')[0] == location)
 
+  console.log(filteredEventList);
 
   return (
     <section>
@@ -39,10 +52,12 @@ function FestivalList(props) {
         </DetailSearchStyle>
 
         <Row>
-          {getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}
+          {subject 
+            ? filteredEventList.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)
+            : getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>
       </Container>
-      { showList > 55 
+      { showList > 50 
         ? null
         : 
         <MoreButton 

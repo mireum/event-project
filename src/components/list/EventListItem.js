@@ -28,7 +28,6 @@ const InfoText = styled.div`
 `;
 
 function FestivalListItem(props) {
-  console.log(props);
   const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
   const navigate = useNavigate();
   
