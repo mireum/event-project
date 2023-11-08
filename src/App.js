@@ -4,13 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import BookMark from './components/BookMark';
-import Footer from './components/Footer';
-import Detail from './components/Detail';
 import { getEventItem } from './api/eventAPI';
 import FestivalList from './components/list/EventList';
 import Map from './components/detail/Map';
-import MainDetailSearch from './components/MainDetailSearch';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -41,9 +37,12 @@ function App() {
         <Route index element={<FestivalList />} />
         <Route path='/detail/:EventListId' element={<Map />} />
     
-        {/* 이 안에 Route 작성 */}
+
         <Route path='/' element={<Header />}>
+
         </Route>
+
+
       </Routes>
     </>
   );
