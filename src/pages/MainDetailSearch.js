@@ -9,7 +9,6 @@ import { getCategory, getLocation, getMonth, getSubject, searchCategory, searchL
 const SearchBox = styled.div`
   display: flex;
   max-width: 1200px;
-  /* background: lightblue; */
 `;
 
 const SelectBox = styled.div`
@@ -23,9 +22,6 @@ const SelectBox = styled.div`
   cursor: pointer;
   border: 1px solid #000;
   border-radius: 8px;
-  /* padding: 0 0 0 52px; */
-  /* background: transparent; */
-  /* appearance: none; */
   font-size: 16px;
   font-weight: 400;
   display: flex;
