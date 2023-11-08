@@ -39,7 +39,13 @@ function FestivalList(props) {
   //     );
   // })
 
-  const filteredEventList = getEventItem.filter((event) => {event})
+  const filteredEventList = getEventItem
+  .filter(event => event.유형 === subject)
+  .filter(event => event.축제시작일자.split('-')[1] == month)
+  .filter(event => event.소재지도로명주소.split(' ')[0] == location)
+  .filter(event => event.카테고리 === category);
+
+
   // const filteredEventList = 
   // subject || month || location || category
   // ? getEventItem.filter(event => {
