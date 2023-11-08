@@ -5,6 +5,10 @@ import FestivalListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
 
+const DetailSearchStyle = styled.div`
+  margin: 50px 0;
+`;
+
 const MoreButton = styled(Button)`
   display: block;
   margin: 0 auto;
@@ -19,9 +23,11 @@ function FestivalList(props) {
 
   return (
     <section>
-      <MainDetailSearch />
-      
       <Container>
+        <DetailSearchStyle>
+          <MainDetailSearch />
+        </DetailSearchStyle>
+
         <Row>
           {getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>

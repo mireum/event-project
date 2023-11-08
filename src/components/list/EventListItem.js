@@ -1,7 +1,9 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 
 const ItemImage = styled.img`
   width: 100%;
@@ -28,8 +30,11 @@ const InfoText = styled.div`
 
 function FestivalListItem(props) {
   const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
-
   const navigate = useNavigate();
+  const subject = useSelector(searchSubject);
+  const month = useSelector(searchMonth);
+  const location = useSelector(searchLocation);
+  const category = useSelector(searchCategory);
 
   return (
     <Col md={4} className='cursor-pointer'>

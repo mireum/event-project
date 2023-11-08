@@ -39,8 +39,8 @@ const SelectBox = styled.div`
 
 const SelectIcon = styled.div`
   position: absolute;
-  top: 20%;
-  right: 65%;
+  top: 10%;
+  right: 70%;
   font-size: 22px;
 `;
 
@@ -63,6 +63,7 @@ const SelectOptions = styled.ul`
   width: 100%;
   overflow: hidden;
   border-radius: 8px;
+  margin-top: 10px;
   padding: 0;
   text-align: center;
   max-height: ${(props) => (props.show ? "none" : "0")};
@@ -72,6 +73,7 @@ const SelectOptions = styled.ul`
 const Option = styled.li`
   font-size: 16px;
   padding: 2px 8px;
+  background: #fff;
   transition: background-color 0.2s ease-in;
   &:hover {
     background-color: #ffe4b5;

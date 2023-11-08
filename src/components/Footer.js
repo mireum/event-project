@@ -5,6 +5,7 @@ const FooterInner = styled.div`
 	max-width: 1200px;
 	margin: 0 auto;
 	border-top: 1px solid #eee;
+	margin-top: 50px;
 
 	.flex-list {
 		display: flex;
