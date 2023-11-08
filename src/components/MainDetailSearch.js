@@ -126,7 +126,7 @@ function MainDetailSearch(props) {
   const selectLocation = useSelector(searchLocation);
   const selectCategory = useSelector(searchCategory);
 
-  const [showSubjectOptions, setShowSubjectOptions] = useState(false);
+  const [showSubjectOptions, setShowSubjectOptions] = useState(['축제', '전시회']);
   const [subject, setSubject] = useState(false);
   const [showMonthOptions, setShowMonthOptions] = useState(false);
   const [month, setMonth] = useState(false);
