@@ -4,7 +4,7 @@ import { getEventItem } from '../../api/eventAPI';
 import FestivalListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
-import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
+import { getSearchList, searchCategory, searchList, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import { useSelector } from 'react-redux';
 
 
@@ -19,6 +19,7 @@ const MoreButton = styled(Button)`
 
 function FestivalList(props) {
   const [ showList, setShowList ] = useState(12);
+  // const [ searchList, setSearchList ] = useState([]);
 
   const moreShow = () => {
     setShowList(showList + 6);
@@ -37,16 +38,29 @@ function FestivalList(props) {
   //       event.카테고리===category)
   //     );
   // })
-  const filteredEventList = 
-  subject 
-  ? getEventItem.filter(event => event.유형 === subject) 
-  : category
-    ? getEventItem.filter(event => event.카테고리 === category || event.카테고리 ===)
-    : month
-      ? getEventItem.filter(event => event.축제시작일자.split('-')[1] == month)
-      : location
-        ? getEventItem.filter(event => event.소재지도로명주소.split(' ')[0] == location)
-        : getEventItem
+
+  const filteredEventList = getEventItem.filter((event) => {event})
+  // const filteredEventList = 
+  // subject || month || location || category
+  // ? getEventItem.filter(event => {
+  //   return (
+  //     event.유형 === subject &&
+  //     event.카테고리 === category &&
+  //     event.축제시작일자.split('-')[1] == month &&
+  //     event.소재지도로명주소.split(' ')[0] == location
+  //     );
+  //   })
+  //   : getEventItem;
+
+
+
+  // : category
+  //   ? getEventItem.filter(event => event.카테고리 === category || event)
+  //   : month
+  //     ? getEventItem.filter(event => event.축제시작일자.split('-')[1] == month)
+  //     : location
+  //       ? getEventItem.filter(event => event.소재지도로명주소.split(' ')[0] == location)
+  //       : getEventItem
 
   console.log(filteredEventList);
 
