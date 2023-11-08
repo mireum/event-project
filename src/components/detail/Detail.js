@@ -5,7 +5,7 @@ import DetailVisual from './DetailVisual';
 import DetailContainer from './DetailContainer';
 import FestivalInfo from './FestivalInfo';
 import { useParams } from 'react-router';
-import { getEventItem } from '../api/eventAPI';
+import { getEventItem } from '../../api/eventAPI';
 
 function Detail(props) {
 	// const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function Detail(props) {
 			<DetailVisual />
 			<DetailContainer />
 			<FestivalInfo detailItem={detailItem} />
-			
+			{/* <Map /> */}
 		</>
 		
 	);

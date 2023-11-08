@@ -8,6 +8,7 @@ import Header from './components/Header';
 import { getEventItem } from './api/eventAPI';
 import FestivalList from './components/list/EventList';
 import Map from './components/detail/Map';
+import Detail from './components/detail/Detail';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -37,7 +38,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Header />}>
           <Route index element={<FestivalList />} />
-          <Route path='/detail/:EventListId' element={<Map />} />
+          <Route path='/detail/:EventListId' element={<Detail />} />
     
 
         </Route>

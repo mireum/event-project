@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import calender from "../images/calender.png";
 import location from "../images/location.png";
+import megaphone from "../images/megaphone.png";
+import computer from "../images/computer.png";
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { getEventItem } from '../api/eventAPI';
 
 const FestivalInfoWrapper = styled.div`
 	max-width: 1200px;
@@ -37,12 +37,19 @@ const FestivalInfoWrapper = styled.div`
 		background-size: 40px 40px;
 	}
 
+	.megaphone {
+		display: block;
+		width: 40px;
+		height: 40px;
+		background-image: url(${megaphone});
+		background-repeat: no-repeat;
+		background-size: 40px 40px;
+	}
+
 
 `;
 
 function FestivalInfo(props) {
-	// const dispatch = useDispatch();
-	// const item = useSelector(selectSeletedFestival);
 	const { detailItem: { 축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축재내용,  주관기관명, 홈페이지주소 } } = props;
 
 	return (
@@ -65,7 +72,7 @@ function FestivalInfo(props) {
 					<span>{주관기관명}</span>
 				</li>
 				<li>
-					<span className='megaphone'></span>
+					<span className='computer'></span>
 					<span>{홈페이지주소}</span>
 				</li>
 		</ul>

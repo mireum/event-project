@@ -9,6 +9,8 @@ import { getCategory, getLocation, getMonth, getSubject, searchCategory, searchL
 const SearchBox = styled.div`
   display: flex;
   max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
 `;
 
 const SelectBox = styled.div`
