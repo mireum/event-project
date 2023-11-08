@@ -6,6 +6,7 @@ import Header from './components/Header';
 import BookMark from './components/BookMark';
 import Footer from './components/Footer';
 import Detail from './components/Detail';
+import { getEventItem } from './api/eventAPI';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -25,6 +26,9 @@ const GlobalStyle = createGlobalStyle`
 
 
 function App() {
+
+  console.log(getEventItem);
+
   return (
     <>
       <GlobalStyle />
