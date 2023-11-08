@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
-import MainDetailSearch from './pages/MainDetailSearch';
+import MainDetailSearch from './components/MainDetailSearch';
 import { getEventItem } from './api/eventAPI';
 
 
