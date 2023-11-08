@@ -68,6 +68,7 @@ const SelectOptions = styled.ul`
   text-align: center;
   max-height: ${(props) => (props.show ? "none" : "0")};
   outline: ${(props) => (props.show ? "1px solid #111" : "0")};
+  z-index: 99;
 `;
 
 const Option = styled.li`
@@ -123,13 +124,13 @@ function MainDetailSearch(props) {
   const selectCategory = useSelector(searchCategory);
 
   const [showSubjectOptions, setShowSubjectOptions] = useState(false);
-  const [subject, setSubject] = useState('전체');
+  const [subject, setSubject] = useState(false);
   const [showMonthOptions, setShowMonthOptions] = useState(false);
-  const [month, setMonth] = useState('시기');
+  const [month, setMonth] = useState(false);
   const [showLocateOptions, setShowLocateOptions] = useState(false);
-  const [locate, setLocate] = useState('장소');
+  const [locate, setLocate] = useState(false);
   const [showCategoryOptions, setShowCategoryOptions] = useState(false);
-  const [category, setCategory] = useState('카테고리');
+  const [category, setCategory] = useState(false);
 
   const handleSelectSubjectOptions = (e) => {
     setSubject(e.target.innerText);
@@ -164,8 +165,9 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <MdSubject />
             </SelectIcon>
-            <Label htmlFor='subject'>{subject}</Label>
+            <Label htmlFor='subject'>{subject ? subject : '전체'}</Label>
             <SelectOptions show={showSubjectOptions}>
+              <Option value='every' onClick={handleSelectSubjectOptions}>전체</Option>
               <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
               <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>
             </SelectOptions>
@@ -175,7 +177,7 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <AiOutlineCalendar />
             </SelectIcon>
-            <Label htmlFor='month'>{month}</Label>
+            <Label htmlFor='month'>{month ? month : '시기'}</Label>
             <SelectOptions show={showMonthOptions}>
               <Option value="13" onClick={handleSelectMonthOptions}>개최중</Option>
               <Option value="14" onClick={handleSelectMonthOptions}>개최예정</Option>
@@ -198,15 +200,15 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <MdLocationOn />
             </SelectIcon>
-            <Label htmlFor='location'>{locate}</Label>
+            <Label htmlFor='location'>{locate ? locate : '장소'}</Label>
             <SelectOptions show={showLocateOptions}>
-              <Option value='서울' onClick={handleSelectlocateOptions}>서울</Option>
-              <Option value='인천' onClick={handleSelectlocateOptions}>인천</Option>
-              <Option value='대전' onClick={handleSelectlocateOptions}>대전</Option>
-              <Option value='대구' onClick={handleSelectlocateOptions}>대구</Option>
-              <Option value='광주' onClick={handleSelectlocateOptions}>광주</Option>
-              <Option value='부산' onClick={handleSelectlocateOptions}>부산</Option>
-              <Option value='울산' onClick={handleSelectlocateOptions}>울산</Option>
+              <Option value='서울특별시' onClick={handleSelectlocateOptions}>서울특별시</Option>
+              <Option value='인천광역시' onClick={handleSelectlocateOptions}>인천광역시</Option>
+              <Option value='대전광역시' onClick={handleSelectlocateOptions}>대전광역시</Option>
+              <Option value='대구광역시' onClick={handleSelectlocateOptions}>대구광역시</Option>
+              <Option value='광주광역시' onClick={handleSelectlocateOptions}>광주광역시</Option>
+              <Option value='부산광역시' onClick={handleSelectlocateOptions}>부산광역시</Option>
+              <Option value='울산광역시' onClick={handleSelectlocateOptions}>울산광역시</Option>
               <Option value='경기도' onClick={handleSelectlocateOptions}>경기도</Option>
               <Option value='강원도' onClick={handleSelectlocateOptions}>강원도</Option>
               <Option value='충청북도' onClick={handleSelectlocateOptions}>충청북도</Option>
@@ -224,7 +226,7 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <AiFillFolderOpen />
             </SelectIcon>
-            <Label htmlFor='category'>{category}</Label>
+            <Label htmlFor='category'>{category ? category : '카테고리'}</Label>
             <SelectOptions show={showCategoryOptions}>
               <Option value='연인과함께' onClick={handleSelectCategoryOptions}>연인과함께</Option>
               <Option value='인생샷' onClick={handleSelectCategoryOptions}>인생샷</Option>
