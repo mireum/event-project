@@ -15,6 +15,7 @@ const FestivalInfoWrapper = styled.div`
 	ul {
 		padding: 0;
 		margin-left: 20px;
+		margin-bottom: 0;
 	}
 
 	li {
@@ -81,7 +82,8 @@ const HpLink = styled(NavLink)`
 
 const FestivalInfoTextWrapper = styled.div`
 	display: flex;
-	/* margin-bottom: 40px; */
+	align-items: center;
+
 
 	.thumbimg {
 		border-radius: 10px;

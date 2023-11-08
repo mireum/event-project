@@ -12,7 +12,9 @@ const MapItemInner = styled.div`
   
 
   h4 {
-    text-align: center;
+    /* text-align: center; */
+    font-size: 30px;
+    font-weight: bold;
   }
 `;
 
@@ -30,7 +32,7 @@ function MapItem(props) {
             height: '500px',
             border: '1px solid #787878',
             borderRadius: '5px',
-            margin: '0 auto'
+            // margin: '0 auto'
           }}
           level={3}
         >
