@@ -43,7 +43,7 @@ const FestivalInfoWrapper = styled.div`
 function FestivalInfo(props) {
 	// const dispatch = useDispatch();
 	// const item = useSelector(selectSeletedFestival);
-	const { detailItem: { 축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축재내용, 주관기관명 } } = props;
+	const { detailItem: { 축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축재내용,  주관기관명, 홈페이지주소 } } = props;
 
 	return (
 		<FestivalInfoWrapper>
@@ -63,6 +63,10 @@ function FestivalInfo(props) {
 					<span className='megaphone'></span>
 					<span>{축재내용}</span>
 					<span>{주관기관명}</span>
+				</li>
+				<li>
+					<span className='megaphone'></span>
+					<span>{홈페이지주소}</span>
 				</li>
 		</ul>
 		</FestivalInfoWrapper>
