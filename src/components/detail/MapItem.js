@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { Map } from "react-kakao-maps-sdk";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
 import styled from "styled-components";
 
 const MapItemContainer = styled(Container)`
@@ -14,12 +14,15 @@ const MapItemInner = styled.div`
 
 function MapItem(props) {
 
+  const lat = Number(props.mapList[0].위도);
+  const lng = Number(props.mapList[0].경도);
+
   return (
     <MapItemContainer>
       <MapItemInner>
         <h4>길찾기</h4>
         <Map
-          center={{ lat: 37.506320759000715, lng: 127.05368251210247 }}
+          center={{ lat: lat, lng: lng, }}
           style={{
             width: '800px',
             height: '500px',
@@ -27,6 +30,11 @@ function MapItem(props) {
           }}
           level={3}
         >
+          <MapMarker
+            position={{ lat: lat, lng: lng }}
+          >
+            {props.mapList[0].개최장소}
+          </MapMarker>
         </Map>
       </MapItemInner>
     </MapItemContainer>

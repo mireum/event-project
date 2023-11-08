@@ -42,7 +42,7 @@ function FestivalList(props) {
           {getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>
       </Container>
-      { showList > 50 
+      { showList > 55 
         ? null
         : 
         <MoreButton 
