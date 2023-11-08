@@ -61,7 +61,7 @@ const FestivalInfoTitle = styled.div`
 	span {
 		/* background-color: #eee; */
 		background-color: #ffbfbf;
-		padding: 7px 10px;
+		padding: 5px 10px;
 		box-sizing: border-box;
 		border-radius: 20px;
 		font-size: 20px;
