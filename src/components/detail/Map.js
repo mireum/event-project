@@ -10,12 +10,11 @@ const MapContainer = styled.div`
 
 function Map(props) {
   const { EventListId } = useParams();
-  const mapList = getEventItem.filter(eventitem => EventListId === eventitem.id);
-  console.log(mapList);
+  const mapList = getEventItem.filter(eventitem => eventitem.id === Number(EventListId));
 
   return (
     <>
-      {<MapItem />}
+      {<MapItem mapList={mapList}/>}
     </>
   );
 }
