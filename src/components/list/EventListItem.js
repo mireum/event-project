@@ -40,6 +40,7 @@ function FestivalListItem(props) {
         onClick={() => {
           navigate(`/detail/${id}`)
         }} 
+        // 아이콘 넣으려구요~_~
       />
       <InfoText>
         <h4>{축제명}</h4>      
