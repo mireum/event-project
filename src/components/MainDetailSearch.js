@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategory, getLocation, getMonth, getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
 
 
+
 const SearchBox = styled.div`
   display: flex;
   max-width: 1200px;
@@ -150,7 +151,7 @@ function MainDetailSearch(props) {
 
   const handleSubmitValue = () => {
     dispatch(getSubject(subject))
-    dispatch(getMonth(month.split('월')[0]))
+    dispatch(getMonth(month && month.split('월')[0]))
     dispatch(getLocation(locate))
     dispatch(getCategory(category))
   };
@@ -167,7 +168,6 @@ function MainDetailSearch(props) {
             </SelectIcon>
             <Label htmlFor='subject'>{subject ? subject : '전체'}</Label>
             <SelectOptions show={showSubjectOptions}>
-              <Option value='every' onClick={handleSelectSubjectOptions}>전체</Option>
               <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
               <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>
             </SelectOptions>

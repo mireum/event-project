@@ -4,6 +4,9 @@ import { getEventItem } from '../../api/eventAPI';
 import FestivalListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
+import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
+import { useSelector } from 'react-redux';
+
 
 const DetailSearchStyle = styled.div`
   margin: 50px 0;
@@ -21,8 +24,13 @@ function FestivalList(props) {
     setShowList(showList + 6);
   }
 
+  const subject = useSelector(searchSubject);
+  const month = useSelector(searchMonth);
+  const location = useSelector(searchLocation);
+  const category = useSelector(searchCategory);
 
-  
+
+
   return (
     <section>
       <Container>
