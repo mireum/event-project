@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import styled, { createGlobalStyle } from "styled-components";
-import { Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import MainDetailSearch from './pages/MainDetailSearch';
 import { getEventItem } from './api/eventAPI';
 
 
@@ -28,6 +29,7 @@ function App() {
 
       <Routes>
         {/* 이 안에 Route 작성 */}
+        <Route path='/' element={<MainDetailSearch />} />
       </Routes>
     </>
   );
