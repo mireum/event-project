@@ -8,6 +8,8 @@ import { filters, getFilterSubject, getSearchList, searchCategory, searchList, s
 import { useDispatch, useSelector } from 'react-redux';
 
 
+
+
 const DetailSearchStyle = styled.div`
   margin: 50px 0;
 `;
@@ -22,17 +24,20 @@ const MoreButton = styled(Button)`
 `;
 
 function EventList(props) {
+
   const subject = useSelector(searchSubject);
   const month = useSelector(searchMonth);
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
 
+
+
   const [ showList, setShowList ] = useState(12);
-  // const [ searchList, setSearchList ] = useState([]);
 
   const moreShow = () => {
     setShowList(showList + 6);
   }
+
 
   // const filteredEventList = (subject && month && location && category) && 
   //   getEventItem.filter((event) => {
@@ -76,7 +81,31 @@ function EventList(props) {
   //       ? getEventItem.filter(event => event.소재지도로명주소.split(' ')[0] == location)
   //       : getEventItem
 
-  // console.log(filteredEventList);
+  const subject = useSelector(searchSubject);
+  const month = useSelector(searchMonth);
+  const location = useSelector(searchLocation);
+  const category = useSelector(searchCategory);
+
+  const filteredEventList = getEventItem
+  .filter(event => {
+  
+      let filterSubject = true;
+      let filterMonth = true;
+      let filterLocation = true;
+      let filterCategory = true;
+
+      filterSubject = subject.includes(event.유형);
+      filterMonth = month.includes(event.축제시작일자.split('-')[1]);
+      filterLocation = location.includes(event.소재지도로명주소.split(' ')[0]);
+      filterCategory = category.includes(event.카테고리);
+
+      return (
+        filterSubject && filterMonth && filterLocation && filterCategory
+    )
+  })
+
+
+  console.log(filteredEventList);
 
   return (
     <section>
@@ -92,6 +121,14 @@ function EventList(props) {
         </Row>
       </StyledContainer>
       { showList >= getEventItem.length 
+
+          {filteredEventList.length > 1
+            ? filteredEventList.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)
+            : getEventItem.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)}
+        </Row>
+      </Container>
+      { showList > filteredEventList.length
+
         ? null
         : 
         <MoreButton 

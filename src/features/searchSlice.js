@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subject: null,
-  month: null,
-  location: null,
-  category: null,
+  subject: [],
+  month: [],
+  location: [],
+  category: []
 };
 
 const searchSlice = createSlice({
