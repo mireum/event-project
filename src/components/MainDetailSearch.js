@@ -169,7 +169,7 @@ function MainDetailSearch(props) {
               <MdSubject />
             </SelectIcon>
             <Label htmlFor='subject'>{subject ? subject : '전체'}</Label>
-            <SelectOptions show={showSubjectOptions}>
+            <SelectOptions show={!showSubjectOptions}>
               <Option value='every' onClick={handleSelectSubjectOptions}>전체</Option>
               <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
               <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>

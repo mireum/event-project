@@ -77,15 +77,15 @@ function FestivalList(props) {
 
   return (
     <section>
-      <MainDetailSearch />
+      {/* <MainDetailSearch /> */}
       <Container>
         <DetailSearchStyle>
-          {/* <MainDetailSearch /> */}
+          <MainDetailSearch />
         </DetailSearchStyle>
         <Row>
-          {/* {subject || month || location || category
+          {subject || month || location || category
             ? filteredEventList.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)
-            : getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)} */}
+            : getEventItem.map(item => <FestivalListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>
       </Container>
       { showList > 50 
