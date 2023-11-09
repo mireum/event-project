@@ -40,7 +40,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Header />}>
-          <Route path='/bk' element={<BookMark />} />
+          <Route path='/bk' element={<BookMark getEventItem={getEventItem}/>} />
           <Route index element={<FestivalList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
     

@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { PiHeartStraightBold, PiHeartStraightFill } from "react-icons/pi";
+import { addbookmarkList, selectBookmarkList } from './bookmarkSlice';
 
+const ItemWrap = styled(Col)`
+  position: relative;
+
+  .button-wrap {
+    position: absolute;
+    bottom: 45%;
+    right: 7%;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+`;
 
 const ItemImage = styled.img`
   width: 100%;
@@ -32,22 +53,40 @@ const InfoText = styled.div`
 function FestivalListItem(props) {
   const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+  const bookmarkList = useSelector(selectBookmarkList);
+  // const copyItem = {...props.item};
+  // copyItem.liked = 'false';
+  // console.log(copyItem);
+
+  const [bookMarkButton, setBookMarkButton] = useState(false); 
+
   return (
-    <Col md={4} className='cursor-pointer'>
+    <ItemWrap md={4} className='cursor-pointer'>
       <ItemImage 
         src={image}
         onClick={() => {
           navigate(`/detail/${id}`)
         }} 
-        // 아이콘 넣으려구요~_~
       />
+      <div className='button-wrap' onClick={() => {
+        dispatch(addbookmarkList({
+          ...props.item,
+          liked: true
+        }));
+        setBookMarkButton(!bookMarkButton);
+      }}>
+        {bookMarkButton
+        ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
+        : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
+      </div>
       <InfoText>
         <h4>{축제명}</h4>      
         <p>{`${축제시작일자} ~ ${축제종료일자}`}</p>
         <p>{제공기관명}</p>
+        
       </InfoText> 
-    </Col>
+    </ItemWrap>
     
   );
 }

@@ -78,7 +78,7 @@ function FestivalList(props) {
   return (
     <section>
       {/* <MainDetailSearch /> */}
-      <Container>
+      <Container style={{ maxWidth: '1200px' }}>
         <DetailSearchStyle>
           <MainDetailSearch />
         </DetailSearchStyle>
