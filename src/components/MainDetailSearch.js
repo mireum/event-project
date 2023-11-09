@@ -136,11 +136,7 @@ function MainDetailSearch(props) {
   const [category, setCategory] = useState(false);
 
   const handleSelectSubjectOptions = (e) => {
-    // const newArray = [e.target.value];
-    console.log(e);
-    console.log(e.target.reactProps);
-    // console.log(e.target.value.map((e)=>{console.log(e);}));
-    setSubject([e.target.innerText]);
+    setSubject(e.target.innerText.split(','));
   };
 
   const handleSelectMonthOptions = (e) => {
@@ -152,6 +148,8 @@ function MainDetailSearch(props) {
   };
 
   const handleSelectCategoryOptions = (e) => {
+    e.persist();
+    console.log(e.target.value);
     setCategory(e.target.innerText);
   };
 
@@ -163,7 +161,6 @@ function MainDetailSearch(props) {
   };
 
   console.log(selectSubject, selectMonth, selectLocation, selectCategory);
-  console.log(subject);
 
   return (
     <>
@@ -175,7 +172,7 @@ function MainDetailSearch(props) {
             </SelectIcon>
             <Label htmlFor='subject'>{subject ? subject : '전체'}</Label>
             <SelectOptions show={showSubjectOptions}>
-              <Option id='arr' value={['축제', '전시회']} onClick={handleSelectSubjectOptions}>축제, 전시회</Option>
+              <Option value='every' onClick={handleSelectSubjectOptions}>축제,전시회</Option>
               <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
               <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>
             </SelectOptions>
@@ -237,6 +234,8 @@ function MainDetailSearch(props) {
             </SelectIcon>
             <Label htmlFor='category'>{category ? category : '카테고리'}</Label>
             <SelectOptions show={showCategoryOptions}>
+              <Option hidden onClick={handleSelectCategoryOptions}>연인과함께, 인생샷</Option>
+              <Option value='카테고리' onClick={handleSelectCategoryOptions}>카테고리</Option>
               <Option value='연인과함께' onClick={handleSelectCategoryOptions}>연인과함께</Option>
               <Option value='인생샷' onClick={handleSelectCategoryOptions}>인생샷</Option>
               <Option value='문화관광' onClick={handleSelectCategoryOptions}>문화관광</Option>

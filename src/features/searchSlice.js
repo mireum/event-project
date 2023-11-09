@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subject: null,
-  month: null,
-  location: null,
-  category: null,
+  subject: [],
+  month: [],
+  location: [],
+  category: []
 };
 
 const searchSlice = createSlice({
@@ -12,7 +12,6 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     getSubject: (state, action) => {
-      console.log(action);
       state.subject = action.payload;
     },
     getMonth: (state, action) => {
