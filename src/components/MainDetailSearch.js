@@ -121,18 +121,15 @@ const SearchBtn = styled.button`
 
 function MainDetailSearch(props) {
   const dispatch = useDispatch();
-  const selectSubject = useSelector(searchSubject);
-  const selectMonth = useSelector(searchMonth);
-  const selectLocation = useSelector(searchLocation);
-  const selectCategory = useSelector(searchCategory);
+
 
   const [showSubjectOptions, setShowSubjectOptions] = useState(false);
   const [subject, setSubject] = useState(['전체', '축제', '전시회']);
   const [showMonthOptions, setShowMonthOptions] = useState(false);
-  const [month, setMonth] = useState(['시기', '개최중', '개최예정', '01월', '02월', '03월', '04월', '05월', '06월',
-   '07월', '08월', '09월', '10월', '11월', '12월']);
+  const [month, setMonth] = useState(['시기', '개최중', '개최예정', '01', '02', '03', '04', '05', '06',
+   '07', '08', '09', '10', '11', '12']);
   const [showLocateOptions, setShowLocateOptions] = useState(false);
-  const [locate, setLocate] = useState(['장소', '서울특별시', '인천광역시', '대전광역시', '대구광역시', '광주광역시', '부산광역시',
+  const [locate, setLocate] = useState(['지역', '서울특별시', '인천광역시', '대전광역시', '대구광역시', '광주광역시', '부산광역시',
    '울산광역시', '경기도', '강원도', '충청북도', '충청남도', '경상북도', '경상남도', '전라북도', '전라남도', '제주특별자치도']);
   const [showCategoryOptions, setShowCategoryOptions] = useState(false);
   const [category, setCategory] = useState(['카테고리', '연인과함께', '인생샷', '문화관광', '예술', '체험']);
@@ -152,8 +149,8 @@ function MainDetailSearch(props) {
     else { setMonth([e.target.innerText, e.target.innerText.split('월')[0]]); }
   };
 
-  const handleSelectlocateOptions = (e) => {
-    if (e.target.innerText == '장소') {setLocate(['장소', '서울특별시', '인천광역시', '대전광역시', '대구광역시', '광주광역시', 
+  const handleSelectLocateOptions = (e) => {
+    if (e.target.innerText == '지역') {setLocate(['지역', '서울특별시', '인천광역시', '대전광역시', '대구광역시', '광주광역시', 
     '부산광역시', '울산광역시', '경기도', '강원도', '충청북도', '충청남도', '경상북도', '경상남도', '전라북도', '전라남도', '제주특별자치도'])}
     else if (e.target.innerText == '제주도') {setLocate(['제주특별자치도'])}
     else {setLocate([e.target.innerText]);}
@@ -172,7 +169,7 @@ function MainDetailSearch(props) {
     dispatch(getCategory(category))
   };
 
-  console.log(selectSubject, selectMonth, selectLocation, selectCategory);
+  // console.log(selectSubject, selectMonth, selectLocation, selectCategory);
 
   return (
     <>
@@ -220,23 +217,23 @@ function MainDetailSearch(props) {
             </SelectIcon>
             <Label htmlFor='location'>{locate[0]}</Label>
             <SelectOptions show={showLocateOptions}>
-              <Option onClick={handleSelectlocateOptions}>장소</Option>
-              <Option onClick={handleSelectlocateOptions}>서울특별시</Option>
-              <Option onClick={handleSelectlocateOptions}>인천광역시</Option>
-              <Option onClick={handleSelectlocateOptions}>대전광역시</Option>
-              <Option onClick={handleSelectlocateOptions}>대구광역시</Option>
-              <Option onClick={handleSelectlocateOptions}>광주광역시</Option>
-              <Option onClick={handleSelectlocateOptions}>부산광역시</Option>
-              <Option onClick={handleSelectlocateOptions}>울산광역시</Option>
-              <Option onClick={handleSelectlocateOptions}>경기도</Option>
-              <Option onClick={handleSelectlocateOptions}>강원도</Option>
-              <Option onClick={handleSelectlocateOptions}>충청북도</Option>
-              <Option onClick={handleSelectlocateOptions}>충청남도</Option>
-              <Option onClick={handleSelectlocateOptions}>경상북도</Option>
-              <Option onClick={handleSelectlocateOptions}>경상남도</Option>
-              <Option onClick={handleSelectlocateOptions}>전라북도</Option>
-              <Option onClick={handleSelectlocateOptions}>전라남도</Option>
-              <Option onClick={handleSelectlocateOptions}>제주도</Option>
+              <Option onClick={handleSelectLocateOptions}>지역</Option>
+              <Option onClick={handleSelectLocateOptions}>서울특별시</Option>
+              <Option onClick={handleSelectLocateOptions}>인천광역시</Option>
+              <Option onClick={handleSelectLocateOptions}>대전광역시</Option>
+              <Option onClick={handleSelectLocateOptions}>대구광역시</Option>
+              <Option onClick={handleSelectLocateOptions}>광주광역시</Option>
+              <Option onClick={handleSelectLocateOptions}>부산광역시</Option>
+              <Option onClick={handleSelectLocateOptions}>울산광역시</Option>
+              <Option onClick={handleSelectLocateOptions}>경기도</Option>
+              <Option onClick={handleSelectLocateOptions}>강원도</Option>
+              <Option onClick={handleSelectLocateOptions}>충청북도</Option>
+              <Option onClick={handleSelectLocateOptions}>충청남도</Option>
+              <Option onClick={handleSelectLocateOptions}>경상북도</Option>
+              <Option onClick={handleSelectLocateOptions}>경상남도</Option>
+              <Option onClick={handleSelectLocateOptions}>전라북도</Option>
+              <Option onClick={handleSelectLocateOptions}>전라남도</Option>
+              <Option onClick={handleSelectLocateOptions}>제주도</Option>
             </SelectOptions>
           </SelectBox>
 
