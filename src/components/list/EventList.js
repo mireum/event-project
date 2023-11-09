@@ -29,19 +29,6 @@ function FestivalList(props) {
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
 
-  // const filteredEventList = (subject && month && location && category) && 
-  //   getEventItem.filter((event) => {
-  //     return (
-  //       (event.유형===subject &&  event.축제시작일자.split('-')[1]===month && 
-  //       event.소재지도로명주소.split(' ')[0]===location &&
-  //       event.카테고리===category)
-  //     );
-  // })
-  // const filteredEventList = 
-  // subject 
-  // ? getEventItem.filter(event => event.유형 === subject) 
-  // : category
-  //   ? getEventItem.filter(event => event.카테고리 === category || event.카테고리 ===)
 
   // const filteredEventList = getEventItem
   // .filter(event => event.유형 === subject)
@@ -49,11 +36,12 @@ function FestivalList(props) {
   // .filter(event => event.소재지도로명주소.split(' ')[0] == location)
   // .filter(event => event.카테고리 === category);
 
-  console.log(subject);
+  console.log(subject, month, location);
 
   const filteredEventList = getEventItem
   .filter(event => subject.includes(event.유형))
   .filter(event => month.includes(event.축제시작일자.split('-')[1]))
+  .filter(event => location.includes(event.소재지도로명주소.split(' ')[0]))
   .filter(event => category.includes(event.카테고리))
 
   // const filteredEventList = 

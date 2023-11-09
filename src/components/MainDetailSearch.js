@@ -127,35 +127,47 @@ function MainDetailSearch(props) {
   const selectCategory = useSelector(searchCategory);
 
   const [showSubjectOptions, setShowSubjectOptions] = useState(false);
-  const [subject, setSubject] = useState(['축제', '전시회']);
+  const [subject, setSubject] = useState(['전체', '축제', '전시회']);
   const [showMonthOptions, setShowMonthOptions] = useState(false);
-  const [month, setMonth] = useState(false);
+  const [month, setMonth] = useState(['시기', '개최중', '개최예정', '01월', '02월', '03월', '04월', '05월', '06월',
+   '07월', '08월', '09월', '10월', '11월', '12월']);
   const [showLocateOptions, setShowLocateOptions] = useState(false);
-  const [locate, setLocate] = useState(false);
+  const [locate, setLocate] = useState(['장소', '서울특별시', '인천광역시', '대전광역시', '대구광역시', '광주광역시', '부산광역시',
+   '울산광역시', '경기도', '강원도', '충청북도', '충청남도', '경상북도', '경상남도', '전라북도', '전라남도', '제주특별자치도']);
   const [showCategoryOptions, setShowCategoryOptions] = useState(false);
-  const [category, setCategory] = useState(false);
+  const [category, setCategory] = useState(['카테고리', '연인과함께', '인생샷', '문화관광', '예술', '체험']);
 
   const handleSelectSubjectOptions = (e) => {
-    setSubject(e.target.innerText.split(','));
+    if (e.target.innerText == '전체') {setSubject(['전체', '축제', '전시회'])}
+    else {
+      setSubject(e.target.innerText.split(','));
+    }
   };
 
   const handleSelectMonthOptions = (e) => {
-    setMonth(e.target.innerText);
+    if (e.target.innerText == '시기') {setMonth(['시기', '개최중', '개최예정', '01', '02', '03', '04', '05', 
+    '06', '07', '08', '09', '10', '11', '12'])}
+    else if (e.target.innerText == '개최중') {setMonth(['개최중'])}
+    else if (e.target.innerText == '개최예정') {setMonth(['개최예정'])}
+    else { setMonth([e.target.innerText, e.target.innerText.split('월')[0]]); }
   };
 
   const handleSelectlocateOptions = (e) => {
-    setLocate(e.target.innerText);
+    if (e.target.innerText == '장소') {setLocate(['장소', '서울특별시', '인천광역시', '대전광역시', '대구광역시', '광주광역시', 
+    '부산광역시', '울산광역시', '경기도', '강원도', '충청북도', '충청남도', '경상북도', '경상남도', '전라북도', '전라남도', '제주특별자치도'])}
+    else if (e.target.innerText == '제주도') {setLocate(['제주특별자치도'])}
+    else {setLocate([e.target.innerText]);}
   };
 
   const handleSelectCategoryOptions = (e) => {
-    e.persist();
-    console.log(e.target.value);
-    setCategory(e.target.innerText);
+    if (e.target.innerText == '카테고리') {setCategory(['카테고리', '연인과함께', '인생샷', '문화관광', '예술', '체험'])}
+    else {setCategory([e.target.innerText]);}
+
   };
 
   const handleSubmitValue = () => {
     dispatch(getSubject(subject))
-    dispatch(getMonth(month && month.split('월')[0]))
+    dispatch(getMonth(month))
     dispatch(getLocation(locate))
     dispatch(getCategory(category))
   };
@@ -170,11 +182,11 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <MdSubject />
             </SelectIcon>
-            <Label htmlFor='subject'>{subject ? subject : '전체'}</Label>
+            <Label htmlFor='subject'>{subject[0]}</Label>
             <SelectOptions show={showSubjectOptions}>
-              <Option value='every' onClick={handleSelectSubjectOptions}>축제,전시회</Option>
-              <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
-              <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>
+              <Option onClick={handleSelectSubjectOptions}>전체</Option>
+              <Option onClick={handleSelectSubjectOptions}>축제</Option>
+              <Option onClick={handleSelectSubjectOptions}>전시회</Option>
             </SelectOptions>
           </SelectBox>
 
@@ -182,23 +194,23 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <AiOutlineCalendar />
             </SelectIcon>
-            <Label htmlFor='month'>{month ? month : '시기'}</Label>
+            <Label htmlFor='month'>{month[0]}</Label>
             <SelectOptions show={showMonthOptions}>
-              <Option value="15" onClick={handleSelectMonthOptions}>시기</Option>
-              <Option value="13" onClick={handleSelectMonthOptions}>개최중</Option>
-              <Option value="14" onClick={handleSelectMonthOptions}>개최예정</Option>
-              <Option value="01" onClick={handleSelectMonthOptions}>01월</Option>
-              <Option value="02" onClick={handleSelectMonthOptions}>02월</Option>
-              <Option value="03" onClick={handleSelectMonthOptions}>03월</Option>
-              <Option value="04" onClick={handleSelectMonthOptions}>04월</Option>
-              <Option value="05" onClick={handleSelectMonthOptions}>05월</Option>
-              <Option value="06" onClick={handleSelectMonthOptions}>06월</Option>
-              <Option value="07" onClick={handleSelectMonthOptions}>07월</Option>
-              <Option value="08" onClick={handleSelectMonthOptions}>08월</Option>
-              <Option value="09" onClick={handleSelectMonthOptions}>09월</Option>
-              <Option value="10" onClick={handleSelectMonthOptions}>10월</Option>
-              <Option value="11" onClick={handleSelectMonthOptions}>11월</Option>
-              <Option value="12" onClick={handleSelectMonthOptions}>12월</Option>
+              <Option onClick={handleSelectMonthOptions}>시기</Option>
+              <Option onClick={handleSelectMonthOptions}>개최중</Option>
+              <Option onClick={handleSelectMonthOptions}>개최예정</Option>
+              <Option onClick={handleSelectMonthOptions}>01월</Option>
+              <Option onClick={handleSelectMonthOptions}>02월</Option>
+              <Option onClick={handleSelectMonthOptions}>03월</Option>
+              <Option onClick={handleSelectMonthOptions}>04월</Option>
+              <Option onClick={handleSelectMonthOptions}>05월</Option>
+              <Option onClick={handleSelectMonthOptions}>06월</Option>
+              <Option onClick={handleSelectMonthOptions}>07월</Option>
+              <Option onClick={handleSelectMonthOptions}>08월</Option>
+              <Option onClick={handleSelectMonthOptions}>09월</Option>
+              <Option onClick={handleSelectMonthOptions}>10월</Option>
+              <Option onClick={handleSelectMonthOptions}>11월</Option>
+              <Option onClick={handleSelectMonthOptions}>12월</Option>
             </SelectOptions>
           </SelectBox>
 
@@ -206,24 +218,25 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <MdLocationOn />
             </SelectIcon>
-            <Label htmlFor='location'>{locate ? locate : '장소'}</Label>
+            <Label htmlFor='location'>{locate[0]}</Label>
             <SelectOptions show={showLocateOptions}>
-              <Option value='서울특별시' onClick={handleSelectlocateOptions}>서울특별시</Option>
-              <Option value='인천광역시' onClick={handleSelectlocateOptions}>인천광역시</Option>
-              <Option value='대전광역시' onClick={handleSelectlocateOptions}>대전광역시</Option>
-              <Option value='대구광역시' onClick={handleSelectlocateOptions}>대구광역시</Option>
-              <Option value='광주광역시' onClick={handleSelectlocateOptions}>광주광역시</Option>
-              <Option value='부산광역시' onClick={handleSelectlocateOptions}>부산광역시</Option>
-              <Option value='울산광역시' onClick={handleSelectlocateOptions}>울산광역시</Option>
-              <Option value='경기도' onClick={handleSelectlocateOptions}>경기도</Option>
-              <Option value='강원도' onClick={handleSelectlocateOptions}>강원도</Option>
-              <Option value='충청북도' onClick={handleSelectlocateOptions}>충청북도</Option>
-              <Option value='충청남도' onClick={handleSelectlocateOptions}>충청남도</Option>
-              <Option value='경상북도' onClick={handleSelectlocateOptions}>경상북도</Option>
-              <Option value='경상남도' onClick={handleSelectlocateOptions}>경상남도</Option>
-              <Option value='전라북도' onClick={handleSelectlocateOptions}>전라북도</Option>
-              <Option value='전라남도' onClick={handleSelectlocateOptions}>전라남도</Option>
-              <Option value='제주도' onClick={handleSelectlocateOptions}>제주도</Option>
+              <Option onClick={handleSelectlocateOptions}>장소</Option>
+              <Option onClick={handleSelectlocateOptions}>서울특별시</Option>
+              <Option onClick={handleSelectlocateOptions}>인천광역시</Option>
+              <Option onClick={handleSelectlocateOptions}>대전광역시</Option>
+              <Option onClick={handleSelectlocateOptions}>대구광역시</Option>
+              <Option onClick={handleSelectlocateOptions}>광주광역시</Option>
+              <Option onClick={handleSelectlocateOptions}>부산광역시</Option>
+              <Option onClick={handleSelectlocateOptions}>울산광역시</Option>
+              <Option onClick={handleSelectlocateOptions}>경기도</Option>
+              <Option onClick={handleSelectlocateOptions}>강원도</Option>
+              <Option onClick={handleSelectlocateOptions}>충청북도</Option>
+              <Option onClick={handleSelectlocateOptions}>충청남도</Option>
+              <Option onClick={handleSelectlocateOptions}>경상북도</Option>
+              <Option onClick={handleSelectlocateOptions}>경상남도</Option>
+              <Option onClick={handleSelectlocateOptions}>전라북도</Option>
+              <Option onClick={handleSelectlocateOptions}>전라남도</Option>
+              <Option onClick={handleSelectlocateOptions}>제주도</Option>
             </SelectOptions>
           </SelectBox>
 
@@ -232,15 +245,14 @@ function MainDetailSearch(props) {
             <SelectIcon>
               <AiFillFolderOpen />
             </SelectIcon>
-            <Label htmlFor='category'>{category ? category : '카테고리'}</Label>
+            <Label htmlFor='category'>{category[0]}</Label>
             <SelectOptions show={showCategoryOptions}>
-              <Option hidden onClick={handleSelectCategoryOptions}>연인과함께, 인생샷</Option>
-              <Option value='카테고리' onClick={handleSelectCategoryOptions}>카테고리</Option>
-              <Option value='연인과함께' onClick={handleSelectCategoryOptions}>연인과함께</Option>
-              <Option value='인생샷' onClick={handleSelectCategoryOptions}>인생샷</Option>
-              <Option value='문화관광' onClick={handleSelectCategoryOptions}>문화관광</Option>
-              <Option value='예술' onClick={handleSelectCategoryOptions}>예술</Option>
-              <Option value='체험' onClick={handleSelectCategoryOptions}>체험</Option>
+              <Option onClick={handleSelectCategoryOptions}>카테고리</Option>
+              <Option onClick={handleSelectCategoryOptions}>연인과함께</Option>
+              <Option onClick={handleSelectCategoryOptions}>인생샷</Option>
+              <Option onClick={handleSelectCategoryOptions}>문화관광</Option>
+              <Option onClick={handleSelectCategoryOptions}>예술</Option>
+              <Option onClick={handleSelectCategoryOptions}>체험</Option>
             </SelectOptions>
           </SelectBox>
 
