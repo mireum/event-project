@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -29,7 +28,7 @@ const InfoText = styled.div`
   }
 `;
 
-function FestivalListItem(props) {
+function EventListItem(props) {
   const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
   const navigate = useNavigate();
   
@@ -41,7 +40,7 @@ function FestivalListItem(props) {
           navigate(`/detail/${id}`)
         }} 
       />
-      <InfoText>
+      <InfoText>  
         <h4>{축제명}</h4>      
         <p>{`${축제시작일자} ~ ${축제종료일자}`}</p>
         <p>{제공기관명}</p>
@@ -51,4 +50,4 @@ function FestivalListItem(props) {
   );
 }
 
-export default FestivalListItem;
+export default EventListItem;
