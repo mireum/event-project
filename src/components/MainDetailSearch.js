@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategory, getLocation, getMonth, getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
 
 
-
 const SearchBox = styled.div`
   display: flex;
   max-width: 1200px;
@@ -122,7 +121,6 @@ const SearchBtn = styled.button`
 function MainDetailSearch(props) {
   const dispatch = useDispatch();
 
-
   const [showSubjectOptions, setShowSubjectOptions] = useState(false);
   const [subject, setSubject] = useState(['전체', '축제', '전시회']);
   const [showMonthOptions, setShowMonthOptions] = useState(false);
@@ -168,8 +166,6 @@ function MainDetailSearch(props) {
     dispatch(getLocation(locate))
     dispatch(getCategory(category))
   };
-
-  // console.log(selectSubject, selectMonth, selectLocation, selectCategory);
 
   return (
     <>
