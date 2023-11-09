@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -40,7 +39,7 @@ function EventListItem(props) {
           navigate(`/detail/${id}`)
         }} 
       />
-      <InfoText>
+      <InfoText>  
         <h4>{축제명}</h4>      
         <p>{`${축제시작일자} ~ ${축제종료일자}`}</p>
         <p>{제공기관명}</p>
