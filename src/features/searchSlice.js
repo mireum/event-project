@@ -12,6 +12,7 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     getSubject: (state, action) => {
+      console.log(action);
       state.subject = action.payload;
     },
     getMonth: (state, action) => {

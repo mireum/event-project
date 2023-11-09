@@ -126,8 +126,8 @@ function MainDetailSearch(props) {
   const selectLocation = useSelector(searchLocation);
   const selectCategory = useSelector(searchCategory);
 
-  const [showSubjectOptions, setShowSubjectOptions] = useState(['축제', '전시회']);
-  const [subject, setSubject] = useState(false);
+  const [showSubjectOptions, setShowSubjectOptions] = useState(false);
+  const [subject, setSubject] = useState(['축제', '전시회']);
   const [showMonthOptions, setShowMonthOptions] = useState(false);
   const [month, setMonth] = useState(false);
   const [showLocateOptions, setShowLocateOptions] = useState(false);
@@ -136,7 +136,11 @@ function MainDetailSearch(props) {
   const [category, setCategory] = useState(false);
 
   const handleSelectSubjectOptions = (e) => {
-    setSubject(e.target.innerText);
+    // const newArray = [e.target.value];
+    console.log(e);
+    console.log(e.target.reactProps);
+    // console.log(e.target.value.map((e)=>{console.log(e);}));
+    setSubject([e.target.innerText]);
   };
 
   const handleSelectMonthOptions = (e) => {
@@ -159,6 +163,7 @@ function MainDetailSearch(props) {
   };
 
   console.log(selectSubject, selectMonth, selectLocation, selectCategory);
+  console.log(subject);
 
   return (
     <>
@@ -169,8 +174,8 @@ function MainDetailSearch(props) {
               <MdSubject />
             </SelectIcon>
             <Label htmlFor='subject'>{subject ? subject : '전체'}</Label>
-            <SelectOptions show={!showSubjectOptions}>
-              <Option value='every' onClick={handleSelectSubjectOptions}>전체</Option>
+            <SelectOptions show={showSubjectOptions}>
+              <Option id='arr' value={['축제', '전시회']} onClick={handleSelectSubjectOptions}>축제, 전시회</Option>
               <Option value='festival' onClick={handleSelectSubjectOptions}>축제</Option>
               <Option value='exhibit' onClick={handleSelectSubjectOptions}>전시회</Option>
             </SelectOptions>
@@ -182,6 +187,7 @@ function MainDetailSearch(props) {
             </SelectIcon>
             <Label htmlFor='month'>{month ? month : '시기'}</Label>
             <SelectOptions show={showMonthOptions}>
+              <Option value="15" onClick={handleSelectMonthOptions}>시기</Option>
               <Option value="13" onClick={handleSelectMonthOptions}>개최중</Option>
               <Option value="14" onClick={handleSelectMonthOptions}>개최예정</Option>
               <Option value="01" onClick={handleSelectMonthOptions}>01월</Option>

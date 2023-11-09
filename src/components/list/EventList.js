@@ -4,7 +4,7 @@ import { getEventItem } from '../../api/eventAPI';
 import FestivalListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
-import { getSearchList, searchCategory, searchList, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
+import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import { useSelector } from 'react-redux';
 
 
@@ -19,7 +19,6 @@ const MoreButton = styled(Button)`
 
 function FestivalList(props) {
   const [ showList, setShowList ] = useState(12);
-  // const [ searchList, setSearchList ] = useState([]);
 
   const moreShow = () => {
     setShowList(showList + 6);
@@ -50,6 +49,14 @@ function FestivalList(props) {
   .filter(event => event.소재지도로명주소.split(' ')[0] == location)
   .filter(event => event.카테고리 === category);
 
+  console.log(subject);
+  // const filteredEventList = getEventItem
+  // .filter(event => {
+  //   return (
+  //     subject.include
+  //   );
+  // })
+
 
   // const filteredEventList = 
   // subject || month || location || category
@@ -63,15 +70,6 @@ function FestivalList(props) {
   //   })
   //   : getEventItem;
 
-
-
-  // : category
-  //   ? getEventItem.filter(event => event.카테고리 === category || event)
-  //   : month
-  //     ? getEventItem.filter(event => event.축제시작일자.split('-')[1] == month)
-  //     : location
-  //       ? getEventItem.filter(event => event.소재지도로명주소.split(' ')[0] == location)
-  //       : getEventItem
 
   // console.log(filteredEventList);
 
