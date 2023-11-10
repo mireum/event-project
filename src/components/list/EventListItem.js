@@ -28,7 +28,8 @@ const InfoText = styled.div`
 `;
 
 function EventListItem(props) {
-  const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
+  console.log(props);
+  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, auspcInsttNm } } = props;
   const navigate = useNavigate();
   
   return (
@@ -40,9 +41,9 @@ function EventListItem(props) {
         }} 
       />
       <InfoText>  
-        <h4>{축제명}</h4>      
-        <p>{`${축제시작일자} ~ ${축제종료일자}`}</p>
-        <p>{제공기관명}</p>
+        <h4>{fstvlNm}</h4>      
+        <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
+        <p>{auspcInsttNm}</p>
       </InfoText> 
     </Col>
     

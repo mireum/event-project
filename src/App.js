@@ -35,8 +35,6 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
 
-  console.log(getEventItem);
-
   return (
     <>
       <GlobalStyle />
