@@ -4,17 +4,24 @@ import { getEventItem } from '../../api/eventAPI';
 import EventListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
-import { filters, getFilterSubject, getSearchList, searchCategory, searchList, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { addObjKey, clearEventList, getEventList, getExhibition, getImages, getMoreImages, selectEventList, selectImages } from '../../api/eventListSlice';
+import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
+import AsNavFor from './mainSlide';
+
+
+const StyledContainer = styled(Container)`
+  max-width: 1200px;
+`;
+
 
 const DetailSearchStyle = styled.div`
   margin: 50px 0;
 `;
 
-const StyledContainer = styled(Container)`
-  max-width: 1200px;
+const SlideBox = styled.div`
+  margin: 0 auto;
 `;
 
 const MoreButton = styled(Button)`
@@ -23,6 +30,11 @@ const MoreButton = styled(Button)`
 `;
 
 function EventList(props) {
+  const subject = useSelector(searchSubject);
+  const month = useSelector(searchMonth);
+  const location = useSelector(searchLocation);
+  const category = useSelector(searchCategory);
+
 
   const [ showList, setShowList ] = useState(12);
 
@@ -84,6 +96,7 @@ function EventList(props) {
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
 
+
   const filteredEventList = getEventItem
   .filter(event => {
   
@@ -108,11 +121,15 @@ function EventList(props) {
         <DetailSearchStyle>
           <MainDetailSearch />
         </DetailSearchStyle>
+        <SlideBox>
+          <AsNavFor />
+        </SlideBox>
         <Row>
           {filteredEventList.length > 1
             ? filteredEventList.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)
             : eventLists.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>
+
       </StyledContainer>
         { showList > getEventItem.length && showList > filteredEventList.length
           ? null
@@ -124,6 +141,7 @@ function EventList(props) {
           더보기
           </MoreButton>
         }
+      </StyledContainer>
     </section>
   );
 }
