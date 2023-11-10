@@ -4,8 +4,8 @@ import { getEventItem } from '../../api/eventAPI';
 import EventListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
-import { filters, getFilterSubject, getSearchList, searchCategory, searchList, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
+import { useSelector } from 'react-redux';
 
 
 
@@ -68,8 +68,7 @@ function EventList(props) {
             ? filteredEventList.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)
             : getEventItem.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)}
         </Row>
-      </StyledContainer>
-      { showList > filteredEventList.length || getEventItem.length
+      { showList > filteredEventList.length
         ? null
         : 
         <MoreButton 
@@ -79,6 +78,7 @@ function EventList(props) {
         더보기
         </MoreButton>
       }
+      </StyledContainer>
 
     </section>
   );
