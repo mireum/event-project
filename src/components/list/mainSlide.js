@@ -16,28 +16,29 @@ const SliderContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin-bottom: 30px;
-
+  margin-bottom: 50px;
+  
   & h3 {
     font-weight: bold;
   }
+
 `;
 
 const SlideBox = styled(Slider)`
-  width: 600px;
+  width: 580px;
   height: 380px;
-  /* padding: 20px; */
-  /* overflow: hidden; */
-  border-radius: 10px;
 `;
 
 const ImgBox = styled.div`
   width: 580px;
   height: 360px;
-  /* padding: 20px; */
-  /* overflow: hidden; */
-  /* border-radius: 10px; */
 
+  & img {
+    width: 580px;
+    height: 360px;
+    border-radius: 10px;
+    background-color: #fff;
+  }
 `;
 
 export default class AsNavFor extends Component {
@@ -116,7 +117,7 @@ export default class AsNavFor extends Component {
           dots={true}
           infinite={true}
           autoplay={true}
-          arrows={true}
+          arrows={false}
         >
           <ImgBox>
             <img src={mainImg_1}/>

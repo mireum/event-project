@@ -12,7 +12,7 @@ import Detail from './components/detail/Detail';
 import BookMark from './components/BookMark';
 import axios from 'axios';
 import { useEffect } from 'react';
-import AsNavFor from './components/list/sliderTest';
+import AsNavFor from './components/list/mainSlide';
 
 
 

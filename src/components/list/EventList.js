@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
 import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import { useSelector } from 'react-redux';
-import AsNavFor from './sliderTest';
+import AsNavFor from './mainSlide';
 
 
 const StyledContainer = styled(Container)`
