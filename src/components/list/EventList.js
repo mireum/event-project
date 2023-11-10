@@ -6,16 +6,19 @@ import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
 import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import { useSelector } from 'react-redux';
+import AsNavFor from './sliderTest';
 
 
-
+const StyledContainer = styled(Container)`
+  max-width: 1200px;
+`;
 
 const DetailSearchStyle = styled.div`
   margin: 50px 0;
 `;
 
-const StyledContainer = styled(Container)`
-  max-width: 1200px;
+const SlideBox = styled.div`
+  margin: 0 auto;
 `;
 
 const MoreButton = styled(Button)`
@@ -63,6 +66,13 @@ function EventList(props) {
         <DetailSearchStyle>
           <MainDetailSearch />
         </DetailSearchStyle>
+
+        <SlideBox>
+          <AsNavFor />
+
+        </SlideBox>
+
+
         <Row>
           {filteredEventList.length > 1
             ? filteredEventList.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)
