@@ -9,6 +9,9 @@ import mainImg_3 from "../../images/main/mainSlideImg_3.png";
 import mainImg_4 from "../../images/main/mainSlideImg_4.jpg";
 import mainImg_5 from "../../images/main/mainSlideImg_5.jpg";
 import mainImg_6 from "../../images/main/mainSlideImg_6.jpg";
+import { useSelector } from "react-redux";
+import { selectEventList } from "../../api/eventListSlice";
+
 
 const SliderContainer = styled.div`
   width: 1200px;
@@ -41,6 +44,7 @@ const ImgBox = styled.div`
   }
 `;
 
+
 export default class AsNavFor extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +60,7 @@ export default class AsNavFor extends Component {
       nav2: this.slider2,
     });
   }
+
 
   render() {
     return (

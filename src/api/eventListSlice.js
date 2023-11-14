@@ -45,10 +45,8 @@ const eventListSlice = createSlice({
       for (let i = 30; i < 40; i++) {
         state.eventListItem[i].category = '인생샷';
       }
-      for (let i = 40; i < 50; i++) {
+      for (let i = 40; i < 60; i++) {
         state.eventListItem[i].category = '연인과함께';
-      }
-      for (let i = 50; i < 60; i++) {
       }
       
       // eventListItem 배열에 image 속성/값 추가

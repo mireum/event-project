@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
-// import { getEventItem } from '../../api/eventAPI';
 import EventListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
@@ -32,13 +31,6 @@ const MoreButton = styled(Button)`
 
 function EventList(props) {
   const dispatch = useDispatch();
-
-  // const subject = useSelector(searchSubject);
-  // const month = useSelector(searchMonth);
-  // const location = useSelector(searchLocation);
-  // const category = useSelector(searchCategory);
-
-
   const [ showList, setShowList ] = useState(12);
 
   const moreShow = () => {
