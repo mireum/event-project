@@ -16,6 +16,23 @@ const ItemImage = styled.img`
   }
 `;
 
+const LikeBox = styled.div`
+  position: absolute;
+  bottom: 45%;
+  right: 7%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
 const InfoText = styled.div`
   margin-top: 6px;
   margin-bottom: 44px;
@@ -35,7 +52,7 @@ function EventListItem(props) {
   const [likeBtn, setLikeBtn] = useState(false);
   
   return (
-    <Col md={4} >
+    <Col md={4} style={{position:"relative"}}>
       <ItemImage
         className='cursor-pointer' 
         src={image}
@@ -43,11 +60,11 @@ function EventListItem(props) {
           navigate(`/detail/${id}`)
         }} 
       />
-      <div className='button-wrap' onClick={() => {setLikeBtn(prev=>!prev)}}>
+      <LikeBox className='cursor-pointer' onClick={() => {setLikeBtn(prev=>!prev)}}>
         {likeBtn
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
-      </div>
+      </LikeBox>
       <InfoText>  
         <h4>{fstvlNm}</h4>      
         <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
