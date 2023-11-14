@@ -12,29 +12,31 @@ const eventListSlice = createSlice({
     getEventList: (state, action) => {
       state.eventListItem.push(...action.payload);
 
-      // eventListItem 배열에 id값, category 속성/값 추가
-      for (let i = 0; i < 10; i++) {
-        state.eventListItem[i].category = '체험';
-        state.eventListItem[i].id= i + 1;
-      }
-      for (let i = 10; i < 20; i++) {
-        state.eventListItem[i].category = '예술';
-        state.eventListItem[i].id= i + 1;
-      }
-      for (let i = 20; i < 30; i++) {
-        state.eventListItem[i].category = '문화관광';
-        state.eventListItem[i].id= i + 1;
-      }
-      for (let i = 30; i < 40; i++) {
-        state.eventListItem[i].category = '인생샷';
-        state.eventListItem[i].id= i + 1;
-      }
-      for (let i = 40; i < 50; i++) {
-        state.eventListItem[i].category = '연인과함께';
+      for (let i = 0; i < 50; i++) {
+        state.eventListItem[i].type = '축제';
         state.eventListItem[i].id= i + 1;
       }
       for (let i = 50; i < 60; i++) {
+        state.eventListItem[i].type = '전시회';
         state.eventListItem[i].id= i + 1;
+      }
+      // eventListItem 배열에 id값, category 속성/값 추가
+      for (let i = 0; i < 10; i++) {
+        state.eventListItem[i].category = '체험';
+      }
+      for (let i = 10; i < 20; i++) {
+        state.eventListItem[i].category = '예술';
+      }
+      for (let i = 20; i < 30; i++) {
+        state.eventListItem[i].category = '문화관광';
+      }
+      for (let i = 30; i < 40; i++) {
+        state.eventListItem[i].category = '인생샷';
+      }
+      for (let i = 40; i < 50; i++) {
+        state.eventListItem[i].category = '연인과함께';
+      }
+      for (let i = 50; i < 60; i++) {
       }
       
       // eventListItem 배열에 image 속성/값 추가

@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import { getEventItem, getEventList } from './api/eventAPI';
+// import { getEventItem, getEventList } from './api/eventAPI';
 import EventList from './components/list/EventList';
 import Map from './components/detail/Map';
 import Detail from './components/detail/Detail';

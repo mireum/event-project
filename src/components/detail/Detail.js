@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import Map from './Map';
 import Recommend from './Recommend';
 import { selectEventList } from '../../api/eventListSlice';
+import { useSelector } from 'react-redux';
 
 
 function Detail(props) {

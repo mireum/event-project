@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
-import { getEventItem } from '../../api/eventAPI';
+// import { getEventItem } from '../../api/eventAPI';
 import EventListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { addObjKey, clearEventList, getEventList, getExhibition, getImages, getMoreImages, selectEventList, selectImages } from '../../api/eventListSlice';
+import { getEventList, getImages, getMoreImages, selectEventList } from '../../api/eventListSlice';
 import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import AsNavFor from './mainSlide';
 
@@ -15,13 +15,14 @@ const StyledContainer = styled(Container)`
   max-width: 1200px;
 `;
 
-
 const DetailSearchStyle = styled.div`
   margin: 50px 0;
 `;
 
 const SlideBox = styled.div`
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MoreButton = styled(Button)`
@@ -30,10 +31,12 @@ const MoreButton = styled(Button)`
 `;
 
 function EventList(props) {
-  const subject = useSelector(searchSubject);
-  const month = useSelector(searchMonth);
-  const location = useSelector(searchLocation);
-  const category = useSelector(searchCategory);
+  const dispatch = useDispatch();
+
+  // const subject = useSelector(searchSubject);
+  // const month = useSelector(searchMonth);
+  // const location = useSelector(searchLocation);
+  // const category = useSelector(searchCategory);
 
 
   const [ showList, setShowList ] = useState(12);
@@ -42,7 +45,6 @@ function EventList(props) {
     setShowList(showList + 6);
   }
 
-  const dispatch = useDispatch();
 
   // API(festival, exhibition) 호출 후 eventListSlice에 값 넘겨주기
   useEffect(() => {
@@ -96,22 +98,21 @@ function EventList(props) {
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
 
-
-  const filteredEventList = getEventItem
+  const filteredEventList = eventLists
   .filter(event => {
   
-      let filterSubject = true;
-      let filterMonth = true;
-      let filterLocation = true;
-      let filterCategory = true;
+    let filterSubject = true;
+    let filterMonth = true;
+    let filterLocation = true;
+    let filterCategory = true;
+    
+    filterSubject = subject.includes(event.type);
+    filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+    filterLocation = location.includes(event.rdnmadr.split(' ')[0]);
+    filterCategory = category.includes(event.category);
 
-      filterSubject = subject.includes(event.유형);
-      filterMonth = month.includes(event.축제시작일자.split('-')[1]);
-      filterLocation = location.includes(event.소재지도로명주소.split(' ')[0]);
-      filterCategory = category.includes(event.카테고리);
-
-      return (
-        filterSubject && filterMonth && filterLocation && filterCategory
+    return (
+      filterSubject && filterMonth && filterLocation && filterCategory
     )
   })
 
@@ -127,11 +128,10 @@ function EventList(props) {
         <Row>
           {filteredEventList.length > 1
             ? filteredEventList.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)
-            : eventLists.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)}
+            : eventLists.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList) }
         </Row>
 
-      </StyledContainer>
-        { showList > getEventItem.length && showList > filteredEventList.length
+        { showList > eventLists.length && showList > filteredEventList.length
           ? null
           : 
           <MoreButton 
