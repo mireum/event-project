@@ -107,7 +107,12 @@ function EventList(props) {
     let filterCategory = true;
     
     filterSubject = subject.includes(event.type);
-    filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+    // filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+    if (event.hoding) {
+      filterMonth = true;
+    } else {
+      filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+    }
     filterLocation = location.includes(event.rdnmadr.split(' ')[0]);
     filterCategory = category.includes(event.category);
 

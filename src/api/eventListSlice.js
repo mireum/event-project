@@ -5,16 +5,28 @@ const initialState = {
   images: []
 };
 
+const nowTime = new Date().getTime();
+
 const eventListSlice = createSlice({
   name: 'eventList',
   initialState,
   reducers: {
     getEventList: (state, action) => {
       state.eventListItem.push(...action.payload);
+      
+      for (let i = 0; i < 60; i++) {
+        const endTime = new Date(state.eventListItem[i].fstvlEndDate).getTime();
+        const startTime = new Date(state.eventListItem[i].fstvlStartDate).getTime();
+        if (endTime > nowTime && nowTime > startTime) {
+          state.eventListItem[i].holding = true;
+        }
+        
+      }
 
       for (let i = 0; i < 50; i++) {
         state.eventListItem[i].type = '축제';
         state.eventListItem[i].id= i + 1;
+        state.eventListItem[i].image = `${state.images[i].image}`;
       }
       for (let i = 50; i < 60; i++) {
         state.eventListItem[i].type = '전시회';
@@ -40,9 +52,9 @@ const eventListSlice = createSlice({
       }
       
       // eventListItem 배열에 image 속성/값 추가
-      for (let i = 0; i < 50; i++) {
-        state.eventListItem[i].image = `${state.images[i].image}`;
-      }
+      // for (let i = 0; i < 50; i++) {
+      //   state.eventListItem[i].image = `${state.images[i].image}`;
+      // }
     },
     getImages: (state, action) => {
       state.images.unshift(...action.payload);

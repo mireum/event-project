@@ -29,12 +29,13 @@ const InfoText = styled.div`
 
 function EventListItem(props) {
   console.log(props);
-  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, auspcInsttNm } } = props;
+  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } } = props;
   const navigate = useNavigate();
   
   return (
-    <Col md={4} className='cursor-pointer'>
-      <ItemImage 
+    <Col md={4} >
+      <ItemImage
+        className='cursor-pointer' 
         src={image}
         onClick={() => {
           navigate(`/detail/${id}`)
@@ -43,7 +44,11 @@ function EventListItem(props) {
       <InfoText>  
         <h4>{fstvlNm}</h4>      
         <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
-        <p>{auspcInsttNm}</p>
+        <p>
+          {lnmadr
+          ? `${lnmadr.split(' ')[0]} ${lnmadr.split(' ')[1]}`
+          : `${rdnmadr.split(' ')[0]} ${rdnmadr.split(' ')[1]}` } 
+        </p>
       </InfoText> 
     </Col>
     

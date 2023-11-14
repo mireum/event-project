@@ -140,10 +140,9 @@ function MainDetailSearch(props) {
   };
 
   const handleSelectMonthOptions = (e) => {
-    if (e.target.innerText == '시기') {setMonth(['시기', '개최중', '개최예정', '01', '02', '03', '04', '05', 
+    if (e.target.innerText == '시기') {setMonth(['시기', '개최중', '01', '02', '03', '04', '05', 
     '06', '07', '08', '09', '10', '11', '12'])}
     else if (e.target.innerText == '개최중') {setMonth(['개최중'])}
-    else if (e.target.innerText == '개최예정') {setMonth(['개최예정'])}
     else { setMonth([e.target.innerText, e.target.innerText.split('월')[0]]); }
   };
 
@@ -191,7 +190,6 @@ function MainDetailSearch(props) {
             <SelectOptions show={showMonthOptions}>
               <Option onClick={handleSelectMonthOptions}>시기</Option>
               <Option onClick={handleSelectMonthOptions}>개최중</Option>
-              <Option onClick={handleSelectMonthOptions}>개최예정</Option>
               <Option onClick={handleSelectMonthOptions}>01월</Option>
               <Option onClick={handleSelectMonthOptions}>02월</Option>
               <Option onClick={handleSelectMonthOptions}>03월</Option>
