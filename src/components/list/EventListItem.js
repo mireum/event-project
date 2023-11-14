@@ -65,7 +65,7 @@ function EventListItem(props) {
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
       </LikeBox>
-      <InfoText>  
+      <InfoText>
         <h4>{fstvlNm}</h4>      
         <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
         <p>
