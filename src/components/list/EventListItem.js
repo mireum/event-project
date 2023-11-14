@@ -28,7 +28,7 @@ const InfoText = styled.div`
 `;
 
 function EventListItem(props) {
-  console.log(props);
+  // console.log(props);
   const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } } = props;
   const navigate = useNavigate();
   

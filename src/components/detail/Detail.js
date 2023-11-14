@@ -12,14 +12,13 @@ import { useSelector } from 'react-redux';
 function Detail(props) {
 	const { EventListId } = useParams();
 	const eventLists = useSelector(selectEventList);
-	console.log(EventListId);
+	// console.log(EventListId);
 
 	const detailItem = eventLists.filter(event => event.id === Number(EventListId));
 
 	return (
 		<>
 			<DetailVisual />
-			{/* <DetailContainer detailItem={detailItem} /> */}
 			<FestivalInfo detailItem={detailItem} />
 			<Map />
 			<Recommend />

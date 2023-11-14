@@ -68,8 +68,8 @@ const SelectOptions = styled.ul`
   margin-top: 10px;
   padding: 0;
   text-align: center;
-  max-height: ${(props) => (props.show ? "none" : "0")};
-  outline: ${(props) => (props.show ? "1px solid #111" : "0")};
+  max-height: ${(props) => (props.$show ? "none" : "0")};
+  outline: ${(props) => (props.$show ? "1px solid #111" : "0")};
   z-index: 99;
 `;
 
@@ -175,7 +175,7 @@ function MainDetailSearch(props) {
               <MdSubject />
             </SelectIcon>
             <Label htmlFor='subject'>{subject[0]}</Label>
-            <SelectOptions show={showSubjectOptions}>
+            <SelectOptions $show={showSubjectOptions}>
               <Option onClick={handleSelectSubjectOptions}>전체</Option>
               <Option onClick={handleSelectSubjectOptions}>축제</Option>
               <Option onClick={handleSelectSubjectOptions}>전시회</Option>
@@ -187,7 +187,7 @@ function MainDetailSearch(props) {
               <AiOutlineCalendar />
             </SelectIcon>
             <Label htmlFor='month'>{month[0]}</Label>
-            <SelectOptions show={showMonthOptions}>
+            <SelectOptions $show={showMonthOptions}>
               <Option onClick={handleSelectMonthOptions}>시기</Option>
               <Option onClick={handleSelectMonthOptions}>개최중</Option>
               <Option onClick={handleSelectMonthOptions}>01월</Option>
@@ -210,7 +210,7 @@ function MainDetailSearch(props) {
               <MdLocationOn />
             </SelectIcon>
             <Label htmlFor='location'>{locate[0]}</Label>
-            <SelectOptions show={showLocateOptions}>
+            <SelectOptions $show={showLocateOptions}>
               <Option onClick={handleSelectLocateOptions}>지역</Option>
               <Option onClick={handleSelectLocateOptions}>서울특별시</Option>
               <Option onClick={handleSelectLocateOptions}>인천광역시</Option>
@@ -237,7 +237,7 @@ function MainDetailSearch(props) {
               <AiFillFolderOpen />
             </SelectIcon>
             <Label htmlFor='category'>{category[0]}</Label>
-            <SelectOptions show={showCategoryOptions}>
+            <SelectOptions $show={showCategoryOptions}>
               <Option onClick={handleSelectCategoryOptions}>카테고리</Option>
               <Option onClick={handleSelectCategoryOptions}>연인과함께</Option>
               <Option onClick={handleSelectCategoryOptions}>인생샷</Option>
