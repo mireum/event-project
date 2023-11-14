@@ -27,6 +27,8 @@ const SlideBox = styled.div`
 const MoreButton = styled(Button)`
   display: block;
   margin: 0 auto;
+  background-color: #34A853;
+  border: 1px solid #34A853;
 `;
 
 function EventList(props) {
@@ -129,7 +131,7 @@ function EventList(props) {
           ? null
           : 
           <MoreButton 
-          variant="info" 
+          // variant="info" 
           onClick={moreShow}
           >
           더보기

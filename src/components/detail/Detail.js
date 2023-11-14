@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DetailVisual from './DetailVisual';
-import DetailContainer from './DetailContainer';
 import FestivalInfo from './FestivalInfo';
 import { useParams } from 'react-router';
 import Map from './Map';
