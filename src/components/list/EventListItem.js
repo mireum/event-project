@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
+import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -31,6 +32,7 @@ function EventListItem(props) {
   // console.log(props);
   const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } } = props;
   const navigate = useNavigate();
+  const [likeBtn, setLikeBtn] = useState(false);
   
   return (
     <Col md={4} >
@@ -41,6 +43,11 @@ function EventListItem(props) {
           navigate(`/detail/${id}`)
         }} 
       />
+      <div className='button-wrap' onClick={() => {setLikeBtn(prev=>!prev)}}>
+        {likeBtn
+        ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
+        : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
+      </div>
       <InfoText>  
         <h4>{fstvlNm}</h4>      
         <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
