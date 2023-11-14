@@ -91,12 +91,6 @@ function EventList(props) {
   const eventLists = useSelector(selectEventList);
   console.log(eventLists);
 
-  const subject = useSelector(searchSubject);
-  const month = useSelector(searchMonth);
-  const location = useSelector(searchLocation);
-  const category = useSelector(searchCategory);
-
-
   const filteredEventList = getEventItem
   .filter(event => {
   

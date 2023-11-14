@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { PiHeartStraightBold, PiHeartStraightFill } from "react-icons/pi";
-import { addbookmarkList, selectBookmarkList } from './bookmarkSlice';
+import { addbookmarkList, changeLiked, removebookmarkList, selectBookmarkList } from './bookmarkSlice';
 
 const ItemWrap = styled(Col)`
   position: relative;
@@ -52,7 +52,7 @@ const InfoText = styled.div`
 
 function EventListItem(props) {
   console.log(props);
-  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, auspcInsttNm } } = props;
+  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, auspcInsttNm }, handleChange, handleremoveliked } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const bookmarkList = useSelector(selectBookmarkList);
@@ -60,7 +60,16 @@ function EventListItem(props) {
   // copyItem.liked = 'false';
   // console.log(copyItem);
 
-  const [bookMarkButton, setBookMarkButton] = useState(false); 
+  const [bookMarkButton, setBookMarkButton] = useState(false);
+  
+  useEffect(() => {
+		const dbbookmark = JSON.parse(localStorage.getItem('bookMarkButton')) || [];
+		// setBookMarkButton(dbbookmark);
+	}, []);
+
+  useEffect(() => {
+    localStorage.setItem('bookMarkButton', JSON.stringify(bookMarkButton)); 
+  }, [bookMarkButton]);
 
   return (
     <ItemWrap md={4} className='cursor-pointer'>
@@ -76,11 +85,17 @@ function EventListItem(props) {
           liked: true
         }));
         setBookMarkButton(!bookMarkButton);
+        // handleChange(props.item.liked);
+        // dispatch(changeLiked({
+        //   ...props.item,
+        //   liked: false
+        // }))
+        // handleremoveliked();
       }}>
         {bookMarkButton
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
-      </div>
+      </div >
       <InfoText>  
         <h4>{fstvlNm}</h4>      
         <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>

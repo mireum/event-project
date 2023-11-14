@@ -22,10 +22,14 @@ const bookmarkSlice = createSlice({
 			const newbookmarkList = state.bookmarkList.filter(bookmark => bookmark.id !== id);
 			state.bookmarkList = newbookmarkList;
 		},
+		changeLiked: (state, { payload: id }) => {
+			state.bookmarkList.filter(bookmark => bookmark.id === id ? { liked : !bookmark.liked } : bookmark );
+			state.bookmarkList.liked = false;
+		}
 	}
 });
 
-export const { addbookmarkList, removebookmarkList } = bookmarkSlice.actions;
+export const { addbookmarkList, removebookmarkList, changeLiked } = bookmarkSlice.actions;
 
 export const selectBookmarkList = state => state.bookmark.bookmarkList;
 
