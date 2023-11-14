@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  subject: null,
-  month: null,
-  location: null,
-  category: null,
+  subject: [],
+  month: [],
+  location: [],
+  category: []
 };
 
 const searchSlice = createSlice({
@@ -26,7 +26,6 @@ const searchSlice = createSlice({
   }
 });
 
-console.log(initialState.list);
 // 액션 생성 함수
 export const { getSubject, getMonth, getLocation, getCategory } = searchSlice.actions;
 

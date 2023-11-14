@@ -50,8 +50,9 @@ const InfoText = styled.div`
   }
 `;
 
-function FestivalListItem(props) {
-  const { item: { id, 축제명, image, 축제시작일자, 축제종료일자, 제공기관명 } } = props;
+function EventListItem(props) {
+  console.log(props);
+  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, auspcInsttNm } } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const bookmarkList = useSelector(selectBookmarkList);
@@ -80,15 +81,14 @@ function FestivalListItem(props) {
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
       </div>
-      <InfoText>
-        <h4>{축제명}</h4>      
-        <p>{`${축제시작일자} ~ ${축제종료일자}`}</p>
-        <p>{제공기관명}</p>
-        
+      <InfoText>  
+        <h4>{fstvlNm}</h4>      
+        <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
+        <p>{auspcInsttNm}</p>
       </InfoText> 
     </ItemWrap>
     
   );
 }
 
-export default FestivalListItem;
+export default EventListItem;

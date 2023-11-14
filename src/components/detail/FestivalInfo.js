@@ -92,38 +92,37 @@ const FestivalInfoTextWrapper = styled.div`
 `;
 
 function FestivalInfo(props) {
-	const { detailItem} = props;
-	const { image, url,  축제시작일자, 축제종료일자, 개최장소, 소재지도로명주소, 축제내용, 주관기관명, 홈페이지주소, 카테고리, 축제명, 제공기관명, 유형 }  = detailItem[0];
-	// const pageurl = url;
-	console.log(props);
+	const { detailItem } = props;
+	const { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type }  = detailItem[0];
+
 
 	return (
 		<FestivalInfoWrapper>
 			<FestivalInfoTitle>
-				<span>{`#${제공기관명}`}</span>
-				<span>{`#${유형}`}</span>
-				<span>{`#${카테고리}`}</span>
-				<p>{축제명}</p>
+				<span>{`#${auspcInsttNm}`}</span>
+				<span>{`#${type}` ? type : '축제'}</span>
+				<span>{`#${category}`}</span>
+				<p>{fstvlNm}</p>
 			</FestivalInfoTitle>
 			<FestivalInfoTextWrapper>
 				<img src={image} className='thumbimg' />
 				<ul>
 					<li>
 						<span className='calender imgstyle'></span>
-						<span>{`${축제시작일자} ~ ${축제종료일자}`}</span>
+						<span>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</span>
 					</li>
 					<li>
 						<span className='location imgstyle'></span>
 						{/* <span>{소재지도로명주소}<br />{개최장소}</span> */}
-						<span>{`도로명주소: ${소재지도로명주소}`}</span>
+						<span>{`도로명주소: ${rdnmadr}`}</span>
 					</li>
 					<li>
 						<span className='megaphone imgstyle'></span>
-						<span>{축제내용}<br />{주관기관명}</span>
+						<span>{fstvlCo}<br />{mnnstNm}</span>
 					</li>
 					<li>
 						<span className='computer imgstyle'></span>
-						<HpLink onClick={() => window.open(홈페이지주소)} target='_black'>공식 홈페이지</HpLink>
+						<HpLink onClick={() => window.open(homepageUrl)} target='_black'>공식 홈페이지</HpLink>
 					</li>
 				</ul>
 			</FestivalInfoTextWrapper>
