@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   eventListItem: [],
+  selectedListItem: [],
   images: []
 };
 
@@ -59,16 +60,20 @@ const eventListSlice = createSlice({
     },
     getMoreImages: (state, action) => {
       state.images.push(...action.payload);
+    },
+    getSelectedList: (state, action) => {
+      state.selectedListItem = action.payload;
     }
   }
 });
 
 console.log(initialState.eventListItem);
 
-export const { getEventList, getImages, getMoreImages } = eventListSlice.actions;
+export const { getEventList, getImages, getMoreImages, getSelectedList } = eventListSlice.actions;
 
 // 선택자 함수
 export const selectEventList = state => state.eventList.eventListItem;
+export const selectSelectedListItem = state => state.eventList.selectedListItem
 
 // 리듀서 함수
 export default eventListSlice.reducer;
