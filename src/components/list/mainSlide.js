@@ -70,8 +70,7 @@ export default class AsNavFor extends Component {
           asNavFor={this.state.nav2}
           ref={slider => (this.slider1 = slider)}
         >
-          <div className="textbox">
-            <div className="point1"></div>
+          <div>
             <h3>휴애리 동백 축제</h3>
             <p>
               2023.11.14 ~ 2024.01.31<br/>
