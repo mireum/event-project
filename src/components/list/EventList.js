@@ -43,6 +43,7 @@ function EventList(props) {
     const festivalApiData = async () => {
       try {
         // const response = await axios.get('http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api?serviceKey=Z32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%2BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%3D%3D&pageNo=1&numOfRows=100&type=json');
+        // https://tohttps.hanmesoft.com/ 에서 https로 변경
         const response = await axios.get('https://tohttps.hanmesoft.com/forward.php?url=http%3A%2F%2Fapi.data.go.kr%2Fopenapi%2Ftn_pubr_public_cltur_fstvl_api%3FserviceKey%3DZ32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%252BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%253D%253D%26pageNo%3D1%26numOfRows%3D100%26type%3Djson');
         const res = await axios.get('https://my-json-server.typicode.com/yunminsu/event-db/exhibition');
 
