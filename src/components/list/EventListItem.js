@@ -47,9 +47,9 @@ const InfoText = styled.div`
 
 function EventListItem(props) {
   // console.log(props);
-  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } } = props;
+  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr }, liked} = props;
   const navigate = useNavigate();
-  const [likeBtn, setLikeBtn] = useState(false);
+  const [likeBtn, setLikeBtn] = useState(liked);
   
   return (
     <Col md={4} style={{position:"relative"}}>
