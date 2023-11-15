@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
+import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
 
 
 const ItemImage = styled.img`
@@ -12,6 +15,23 @@ const ItemImage = styled.img`
 
   &:hover {
     transform: scale(1.05);
+  }
+`;
+
+const LikeBox = styled.div`
+  position: absolute;
+  bottom: 45%;
+  right: 7%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -29,11 +49,26 @@ const InfoText = styled.div`
 
 function EventListItem(props) {
   // console.log(props);
-  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } } = props;
+  const { item, liked} = props;
+  const { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } = item;
   const navigate = useNavigate();
-  
+  const [likeBtn, setLikeBtn] = useState(liked);
+  const dispatch = useDispatch();
+  const bookmarkList = useSelector(likedList);
+
+
+  const handleLike = (item) => {
+    if (liked) {
+      // setLikeBtn(prev=>!prev);
+      dispatch(removeLikedItem(item.id));
+    } else {
+      setLikeBtn(prev=>!prev);
+      dispatch(addLikedItem(item));
+    }
+  };
+
   return (
-    <Col md={4} >
+    <Col md={4} style={{position:"relative"}}>
       <ItemImage
         className='cursor-pointer' 
         src={image}
@@ -41,7 +76,12 @@ function EventListItem(props) {
           navigate(`/detail/${id}`)
         }} 
       />
-      <InfoText>  
+      <LikeBox className='cursor-pointer' onClick={() => {handleLike(item)}}>
+        {likeBtn || bookmarkList.includes(item)
+        ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
+        : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
+      </LikeBox>
+      <InfoText>
         <h4>{fstvlNm}</h4>      
         <p>{`${fstvlStartDate} ~ ${fstvlEndDate}`}</p>
         <p>
