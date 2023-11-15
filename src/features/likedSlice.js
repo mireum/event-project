@@ -9,8 +9,12 @@ const likedSlice = createSlice({
   initialState,
   reducers: {
     addLikedItem: (state, { payload: item }) => {
-      state.likedList.push(item);
-      console.log(initialState);
+      const targetItem = state.likedList.find((e) => e.id === item.id);
+      if (!targetItem) {
+        state.likedList.push(item);
+      } else {
+        return;
+      }
     },
 
     removeLikedItem: (state, { payload: id }) => {
