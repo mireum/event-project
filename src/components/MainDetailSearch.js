@@ -37,10 +37,6 @@ const SelectBox = styled.div`
     right: 14px;
     font-size: 20px;
   }
-
-  &:focus div {
-    color: #34A853;
-  }
 `;
 
 const SelectIcon = styled.div`
@@ -52,8 +48,6 @@ const SelectIcon = styled.div`
 
 const Label = styled.label`
   font-size: 16px;
-  /* margin-left: 4px;
-  text-align: center; */
   display: block;
   margin: 0 auto;
   padding: 4px;
@@ -83,7 +77,7 @@ const Option = styled.li`
   background: #fff;
   transition: background-color 0.2s ease-in;
   &:hover {
-    background-color: #7CD293;
+    background-color: #a67aff;
     color: #fff;
   }
 `;
@@ -111,7 +105,7 @@ const SearchBtnBox = styled.div`
   width: 152px;
   height: 48px;
   border-radius: 8px;
-  background: #34A853;
+  background: #7a45e5;
   color: #fff;
   display: flex;
   align-items: center;
@@ -183,7 +177,7 @@ function MainDetailSearch(props) {
         <SearchBox>
           <SelectBox id='subject' onClick={() => {setShowSubjectOptions((prev) => !prev)}}>
             <SelectIcon>
-              <MdSubject className='mdsubject'/>
+              <MdSubject/>
             </SelectIcon>
             <Label htmlFor='subject'>{subject[0]}</Label>
             <SelectOptions show={showSubjectOptions}>

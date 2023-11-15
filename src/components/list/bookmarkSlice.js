@@ -21,11 +21,12 @@ const bookmarkSlice = createSlice({
 		removebookmarkList: (state, { payload: id }) => {
 			const newbookmarkList = state.bookmarkList.filter(bookmark => bookmark.id !== id);
 			state.bookmarkList = newbookmarkList;
+			newbookmarkList = false;
 		},
 		changeLiked: (state, { payload: id }) => {
 			state.bookmarkList.filter(bookmark => bookmark.id === id ? { liked : !bookmark.liked } : bookmark );
 			state.bookmarkList.liked = false;
-		}
+		},
 	}
 });
 

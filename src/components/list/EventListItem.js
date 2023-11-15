@@ -62,10 +62,10 @@ function EventListItem(props) {
 
   const [bookMarkButton, setBookMarkButton] = useState(false);
   
-  useEffect(() => {
-		const dbbookmark = JSON.parse(localStorage.getItem('bookMarkButton')) || [];
-		// setBookMarkButton(dbbookmark);
-	}, []);
+  // useEffect(() => {
+	// 	const dbbookmark = JSON.parse(localStorage.getItem('bookMarkButton')) || [];
+	// 	// setBookMarkButton(dbbookmark);
+	// }, []);
 
   useEffect(() => {
     localStorage.setItem('bookMarkButton', JSON.stringify(bookMarkButton)); 
@@ -90,9 +90,9 @@ function EventListItem(props) {
         //   ...props.item,
         //   liked: false
         // }))
-        // handleremoveliked();
+        // dispatch(handleremoveliked(props.item.liked));
       }}>
-        {bookMarkButton
+        {bookMarkButton === true
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
       </div >

@@ -27,8 +27,8 @@ const SlideBox = styled.div`
 const MoreButton = styled(Button)`
   display: block;
   margin: 0 auto;
-  background-color: #34A853;
-  border: 1px solid #34A853;
+  background-color: #7a45e5;
+  border: 1px solid #7a45e5;
 `;
 
 function EventList(props) {
