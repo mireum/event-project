@@ -92,9 +92,8 @@ const FestivalInfoTextWrapper = styled.div`
 `;
 
 function FestivalInfo(props) {
-	const { detailItem } = props;
-	const { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type }  = detailItem[0];
-
+	console.log(props);
+	const { detailItem: { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type } } = props;
 
 	return (
 		<FestivalInfoWrapper>
