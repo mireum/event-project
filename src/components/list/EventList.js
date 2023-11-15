@@ -142,6 +142,7 @@ function EventList(props) {
           더보기
           </MoreButton>
         }
+      </StyledContainer>
     </section>
   );
 }
