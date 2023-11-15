@@ -113,7 +113,6 @@ function FestivalInfo(props) {
 					</li>
 					<li>
 						<span className='location imgstyle'></span>
-						{/* <span>{소재지도로명주소}<br />{개최장소}</span> */}
 						<span>{`도로명주소: ${rdnmadr}`}</span>
 					</li>
 					<li>

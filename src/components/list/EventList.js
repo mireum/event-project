@@ -27,6 +27,8 @@ const SlideBox = styled.div`
 const MoreButton = styled(Button)`
   display: block;
   margin: 0 auto;
+  background-color: #7a45e5;
+  border: 1px solid #7a45e5;
 `;
 
 function EventList(props) {
@@ -134,13 +136,12 @@ function EventList(props) {
           ? null
           : 
           <MoreButton 
-          variant="info" 
+          // variant="info" 
           onClick={moreShow}
           >
           더보기
           </MoreButton>
         }
-      </StyledContainer>
     </section>
   );
 }
