@@ -1,22 +1,26 @@
 import React from 'react';
+import { Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { likedList, removeLikedItem } from '../features/likedSlice';
+import EventListItem from './list/EventListItem';
 
-const BookMarkInner = styled.div`
-	max-width: 1200px;
-	margin: 0 auto;
-
-	.BookMarkTitle {
-		font-size: 20px;
-	}
-`;
 
 function BookMark(props) {
+	// const { items:{  } } = props;
+	const dispatch = useDispatch();
+	const bookmarkList = useSelector(likedList) || [];
+	console.log(bookmarkList);
 	return (
 		<section>
-			<BookMarkInner>
-				<p className='BookMarkTitle'>좋아요 한 축제💗</p>
-				{/* 즐겨찾기 한 축제 나열 */}
-			</BookMarkInner>
+			<Container style={{ maxWidth: '1200px' }}>
+				<Row>
+					<p>좋아요 한 축제💗</p>
+					{bookmarkList.map((el) => {
+						return <EventListItem key={el.id} item={el} liked={true} onClick={() => {dispatch(removeLikedItem(el.id))}} />
+					})}
+				</Row>
+			</Container>
 		</section>
 	);
 }

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
 
 
 const ItemImage = styled.img`
@@ -47,10 +49,24 @@ const InfoText = styled.div`
 
 function EventListItem(props) {
   // console.log(props);
-  const { item: { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr }, liked} = props;
+  const { item, liked} = props;
+  const { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } = item;
   const navigate = useNavigate();
   const [likeBtn, setLikeBtn] = useState(liked);
-  
+  const dispatch = useDispatch();
+  const bookmarkList = useSelector(likedList);
+
+
+  const handleLike = (item) => {
+    if (liked) {
+      // setLikeBtn(prev=>!prev);
+      dispatch(removeLikedItem(item.id));
+    } else {
+      setLikeBtn(prev=>!prev);
+      dispatch(addLikedItem(item));
+    }
+  };
+
   return (
     <Col md={4} style={{position:"relative"}}>
       <ItemImage
@@ -60,8 +76,8 @@ function EventListItem(props) {
           navigate(`/detail/${id}`)
         }} 
       />
-      <LikeBox className='cursor-pointer' onClick={() => {setLikeBtn(prev=>!prev)}}>
-        {likeBtn
+      <LikeBox className='cursor-pointer' onClick={() => {handleLike(item)}}>
+        {likeBtn || bookmarkList.includes(item)
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
       </LikeBox>

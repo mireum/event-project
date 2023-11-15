@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  likedList: [
-
-  ],
+  likedList: [],
 };
 
 const likedSlice = createSlice({
@@ -11,7 +9,8 @@ const likedSlice = createSlice({
   initialState,
   reducers: {
     addLikedItem: (state, { payload: item }) => {
-      const targetItem = state.likedList.
+      state.likedList.push(item);
+      console.log(initialState);
     },
 
     removeLikedItem: (state, { payload: id }) => {
@@ -20,3 +19,9 @@ const likedSlice = createSlice({
     }
   }
 });
+
+export const { addLikedItem, removeLikedItem } = likedSlice.actions;
+
+export const likedList = state => state.liked.likedList;
+
+export default likedSlice.reducer;
