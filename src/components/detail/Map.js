@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { getEventItem } from '../../api/eventAPI';
 import MapItem from './MapItem';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { selectSelectedListItem } from '../../api/eventListSlice';
 
 const MapContainer = styled.div`
   margin: 0 auto;
@@ -10,7 +11,9 @@ const MapContainer = styled.div`
 
 function Map(props) {
   const { EventListId } = useParams();
-  const mapList = getEventItem.filter(eventitem => eventitem.id === Number(EventListId));
+  const seletedList = useSelector(selectSelectedListItem);
+  const id = Number(EventListId);
+  const mapList = seletedList[id-1];
 
   return (
     <>

@@ -92,9 +92,8 @@ const FestivalInfoTextWrapper = styled.div`
 `;
 
 function FestivalInfo(props) {
-	const { detailItem } = props;
-	const { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type }  = detailItem[0];
-
+	console.log(props);
+	const { detailItem: { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type } } = props;
 
 	return (
 		<FestivalInfoWrapper>
@@ -113,7 +112,6 @@ function FestivalInfo(props) {
 					</li>
 					<li>
 						<span className='location imgstyle'></span>
-						{/* <span>{소재지도로명주소}<br />{개최장소}</span> */}
 						<span>{`도로명주소: ${rdnmadr}`}</span>
 					</li>
 					<li>

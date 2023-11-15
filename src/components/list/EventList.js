@@ -48,6 +48,8 @@ function EventList(props) {
         const res = await axios.get('https://my-json-server.typicode.com/yunminsu/event-db/exhibition');
 
         dispatch(getEventList(response.data.response.body.items.filter(data => data.fstvlStartDate.split('-')[0] === '2023').slice(0,50).concat(res.data)));
+        // localStorage에 eventList 담기
+        localStorage.setItem('eventlist', JSON.stringify(response.data.response.body.items.filter(data => data.fstvlStartDate.split('-')[0] === '2023').slice(0,50).concat(res.data)))
       } catch (error) {
         console.error(error);  
       }
@@ -83,9 +85,9 @@ function EventList(props) {
     moreImagesApiData();
   }, [])
 
+  
   // eventListSlice의 eventListItem 호출
   const eventLists = useSelector(selectEventList);
-  console.log(eventLists);
 
   const subject = useSelector(searchSubject);
   const month = useSelector(searchMonth);

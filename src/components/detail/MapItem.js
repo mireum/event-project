@@ -27,19 +27,20 @@ const MapItemInner = styled.div`
 
 
 function MapItem(props) {
+  const { mapList: { latitude, longitude, opar } } = props;
 
-  // 위도 경도 값이 빈 값 일때 임의 적용
-  if (!props.mapList[0].위도) {
-    props.mapList[0].위도 = 37.575843;  
-  }
-
-  if (!props.mapList[0].경도) {
-    props.mapList[0].경도 = 126.977380;
-  }
-
-  const lat = Number(props.mapList[0].위도);
-  const lng = Number(props.mapList[0].경도);
+  let lat = Number(latitude);
+  let lng = Number(longitude);
   
+  // 위도 경도 값이 빈 값 일때 임의 적용
+  if (!lat) {
+    lat = 37.575843;  
+  }
+
+  if (!lng) {
+    lng = 126.977380;
+  }
+
   return (
     <MapItemContainer>
       <MapItemInner>
@@ -57,10 +58,10 @@ function MapItem(props) {
           <MapMarker
             position={{ lat: lat, lng: lng }}
           >
-            {props.mapList[0].개최장소}
+            {opar}
           </MapMarker>
         </Map>
-        <Button onClick={() => window.open(`https://map.kakao.com/link/to/${props.mapList[0].개최장소},${props.mapList[0].위도},${props.mapList[0].경도}`)} >길찾기</Button>
+        <Button onClick={() => window.open(`https://map.kakao.com/link/to/${opar},${latitude},${longitude}`)} >길찾기</Button>
       </MapItemInner>
     </MapItemContainer>
   );
