@@ -13,7 +13,7 @@ const eventListSlice = createSlice({
   initialState,
   reducers: {
     getEventList: (state, action) => {
-      state.eventListItem.push(...action.payload);
+      state.eventListItem = action.payload;
       
       for (let i = 0; i < 60; i++) {
         const endTime = new Date(state.eventListItem[i].fstvlEndDate).getTime();
@@ -56,7 +56,7 @@ const eventListSlice = createSlice({
       state.images.push(...action.payload);
     },
     getSelectedList: (state, action) => {
-      state.selectedListItem.push(...action.payload);
+      state.selectedListItem = action.payload;
     },
   }
 });

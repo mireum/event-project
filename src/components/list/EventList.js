@@ -96,28 +96,36 @@ function EventList(props) {
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
 
-  const filteredEventList = eventLists
-  .filter(event => {
-  
-    let filterSubject = true;
-    let filterMonth = true;
-    let filterLocation = true;
-    let filterCategory = true;
-    
-    filterSubject = subject.includes(event.type);
-    // filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
-    if (event.hoding) {
-      filterMonth = true;
-    } else {
-      filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
-    }
-    filterLocation = location.includes(event.rdnmadr.split(' ')[0]);
-    filterCategory = category.includes(event.category);
 
-    return (
-      filterSubject && filterMonth && filterLocation && filterCategory
-    )
-  })
+  let filteredEventList;
+
+  if (subject || month || location || category) {
+    if (subject.length == 1) {
+      filteredEventList = eventLists.filter(event => {
+      
+        let filterSubject = true;
+        let filterMonth = true;
+        let filterLocation = true;
+        let filterCategory = true;
+        
+        filterSubject = subject.includes(event.type);
+        // filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+        if (event.hoding) {
+          filterMonth = true;
+        } else {
+          filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+        }
+        filterLocation = location.includes(event.rdnmadr.split(' ')[0]);
+        filterCategory = category.includes(event.category);
+
+        return (
+          filterSubject && filterMonth && filterLocation && filterCategory
+        )
+    })
+   }
+  }
+  console.log(filteredEventList);
+  console.log(eventLists);
 
   return (
     <section>
@@ -129,7 +137,7 @@ function EventList(props) {
           <AsNavFor />
         </SlideBox>
         <Row>
-          {filteredEventList.length > 1
+          {filteredEventList.length >= 1
             ? filteredEventList.map(item => <EventListItem key={item.id} item={item} liked={false}/>).slice(0,showList)
             : eventLists.map(item => <EventListItem key={item.id} item={item} liked={false}/>).slice(0,showList) }
         </Row>
