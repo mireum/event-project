@@ -14,23 +14,28 @@ import { selectEventList } from "../../api/eventListSlice";
 
 
 const SliderContainer = styled.div`
-  width: 1200px;
+  max-width: 1200px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
   margin-bottom: 50px;
-  
+
   & h3 {
     font-weight: bold;
   }
-
 `;
 
 const SlideBox = styled(Slider)`
   width: 580px;
   height: 380px;
+
+  .slick-prev::before,
+  .slick-next::before {
+    display: none;
+  }
 `;
+
 
 const ImgBox = styled.div`
   width: 580px;
@@ -66,7 +71,7 @@ export default class AsNavFor extends Component {
     return (
       <SliderContainer>
         <SlideBox
-          style={{textAlign:"end", padding:"220px 70px 0px 0px"}}
+          style={{textAlign:"end", padding:"220px 40px 0px 0px"}}
           asNavFor={this.state.nav2}
           ref={slider => (this.slider1 = slider)}
         >
