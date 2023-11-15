@@ -27,6 +27,8 @@ const SlideBox = styled.div`
 const MoreButton = styled(Button)`
   display: block;
   margin: 0 auto;
+  background-color: #7a45e5;
+  border: 1px solid #7a45e5;
 `;
 
 function EventList(props) {
@@ -128,15 +130,15 @@ function EventList(props) {
         </SlideBox>
         <Row>
           {filteredEventList.length > 1
-            ? filteredEventList.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList)
-            : eventLists.map(item => <EventListItem key={item.id} item={item}/>).slice(0,showList) }
+            ? filteredEventList.map(item => <EventListItem key={item.id} item={item} liked={false}/>).slice(0,showList)
+            : eventLists.map(item => <EventListItem key={item.id} item={item} liked={false}/>).slice(0,showList) }
         </Row>
 
         { showList > eventLists.length && showList > filteredEventList.length
           ? null
           : 
           <MoreButton 
-          variant="info" 
+          // variant="info" 
           onClick={moreShow}
           >
           더보기

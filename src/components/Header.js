@@ -12,7 +12,6 @@ const HedaerInner = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	/* margin: 10px 0 20px 0; */
 
 	.nav {
 		display: flex;
@@ -49,20 +48,17 @@ const HeaderRight = styled.div`
 	align-items: center;
 
 	.bm-icon  {
-		font-size: 35px;
+		font-size: 40px;
 		margin-right: 15px;
 	}
 
 	.bm-icon:hover {
-		color: lightcoral;
-		/* display: none; */
+		color: #FF5151;
 	}
 
 	.fill {
 		font-size: 35px;
 		margin-right: 15px;
-		/* display: none; */
-
 	}
 
 	.fill:hover {
@@ -87,18 +83,11 @@ function Header(props) {
 						/>
 					</HeaderLeft>
 
-					<ul className='nav'>
-						<li className='cursor-pointer'>진행중인 축제</li>
-						<li className='cursor-pointer'>무료 전시회</li>
-					</ul>
-
 					<HeaderRight>
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bk') }} > 
-						<GoHeartFill className='fill'/>
-
-							</GoHeart>
-						<MdOutlineManageSearch className='sh-icon cursor-pointer'/>
+							<GoHeartFill className='fill'/>
+						</GoHeart>
 					</HeaderRight>
 				</HedaerInner>
 
