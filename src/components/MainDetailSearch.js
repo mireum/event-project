@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AiFillFolderOpen, AiOutlineCalendar, AiOutlineSearch } from "react-icons/ai";
 import { MdLocationOn, MdRefresh, MdSubject } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategory, getLocation, getMonth, getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
+import { getButton, getCategory, getLocation, getMonth, getSubject, searchCategory, searchLocation, searchMonth, searchSubject } from '../features/searchSlice';
 
 
 const SearchBox = styled.div`
@@ -169,6 +169,7 @@ function MainDetailSearch(props) {
     dispatch(getMonth(month))
     dispatch(getLocation(locate))
     dispatch(getCategory(category))
+    dispatch(getButton(true))
   };
 
   return (

@@ -6,7 +6,7 @@ import MainDetailSearch from '../MainDetailSearch';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { getEventList, getImages, getMoreImages, selectEventList } from '../../api/eventListSlice';
-import { searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
+import { searchButton, searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import AsNavFor from './mainSlide';
 
 
@@ -29,6 +29,11 @@ const MoreButton = styled(Button)`
   margin: 0 auto;
   background-color: #7a45e5;
   border: 1px solid #7a45e5;
+`;
+
+const SearchResultMsg = styled.h3`
+  margin: 50px 0;
+  text-align: center;
 `;
 
 function EventList(props) {
@@ -95,29 +100,36 @@ function EventList(props) {
   const month = useSelector(searchMonth);
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
+  const button = useSelector(searchButton);
 
-  const filteredEventList = eventLists
-  .filter(event => {
+  let filteredEventList = [];
   
-    let filterSubject = true;
-    let filterMonth = true;
-    let filterLocation = true;
-    let filterCategory = true;
-    
-    filterSubject = subject.includes(event.type);
-    // filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
-    if (event.hoding) {
-      filterMonth = true;
-    } else {
-      filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
-    }
-    filterLocation = location.includes(event.rdnmadr.split(' ')[0]);
-    filterCategory = category.includes(event.category);
-
-    return (
-      filterSubject && filterMonth && filterLocation && filterCategory
-    )
-  })
+  if (button) {
+    filteredEventList = eventLists.filter(event => {
+      
+      let filterSubject = true;
+      let filterMonth = true;
+      let filterLocation = true;
+      let filterCategory = true;
+      
+      filterSubject = subject.includes(event.type);
+      // filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+      if (event.hoding) {
+        filterMonth = true;
+      } else {
+        filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
+      }
+      filterLocation = location.includes(event.rdnmadr.split(' ')[0] || event.auspcInsttNm.split(' ')[0]);
+      filterCategory = category.includes(event.category);
+      return (
+        filterSubject && filterMonth && filterLocation && filterCategory
+      )
+    })
+  } 
+  
+  if (!button) {
+    filteredEventList = eventLists;
+  }
 
   return (
     <section>
@@ -129,12 +141,13 @@ function EventList(props) {
           <AsNavFor />
         </SlideBox>
         <Row>
-          {filteredEventList.length
-            ? filteredEventList.map(item => <EventListItem key={item.id} item={item} />).slice(0,showList)
-            : undefined}
+          { filteredEventList.length >= 1
+            ? filteredEventList.map(item => <EventListItem key={item.id} item={item} liked={false}/>).slice(0,showList)
+            : button && <SearchResultMsg>검색 결과가 없습니다!</SearchResultMsg>
+          }
         </Row>
 
-        { showList > eventLists.length && showList > filteredEventList.length
+        { showList >= filteredEventList.length
           ? null
           : 
           <MoreButton 
