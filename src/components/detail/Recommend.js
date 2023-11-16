@@ -9,9 +9,11 @@ import { param } from 'jquery';
 
 const StyledContainer = styled(Container)`
   max-width: 1200px;
+  padding-top: 20px;
 
   & h2 {
     font-weight: bold;
+    margin-bottom: 20px;
   }
 `;
 

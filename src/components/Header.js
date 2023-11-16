@@ -8,12 +8,20 @@ import Footer from './Footer';
 import logo from "../images/logo.png";
 
 
+const HeaderWrap = styled.header`
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background-color: #fff;
+`;
+
 const HeaderInner = styled.div`
 	max-width: 1200px;
-	margin: 20px auto;
+	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
+	padding: 20px 0;
 
 	.nav {
 		display: flex;
@@ -87,7 +95,7 @@ function Header(props) {
 
 	return (
 		<>
-			<header>
+			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
 						{/* <PiHouseLine className='home-icon cursor-pointer'
@@ -110,7 +118,7 @@ function Header(props) {
 					</HeaderRight>
 				</HeaderInner>
 
-			</header>
+			</HeaderWrap>
 			
 			<Outlet />
 
