@@ -37,10 +37,6 @@ const SelectBox = styled.div`
     right: 14px;
     font-size: 20px;
   }
-
-  &:active {
-    border: 1px solid #7a45e5;
-  }
 `;
 
 const SelectIcon = styled.div`
@@ -114,6 +110,10 @@ const SearchBtnBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:active {
+    background-color: #5d24d1;
+  }
 `;
 
 const SearchBtn = styled.button`
@@ -123,6 +123,8 @@ const SearchBtn = styled.button`
   font-weight: 700;
   font-size: 20px;
   border: none;
+
+  
 `;
 
 
