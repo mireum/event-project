@@ -48,6 +48,8 @@ const eventListSlice = createSlice({
       for (let i = 40; i < 50; i++) {
         state.eventListItem[i].category = '연인과함께';
       }
+
+      state.eventListItem[38].rdnmadr = '강원도 원주시 단구로 170';
     },
     getImages: (state, action) => {
       state.images.unshift(...action.payload);

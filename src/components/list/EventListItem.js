@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
 
-
 const ItemImage = styled.img`
   width: 100%;
   height: 180px;
@@ -48,7 +47,6 @@ const InfoText = styled.div`
 `;
 
 function EventListItem(props) {
-  // console.log(props);
   const { item, liked} = props;
   const { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } = item;
   const navigate = useNavigate();
@@ -59,7 +57,7 @@ function EventListItem(props) {
 
   const handleLike = (item) => {
     if (liked) {
-      // setLikeBtn(prev=>!prev);
+      setLikeBtn(prev=>!prev);
       dispatch(removeLikedItem(item.id));
     } else {
       setLikeBtn(prev=>!prev);
