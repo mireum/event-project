@@ -7,6 +7,7 @@ import Header from './components/Header';
 import EventList from './components/list/EventList';
 import Detail from './components/detail/Detail';
 import BookMark from './components/BookMark';
+import Loading from './components/pages/Loading';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
