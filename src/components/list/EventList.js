@@ -129,8 +129,8 @@ function EventList(props) {
           <AsNavFor />
         </SlideBox>
         <Row>
-          {filteredEventList.length 
-            ? filteredEventList.map(item => <EventListItem key={item.id} item={item} liked={false}/>).slice(0,showList)
+          {filteredEventList.length
+            ? filteredEventList.map(item => <EventListItem key={item.id} item={item} />).slice(0,showList)
             : undefined}
         </Row>
 

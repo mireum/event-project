@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,16 +47,18 @@ const InfoText = styled.div`
 `;
 
 function EventListItem(props) {
-  const { item, liked} = props;
+  const { item } = props;
   const { id, fstvlNm, image, fstvlStartDate, fstvlEndDate, lnmadr, rdnmadr } = item;
   const navigate = useNavigate();
-  const [likeBtn, setLikeBtn] = useState(liked);
+  const [likeBtn, setLikeBtn] = useState(false);
   const dispatch = useDispatch();
   const bookmarkList = useSelector(likedList);
 
 
   const handleLike = (item) => {
-    if (liked) {
+    // e.preventDefault();
+
+    if (likeBtn) {
       setLikeBtn(prev=>!prev);
       dispatch(removeLikedItem(item.id));
     } else {
@@ -64,6 +66,13 @@ function EventListItem(props) {
       dispatch(addLikedItem(item));
     }
   };
+
+  useEffect(() => {
+    if (bookmarkList.includes(item)) {
+      setLikeBtn(true);
+    }
+  }, []);
+
 
   return (
     <Col md={4} style={{position:"relative"}}>
@@ -75,7 +84,7 @@ function EventListItem(props) {
         }} 
       />
       <LikeBox className='cursor-pointer' onClick={() => {handleLike(item)}}>
-        {likeBtn || bookmarkList.includes(item)
+        {likeBtn
         ? <PiHeartStraightFill style={{ fontSize: '25px', color: '#FF5151' }} /> 
         : <PiHeartStraightBold style={{ fontSize: '25px' }}/>}
       </LikeBox>

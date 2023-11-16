@@ -17,7 +17,7 @@ function BookMark(props) {
 				<Row>
 					<p>좋아요 한 축제💗</p>
 					{bookmarkList.map((el) => {
-						return <EventListItem key={el.id} item={el} liked={true} onClick={() => {dispatch(removeLikedItem(el.id))}} />
+						return <EventListItem key={el.id} item={el} onClick={() => {dispatch(removeLikedItem(el.id))}} />
 					})}
 				</Row>
 			</Container>
