@@ -72,6 +72,9 @@ const HeaderRight = styled.div`
 		margin-right: 15px;
 	}
 
+	.big-icon {
+		font-size: 50px;
+	}
 	.bm-icon:hover {
 		color: #FF5151;
 	}
@@ -112,7 +115,7 @@ function Header(props) {
 							<GoHeartFill className='fill'/>
 						</GoHeart>
 
-						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={undefined}>
+						<MdOutlineManageSearch className='big-icon cursor-pointer' onClick={undefined}>
 
 						</MdOutlineManageSearch>
 					</HeaderRight>
