@@ -5,6 +5,8 @@ import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiHouseLine } from "react-icons/pi";
 import { Outlet, navigate, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
+import logo from "../images/logo.png";
+
 
 const HeaderInner = styled.div`
 	max-width: 1200px;
@@ -43,6 +45,16 @@ const HeaderLeft = styled.div`
 	}
 `;
 
+const HeaderCenter = styled.div`
+	display: flex;
+	align-items: center;
+	background-image: url(${logo});
+	background-size: 220px 50px;
+	width: 220px;
+	height: 50px;
+	cursor: pointer;
+`;
+
 const HeaderRight = styled.div`
 	display: flex;
 	align-items: center;
@@ -78,10 +90,13 @@ function Header(props) {
 			<header>
 				<HeaderInner>
 					<HeaderLeft>
-						<PiHouseLine className='home-icon cursor-pointer'
+						{/* <PiHouseLine className='home-icon cursor-pointer'
 							onClick={() => { navigate('/') }}
-						/>
+						/> */}
 					</HeaderLeft>
+
+					<HeaderCenter>
+					</HeaderCenter>
 
 					<HeaderRight>
 						<GoHeart className='bm-icon cursor-pointer'
