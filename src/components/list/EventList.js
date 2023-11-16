@@ -130,8 +130,7 @@ function EventList(props) {
   if (!button) {
     filteredEventList = eventLists;
   }
-  console.log(filteredEventList);
-  
+
   return (
     <section>
       <StyledContainer>

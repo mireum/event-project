@@ -6,7 +6,7 @@ import { PiHouseLine } from "react-icons/pi";
 import { Outlet, navigate, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 
-const HedaerInner = styled.div`
+const HeaderInner = styled.div`
 	max-width: 1200px;
 	margin: 20px auto;
 	display: flex;
@@ -76,7 +76,7 @@ function Header(props) {
 	return (
 		<>
 			<header>
-				<HedaerInner>
+				<HeaderInner>
 					<HeaderLeft>
 						<PiHouseLine className='home-icon cursor-pointer'
 							onClick={() => { navigate('/') }}
@@ -88,8 +88,12 @@ function Header(props) {
 							onClick={() => { navigate('/bk') }} > 
 							<GoHeartFill className='fill'/>
 						</GoHeart>
+
+						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={undefined}>
+
+						</MdOutlineManageSearch>
 					</HeaderRight>
-				</HedaerInner>
+				</HeaderInner>
 
 			</header>
 			
