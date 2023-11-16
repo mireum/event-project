@@ -54,10 +54,7 @@ function EventListItem(props) {
   const dispatch = useDispatch();
   const bookmarkList = useSelector(likedList);
 
-
   const handleLike = (item) => {
-    // e.preventDefault();
-
     if (likeBtn) {
       setLikeBtn(prev=>!prev);
       dispatch(removeLikedItem(item.id));
