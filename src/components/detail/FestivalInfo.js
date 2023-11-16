@@ -11,7 +11,6 @@ const FestivalInfoWrapper = styled.div`
 	max-width: 1200px;
 	margin: 0 auto;
 	padding-top: 20px;
-	/* position: fixed; */
 	
 	ul {
 		padding: 0;

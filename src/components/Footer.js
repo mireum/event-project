@@ -34,7 +34,7 @@ const FooterLogowrap = styled.div`
 	background-color: #0b70b9;
 	border-radius: 5px;
 	cursor: pointer;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	padding: 5px;
 	box-sizing: unset;
 

@@ -37,6 +37,10 @@ const SelectBox = styled.div`
     right: 14px;
     font-size: 20px;
   }
+
+  &:active {
+    border: 1px solid #7a45e5;
+  }
 `;
 
 const SelectIcon = styled.div`
