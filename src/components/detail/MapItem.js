@@ -24,6 +24,8 @@ const MapItemInner = styled.div`
     z-index: 9;
     background-color: #7a45e5;
     border: 1px solid #7a45e5;
+    --bs-btn-active-bg: #5d24d1;
+    --bs-btn-active-border-color: #5d24d1;
 
     &:hover {
       background-color: #5d24d1;
