@@ -35,7 +35,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Header />}>
-          <Route path='/bk' element={<BookMark />} />
+          <Route path='/bookmark' element={<BookMark />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/find' element={<FindPage />} />
           <Route index element={<EventList />} />

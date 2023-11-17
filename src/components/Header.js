@@ -110,7 +110,7 @@ function Header(props) {
 				<HeaderInner>
 					<HeaderLeft>
 						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bk') }} > 
+							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
 						</GoHeart>
 					</HeaderLeft>
@@ -122,7 +122,6 @@ function Header(props) {
 							className='bm-icon cursor-pointer' 
 							onClick={() => { navigate('/calendar') }} 
 						/>
-
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 					</HeaderRight>
 
