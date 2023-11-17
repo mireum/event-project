@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import logobottom from "../images/logo-bottom.png";
 
 const FooterInner = styled.div`
 	max-width: 1200px;
@@ -27,6 +28,26 @@ const FooterInner = styled.div`
 		}
 `;
 
+const FooterLogowrap = styled.div`
+	width: 170px;
+	height: 30px;
+	background-color: #0b70b9;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+	padding: 5px;
+	box-sizing: unset;
+
+	.logobt {
+		background-image: url(${logobottom});
+		background-repeat: no-repeat;
+		width: 167px;
+		height: 28px;
+		background-size: 167px 28px;
+	}
+
+`;
+
 function Footer(props) {
 	return (
 		<footer>
@@ -44,6 +65,9 @@ function Footer(props) {
 					<li>통신판매업신고 : 제0000-인천남동구-0000호</li>
 				</ul>
 				<hr />
+				<FooterLogowrap>
+					<div className='logobt' onClick={() => window.open(`https://www.data.go.kr/index.do`)} target='_black' />
+				</FooterLogowrap>
 			</FooterInner>
 		</footer>
 		

@@ -6,14 +6,24 @@ import { PiHouseLine } from "react-icons/pi";
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
+import logo from "../images/logo.png";
+
+
+const HeaderWrap = styled.header`
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background-color: #fff;
+`;
 
 const HeaderInner = styled.div`
 	max-width: 1200px;
-	margin: 20px auto;
+	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
 	position: relative;
+	padding: 20px 0;
 
 	.nav {
 		display: flex;
@@ -45,6 +55,16 @@ const HeaderLeft = styled.div`
 	}
 `;
 
+const HeaderCenter = styled.div`
+	display: flex;
+	align-items: center;
+	background-image: url(${logo});
+	background-size: 220px 50px;
+	width: 220px;
+	height: 50px;
+	cursor: pointer;
+`;
+
 const HeaderRight = styled.div`
 	display: flex;
 	align-items: center;
@@ -54,6 +74,9 @@ const HeaderRight = styled.div`
 		margin-right: 15px;
 	}
 
+	.big-icon {
+		font-size: 50px;
+	}
 	.bm-icon:hover {
 		color: #FF5151;
 	}
@@ -78,13 +101,16 @@ function Header(props) {
 
 	return (
 		<>
-			<header>
+			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<PiHouseLine className='home-icon cursor-pointer'
+						{/* <PiHouseLine className='home-icon cursor-pointer'
 							onClick={() => { navigate('/') }}
-						/>
+						/> */}
 					</HeaderLeft>
+
+					<HeaderCenter>
+					</HeaderCenter>
 
 					<HeaderRight>
 						<GoHeart className='bm-icon cursor-pointer'
@@ -93,14 +119,13 @@ function Header(props) {
 						</GoHeart>
 
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 				
 
-			</header>
+			</HeaderWrap>
 			
 			<Outlet />
 

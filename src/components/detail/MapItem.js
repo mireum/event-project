@@ -22,6 +22,13 @@ const MapItemInner = styled.div`
     right: 16px;
     bottom: 16px;
     z-index: 9;
+    background-color: #7a45e5;
+    border: 1px solid #7a45e5;
+
+    &:hover {
+      background-color: #5d24d1;
+      border: 1px solid #7a45e5;
+    }
   }
 `;
 
