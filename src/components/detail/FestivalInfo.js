@@ -96,7 +96,7 @@ const FestivalInfoTitle = styled.div`
 		}
 		
 		span {
-			font-size: 18px;
+			font-size: 16px;
 		}
 	}
 `;
