@@ -51,11 +51,23 @@ const SliderContainer = styled.div`
 
         }
   }
+
+  @media screen and (max-width: 768px) {
+    ul.slick-dots li {
+      margin: 0 20px;
+    }
+  }
 `;
 
 const SlideBox = styled(Slider)`
   width: 580px;
   height: 380px;
+
+  @media screen and (max-width: 420px) {
+      width: 400px;
+      height: 300px;
+      margin: 0 auto;
+    }
   
 
   .slick-prev::before,
@@ -80,6 +92,14 @@ const SlideBoxText = styled(Slider)`
     width: 450px;
     margin: 0 auto;
   }
+
+  @media screen and (max-width: 420px) {
+    width: 400px;
+    /* height: 300px; */
+    margin: 0 auto;
+    padding-right: 10px;
+
+  } 
 `;
 
 
@@ -105,6 +125,12 @@ const ImgBox = styled.div`
 
     @media screen and (max-width: 620px) {
       width: 470px;
+      margin: 0 auto;
+    } 
+
+    @media screen and (max-width: 420px) {
+      width: 400px;
+      height: 300px;
       margin: 0 auto;
     } 
   }  
