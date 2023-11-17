@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdOutlineManageSearch } from "react-icons/md";
 import { GoHeart, GoHeartFill } from "react-icons/go";
+import { PiCalendarBlankLight } from "react-icons/pi";
 import { PiHouseLine } from "react-icons/pi";
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -113,6 +114,11 @@ function Header(props) {
 					</HeaderCenter>
 
 					<HeaderRight>
+						<PiCalendarBlankLight 
+							className='bm-icon cursor-pointer' 
+							onClick={() => { navigate('/calendar') }} 
+						/>
+
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bk') }} > 
 							<GoHeartFill className='fill'/>
