@@ -49,10 +49,15 @@ const HeaderInner = styled.div`
 const HeaderLeft = styled.div`
 	display: flex;
 	align-items: center;
+	width: 110px;
+	margin-left: 15px;
 
-	.home-icon {
-		font-size: 50px;
-		margin-right: 5px;
+	.bm-icon  {
+		font-size: 40px;
+		/* margin-right: 15px; */
+	}
+	.bm-icon:hover {
+		color: #FF5151;
 	}
 `;
 
@@ -61,6 +66,8 @@ const HeaderCenter = styled.div`
 	align-items: center;
 	background-image: url(${logo});
 	background-size: 220px 50px;
+	background-repeat: no-repeat;
+	background-position-y: 5px;
 	width: 220px;
 	height: 50px;
 	cursor: pointer;
@@ -75,9 +82,6 @@ const HeaderRight = styled.div`
 		margin-right: 15px;
 	}
 
-	.big-icon {
-		font-size: 50px;
-	}
 	.bm-icon:hover {
 		color: #FF5151;
 	}
@@ -105,24 +109,19 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						{/* <PiHouseLine className='home-icon cursor-pointer'
-							onClick={() => { navigate('/') }}
-						/> */}
+						<GoHeart className='bm-icon cursor-pointer'
+							onClick={() => { navigate('/bk') }} > 
+							<GoHeartFill className='fill'/>
+						</GoHeart>
 					</HeaderLeft>
 
-					<HeaderCenter onClick={() => navigate('/')}>
-					</HeaderCenter>
+					<HeaderCenter onClick={() => navigate('/')} />
 
 					<HeaderRight>
 						<PiCalendarBlankLight 
 							className='bm-icon cursor-pointer' 
 							onClick={() => { navigate('/calendar') }} 
 						/>
-
-						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bk') }} > 
-							<GoHeartFill className='fill'/>
-						</GoHeart>
 
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 					</HeaderRight>
