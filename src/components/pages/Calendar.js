@@ -18,6 +18,10 @@ const CalendarContainer = styled.div`
     text-decoration: none;
   }
 
+  .fc-toolbar-chunk {
+    display: flex;
+  }
+
   .fc-button {
     border-radius: 50px;
   }
@@ -25,6 +29,7 @@ const CalendarContainer = styled.div`
   .fc-toolbar-title {
     font-size: 36px;
     font-weight: bold;
+    margin-right: 15px;
   }
 
   .fc-event {
@@ -48,10 +53,14 @@ const CalendarContainer = styled.div`
 
 const StyledContainer = styled(Container)`
   max-width: 1200px;
-  padding-top: 20px;
+  margin-top: 20px;
+  padding: 20px 0;
+  
 
   & h2 {
     font-weight: bold;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
   }
 `;
@@ -77,7 +86,7 @@ function Calendar(props) {
 
   const eventClick = (e) => {
     setDate(e.event.start);
-    window.scrollTo(0, 600)
+    window.scrollTo(0, 650)
   }
 
   // 월,일이 한자리 일때 앞에 '0' 추가 (fstvlStartDate 값과 일치 시킴)
@@ -110,6 +119,11 @@ function Calendar(props) {
           eventClick={eventClick}
           eventColor='#ccc'
           eventContent='🎉'
+          headerToolbar={{
+            start: 'today',
+            center: 'prev title next',
+            end: ''
+          }}
         />
       </CalendarContainer>
       <StyledContainer>
