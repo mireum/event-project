@@ -16,7 +16,7 @@ function BookMark(props) {
 				<Row>
 					<p style={{ fontSize: '25px' }}>좋아요 한 축제💗</p>
 					{bookmarkList.map((el) => {
-						return <EventListItem key={el.id} item={el} onClick={() => {dispatch(removeLikedItem(el.id))}} />
+						return <EventListItem key={el.id} item={el} />
 					})}
 				</Row>
 			</Container>
