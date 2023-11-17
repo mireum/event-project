@@ -10,12 +10,9 @@
 
 
 # 윤민수
-# 작업 내용 
+## 한 것
 - 축제, 전시회, 카카오맵 api 파싱 후 구현
-- 로딩(loading), 추천(Recommend) 컴포넌트
-
-# 작업 중
-- 캘린더 기능
+- 로딩(loading), 추천(Recommend) 캘린더(Calendar)
 
 # 한하은
 # 한 것

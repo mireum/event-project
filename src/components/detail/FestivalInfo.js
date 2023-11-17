@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import calender from "../../images/calender.png";
 import location from "../../images/location.png";
@@ -6,6 +6,9 @@ import megaphone from "../../images/megaphone.png";
 import computer from "../../images/computer.png";
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
+import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
 
 const FestivalInfoWrapper = styled.div`
 	max-width: 1200px;
@@ -126,9 +129,48 @@ const FestivalInfoTextWrapper = styled.div`
 	}
 `;
 
+const LikeBox = styled.div`
+  position: fixed;
+  bottom: 20px;
+  right: 2%;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+	border: 3px solid #7a45e5;
+	z-index: 10;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
 function FestivalInfo(props) {
 	console.log(props);
 	const { detailItem: { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type } } = props;
+
+	const [likeBtn, setLikeBtn] = useState(false);
+  const dispatch = useDispatch();
+  const bookmarkList = useSelector(likedList);
+
+	const handleLike = (item) => {
+    if (likeBtn) {
+      setLikeBtn(prev=>!prev);
+      dispatch(removeLikedItem(item.id));
+    } else {
+      setLikeBtn(prev=>!prev);
+      dispatch(addLikedItem(item));
+    }
+  };
+
+	useEffect(() => {
+    if (bookmarkList.includes(props.detailItem)) {
+      setLikeBtn(true);
+    }
+  }, []);
 
 	return (
 		<FestivalInfoWrapper>
@@ -136,6 +178,7 @@ function FestivalInfo(props) {
 				<span>{`#${auspcInsttNm}`}</span>
 				<span>{`#${type}` ? type : '축제'}</span>
 				<span>{`#${category}`}</span>
+				
 				<p>{fstvlNm}</p>
 			</FestivalInfoTitle>
 			<FestivalInfoTextWrapper>
@@ -158,6 +201,11 @@ function FestivalInfo(props) {
 						<HpLink onClick={() => window.open(homepageUrl)} target='_black'>공식 홈페이지</HpLink>
 					</li>
 				</ul>
+				<LikeBox className='cursor-pointer' onClick={() => {handleLike(props.detailItem)}}>
+					{likeBtn
+					? <PiHeartStraightFill style={{ fontSize: '35px', color: '#FF5151' }} /> 
+					: <PiHeartStraightBold style={{ fontSize: '35px' }}/>}
+				</LikeBox>
 			</FestivalInfoTextWrapper>
 			
 		</FestivalInfoWrapper>

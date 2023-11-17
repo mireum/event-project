@@ -39,13 +39,7 @@ function Recommend(props) {
   return (
     <StyledContainer>
       <h2>이런 축제는 어때요?</h2>
-      <Row onClick={() => {
-        window.scrollTo({
-          top: 400,
-          behavior: 'smooth'
-        });
-      }}
-      >
+      <Row>
         {RandomRecommend.map(item => <EventListItem  key={item.id} item={item} />)}
       </Row>
     </StyledContainer>
