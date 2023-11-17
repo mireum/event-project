@@ -120,7 +120,7 @@ function Header(props) {
 						/>
 
 						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bk') }} > 
+							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
 						</GoHeart>
 
