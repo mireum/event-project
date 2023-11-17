@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -37,7 +37,12 @@ function Finder(props) {
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const inputEl = useRef(null);
 
+	useEffect(() => {
+		inputEl.current.focus();
+	}, []);
+  
   const handleSubmit = () => {
     navigate('/find');
     props.setShowFind(false);
@@ -53,6 +58,7 @@ function Finder(props) {
       <FinderContainer onClick={(e) => e.stopPropagation()}>
         <InputGroup className="mb-3">
           <Form.Control
+            ref={inputEl}
             placeholder="검색어를 입력해주세요"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"

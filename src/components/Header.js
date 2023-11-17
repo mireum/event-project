@@ -99,7 +99,7 @@ const HeaderRight = styled.div`
 function Header(props) {
 	const navigate = useNavigate();
 	const [showFind, setShowFind] = useState(false);
-
+	
 	return (
 		<>
 			<HeaderWrap>
