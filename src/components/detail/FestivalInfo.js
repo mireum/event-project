@@ -22,7 +22,7 @@ const FestivalInfoWrapper = styled.div`
 		list-style: none;
 		display: flex;
 		align-items: center;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 	}
 
 	span {
@@ -36,7 +36,7 @@ const FestivalInfoWrapper = styled.div`
 		background-repeat: no-repeat;
 		background-size: 40px 40px;
 		background-position: 50% 50%;
-		background-color: #e6e6e6;
+		background-color: #f8f8f8;
 		border-radius: 50%;
 		margin-right: 10px;
 	}
@@ -60,7 +60,7 @@ const FestivalInfoWrapper = styled.div`
 const FestivalInfoTitle = styled.div`
 	span {
 		/* background-color: #eee; */
-		background-color: #ffbfbf;
+		background-color: #a67aff;
 		padding: 5px 10px;
 		box-sizing: border-box;
 		border-radius: 20px;
@@ -72,13 +72,14 @@ const FestivalInfoTitle = styled.div`
 	p {
 		font-size: 50px;
 		font-weight: bold;
-		margin-top: 10px;
+		margin-top: 20px;
+		margin-bottom: 30px;
 	}
 `;
 
 const HpLink = styled.a`
 	text-decoration: none;
-	color: lightcoral;
+	color: #7a45e5;
 	cursor: pointer;
 	font-weight: bold;
 `;

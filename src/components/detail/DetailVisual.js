@@ -9,7 +9,9 @@ const DetailVisualWrapper = styled.div`
 	background-image: url(${eximage2});
 	background-position: center;
 	background-size: cover;
-	opacity: 0.8;
+	opacity: 0.7;
+	background-attachment: fixed;
+	filter: brightness(90%);
 `;
 
 function DetailVisual(props) {
