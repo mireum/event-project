@@ -11,6 +11,11 @@ const SearchBox = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px){
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const SelectBox = styled.div`
@@ -37,6 +42,12 @@ const SelectBox = styled.div`
     right: 14px;
     font-size: 20px;
   }
+
+  @media screen and (max-width: 768px){
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
 `;
 
 const SelectIcon = styled.div`
@@ -44,6 +55,10 @@ const SelectIcon = styled.div`
   top: 10%;
   right: 70%;
   font-size: 22px;
+
+  @media screen and (max-width: 768px){
+    left: 3%;
+  }
 `;
 
 const Label = styled.label`
@@ -53,6 +68,9 @@ const Label = styled.label`
   padding: 4px;
   cursor: pointer;
 
+  @media screen and (max-width: 768px){
+    margin-left: 45px;
+  }
 `;
 
 const SelectOptions = styled.ul`
@@ -99,6 +117,15 @@ const RefreshBtn = styled.div`
     color: #000;
     border: 1px solid #000;
   }
+
+  @media screen and (max-width: 768px){
+    width: 100%;
+    margin-bottom: 10px;
+    &:active {
+      color: #000;
+      border: 1px solid #000;
+    }
+  }
 `;
 
 const SearchBtnBox = styled.div`
@@ -113,6 +140,11 @@ const SearchBtnBox = styled.div`
 
   &:active {
     background-color: #5d24d1;
+  }
+
+  @media screen and (max-width: 768px){
+    width: 100%;
+    margin-bottom: 10px;
   }
 `;
 
