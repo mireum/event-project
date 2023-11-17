@@ -89,7 +89,11 @@ const FestivalInfoTitle = styled.div`
 
 	@media screen and (max-width: 670px) {
 		p {
-			font-size: 25px;
+			font-size: 26px;
+		}
+		
+		span {
+			font-size: 18px;
 		}
 	}
 `;
@@ -109,6 +113,7 @@ const FestivalInfoTextWrapper = styled.div`
 
 		@media screen and (max-width: 768px) {
 			margin: 0 10px 20px;
+			height: 300px;
 		}
 	}
 
