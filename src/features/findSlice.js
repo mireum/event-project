@@ -13,18 +13,12 @@ const findSlice = createSlice({
       state.findList = action.payload;
     },
     getFindWord: (state, {payload: str}) => {
-      state.findWord = str.split(''); 
-    },
-    addFindList: (state, {payload: item}) => {
-      const targetItem = state.findList.find((find) => find.id === item.id);
-      if (!targetItem) {
-        state.findList.push(item);
-      } 
+      state.findWord = str; 
     },
   }
 });
 
-export const { getFindWord, addFindList, getEventListForFind } = findSlice.actions;
+export const { getFindWord, getEventListForFind } = findSlice.actions;
 
 export const selectFindList = state => state.find.findList;
 export const selectFindWord = state => state.find.findWord;

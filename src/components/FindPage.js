@@ -23,9 +23,9 @@ function FindPage(props) {
   
   return (
     <StyledContainer>
-      <h2>"{findingWord}"에 대한 검색 결과입니다.</h2>  
+      <h2><span style={{color:'blue'}}>"{findingWord}"</span>에 대한 검색 결과입니다.</h2>  
       <Row>
-        {findingWord.map(e => findingList.map(item => item.fstvlNm.includes(e) && <EventListItem key={item.id} item={item}/>))}
+        {findingList.map(item => item.fstvlNm.includes(findingWord) && <EventListItem key={item.id} item={item}/>)}
       </Row>
     </StyledContainer>
   );

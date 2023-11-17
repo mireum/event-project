@@ -43,7 +43,6 @@ function Finder(props) {
 
   return (
     <FinderContainer>
-      {}
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="검색어를 입력해주세요"
