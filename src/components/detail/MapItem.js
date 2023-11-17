@@ -15,6 +15,10 @@ const MapItemInner = styled.div`
     /* text-align: center; */
     font-size: 30px;
     font-weight: bold;
+
+    @media screen and (max-width: 768px){
+      text-align: center;
+    }
   }
 
   Button {
@@ -31,6 +35,17 @@ const MapItemInner = styled.div`
       background-color: #5d24d1;
       border: 1px solid #7a45e5;
     }
+  }
+`;
+
+const MapStyle = styled(Map)`
+  width: 100%;
+  height: 400px;
+  border: 1px solid #787878;
+  border-radius: 5px;
+
+  @media screen and (max-width: 500px){
+    height: 300px;
   }
 `;
 
@@ -54,14 +69,9 @@ function MapItem(props) {
     <MapItemContainer>
       <MapItemInner>
         <h4>길찾기</h4>
-        <Map
+        <MapStyle
           center={{ lat: lat, lng: lng, }}
-          style={{
-            width: '100%',
-            height: '400px',
-            border: '1px solid #787878',
-            borderRadius: '5px',
-          }}
+          
           level={3}
         >
           <MapMarker
@@ -69,7 +79,7 @@ function MapItem(props) {
           >
             {opar}
           </MapMarker>
-        </Map>
+        </MapStyle>
         <Button onClick={() => window.open(`https://map.kakao.com/link/to/${opar},${latitude},${longitude}`)} >길찾기</Button>
       </MapItemInner>
     </MapItemContainer>

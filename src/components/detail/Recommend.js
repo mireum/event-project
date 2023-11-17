@@ -14,7 +14,12 @@ const StyledContainer = styled(Container)`
   & h2 {
     font-weight: bold;
     margin-bottom: 20px;
+
+    @media screen and (max-width: 768px){
+      text-align: center;
+    }
   }
+  
 `;
 
 function Recommend(props) {

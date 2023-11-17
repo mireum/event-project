@@ -12,6 +12,10 @@ const DetailVisualWrapper = styled.div`
 	opacity: 0.7;
 	background-attachment: fixed;
 	filter: brightness(90%);
+
+	@media screen and (max-width: 768px){
+		height: 300px;
+	}
 `;
 
 function DetailVisual(props) {

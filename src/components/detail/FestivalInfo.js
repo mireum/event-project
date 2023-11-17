@@ -36,7 +36,7 @@ const FestivalInfoWrapper = styled.div`
 		background-repeat: no-repeat;
 		background-size: 40px 40px;
 		background-position: 50% 50%;
-		background-color: #f8f8f8;
+		background-color: #ededed;
 		border-radius: 50%;
 		margin-right: 10px;
 	}
@@ -75,6 +75,27 @@ const FestivalInfoTitle = styled.div`
 		margin-top: 20px;
 		margin-bottom: 30px;
 	}
+
+	@media screen and (max-width: 915px) {
+		p {
+			font-size: 35px;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		text-align: center;
+	}
+	
+
+	@media screen and (max-width: 670px) {
+		p {
+			font-size: 26px;
+		}
+		
+		span {
+			font-size: 18px;
+		}
+	}
 `;
 
 const HpLink = styled.a`
@@ -89,6 +110,19 @@ const FestivalInfoTextWrapper = styled.div`
 
 	.thumbimg {
 		border-radius: 10px;
+
+		@media screen and (max-width: 768px) {
+			margin: 0 10px 20px;
+			height: 300px;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
+
+	ul li span {
+		font-size: 20px;
 	}
 `;
 
