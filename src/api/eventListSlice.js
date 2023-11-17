@@ -60,10 +60,13 @@ const eventListSlice = createSlice({
     getSelectedList: (state, action) => {
       state.selectedListItem = action.payload;
     },
+    reGetEventList: (state, action) => {
+      state.eventListItem = action.payload;
+    }
   }
 });
 
-export const { getEventList, getImages, getMoreImages, getSelectedList } = eventListSlice.actions;
+export const { getEventList, getImages, getMoreImages, getSelectedList, reGetEventList } = eventListSlice.actions;
 
 // 선택자 함수
 export const selectEventList = state => state.eventList.eventListItem;

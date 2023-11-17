@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { getEventList, getImages, getMoreImages, selectEventList } from '../../api/eventListSlice';
+import { getEventList, getImages, getMoreImages, reGetEventList, selectEventList } from '../../api/eventListSlice';
 import { searchButton, searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import AsNavFor from './mainSlide';
 import Loading from '../pages/Loading';
@@ -52,21 +52,26 @@ function EventList(props) {
   const moreShow = () => {
     setShowList(showList + 6);
   }
-
-
+  
   // API(festival, exhibition) 호출 후 eventListSlice에 값 넘겨주기
   useEffect(() => {
     const festivalApiData = async () => {
       setLoding(true)
+      // if (localStorage.eventlist) return;
       try {
-        // const response = await axios.get('http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api?serviceKey=Z32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%2BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%3D%3D&pageNo=1&numOfRows=100&type=json');
-        // https://tohttps.hanmesoft.com/ 에서 https로 변경
-        const response = await axios.get('https://tohttps.hanmesoft.com/forward.php?url=http%3A%2F%2Fapi.data.go.kr%2Fopenapi%2Ftn_pubr_public_cltur_fstvl_api%3FserviceKey%3DZ32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%252BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%253D%253D%26pageNo%3D1%26numOfRows%3D100%26type%3Djson');
-        const res = await axios.get('https://my-json-server.typicode.com/yunminsu/event-db/exhibition');
-
-        dispatch(getEventList(response.data.response.body.items.filter(data => data.fstvlStartDate.split('-')[0] === '2023').slice(0,50).concat(res.data)));
-        // localStorage에 eventList 담기
-        localStorage.setItem('eventlist', JSON.stringify(response.data.response.body.items.filter(data => data.fstvlStartDate.split('-')[0] === '2023').slice(0,50).concat(res.data)))
+        if (localStorage.eventlist) {
+          dispatch(reGetEventList(JSON.parse(localStorage.getItem('eventlist'))))
+        }
+        else {
+          // const response = await axios.get('http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api?serviceKey=Z32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%2BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%3D%3D&pageNo=1&numOfRows=100&type=json');
+          // https://tohttps.hanmesoft.com/ 에서 https로 변경
+          const response = await axios.get('https://tohttps.hanmesoft.com/forward.php?url=http%3A%2F%2Fapi.data.go.kr%2Fopenapi%2Ftn_pubr_public_cltur_fstvl_api%3FserviceKey%3DZ32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%252BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%253D%253D%26pageNo%3D1%26numOfRows%3D100%26type%3Djson');
+          const res = await axios.get('https://my-json-server.typicode.com/yunminsu/event-db/exhibition');
+          dispatch(getEventList(response.data.response.body.items.filter(data => data.fstvlStartDate.split('-')[0] === '2023').slice(0,50).concat(res.data)));
+  
+          // localStorage에 eventList 담기
+          localStorage.setItem('eventlist', JSON.stringify(response.data.response.body.items.filter(data => data.fstvlStartDate.split('-')[0] === '2023').slice(0,50).concat(res.data)));
+        }
       } catch (error) {
         console.error(error);  
       }
@@ -74,9 +79,11 @@ function EventList(props) {
     };
     festivalApiData();
   }, []);
-
+  
+  
   // API(images) 호출 후 eventListSlice에 값 넘겨주기
   useEffect(() => {
+    if (localStorage.eventlist) return;
     const imagesApiData = async () => {
       try {
         const response = await axios.get('https://my-json-server.typicode.com/yunminsu/event-images-db/images');
@@ -91,6 +98,7 @@ function EventList(props) {
 
   // API(moreImages) 호출 후 eventListSlice에 값 넘겨주기 - my json sever upload 개수 초과(30개) 이슈로 파일을 나눠서 호출
   useEffect(() => {
+    if (localStorage.eventlist) return;
     const moreImagesApiData = async () => {
       try {
         const response = await axios.get('https://my-json-server.typicode.com/yunminsu/event-moreimages-db/images');
