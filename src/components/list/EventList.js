@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { getEventList, getImages, getMoreImages, reGetEventList, selectEventList } from '../../api/eventListSlice';
 import { searchButton, searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
-import AsNavFor from './mainSlide';
+import AsNavFor from './MainSlide';
 import Loading from '../pages/Loading';
 
 
