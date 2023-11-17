@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdOutlineManageSearch } from "react-icons/md";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiHouseLine } from "react-icons/pi";
-import { Outlet, navigate, useNavigate } from 'react-router-dom';
+import Finder from './Finder';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 
@@ -21,6 +22,7 @@ const HeaderInner = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
+	position: relative;
 	padding: 20px 0;
 
 	.nav {
@@ -95,6 +97,7 @@ const HeaderRight = styled.div`
 
 function Header(props) {
 	const navigate = useNavigate();
+	const [showFind, setShowFind] = useState(false);
 
 	return (
 		<>
@@ -115,11 +118,12 @@ function Header(props) {
 							<GoHeartFill className='fill'/>
 						</GoHeart>
 
-						<MdOutlineManageSearch className='big-icon cursor-pointer' onClick={undefined}>
-
-						</MdOutlineManageSearch>
+						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 					</HeaderRight>
+
+					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
+				
 
 			</HeaderWrap>
 			
