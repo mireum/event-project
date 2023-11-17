@@ -8,6 +8,7 @@ import axios from 'axios';
 import { getEventList, getImages, getMoreImages, selectEventList } from '../../api/eventListSlice';
 import { searchButton, searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import AsNavFor from './mainSlide';
+import Loading from '../pages/Loading';
 
 
 const StyledContainer = styled(Container)`
@@ -49,6 +50,7 @@ const SearchResultMsg = styled.h3`
 function EventList(props) {
   const dispatch = useDispatch();
   const [ showList, setShowList ] = useState(12);
+  const [ loading, setLoding ] = useState(false);
 
   const moreShow = () => {
     setShowList(showList + 6);
@@ -58,6 +60,7 @@ function EventList(props) {
   // API(festival, exhibition) 호출 후 eventListSlice에 값 넘겨주기
   useEffect(() => {
     const festivalApiData = async () => {
+      setLoding(true)
       try {
         // const response = await axios.get('http://api.data.go.kr/openapi/tn_pubr_public_cltur_fstvl_api?serviceKey=Z32WTrmtfhK4NTqxZzTHIisyXYTenGMaLXbfa47%2BalHZdh57vUNiyJwUj4lMgwhISHVNXAToqTt3DxilUwwrmw%3D%3D&pageNo=1&numOfRows=100&type=json');
         // https://tohttps.hanmesoft.com/ 에서 https로 변경
@@ -70,6 +73,7 @@ function EventList(props) {
       } catch (error) {
         console.error(error);  
       }
+      setLoding(false)
     };
     festivalApiData();
   }, []);
@@ -102,7 +106,6 @@ function EventList(props) {
     moreImagesApiData();
   }, [])
 
-  
   // eventListSlice의 eventListItem 호출
   const eventLists = useSelector(selectEventList);
 
@@ -139,6 +142,10 @@ function EventList(props) {
   
   if (!button) {
     filteredEventList = eventLists;
+  }
+
+  if(loading) {
+    return <Loading>로딩 중</Loading>
   }
 
   return (
