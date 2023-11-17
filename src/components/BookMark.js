@@ -7,10 +7,9 @@ import EventListItem from './list/EventListItem';
 
 
 function BookMark(props) {
-	// const { items:{  } } = props;
 	const dispatch = useDispatch();
 	const bookmarkList = useSelector(likedList) || [];
-	console.log(bookmarkList);
+
 	return (
 		<section>
 			<Container style={{ maxWidth: '1200px' }}>
