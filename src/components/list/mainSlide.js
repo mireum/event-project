@@ -24,17 +24,65 @@ const SliderContainer = styled.div`
   & h3 {
     font-weight: bold;
   }
+
+  ul.slick-dots {
+    bottom: -25px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column-reverse;
+    margin-bottom: 60px;
+    
+
+      ul.slick-dots {
+      bottom: -140px;
+    }
+
+      ul.slick-dots li {
+        margin: 0 25px;
+      }
+
+        ul.slick-dots li button::before {
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          font-size: 18px;
+
+        }
+  }
 `;
 
 const SlideBox = styled(Slider)`
   width: 580px;
   height: 380px;
+  
 
   .slick-prev::before,
   .slick-next::before {
     display: none;
   }
 `;
+
+const SlideBoxText = styled(Slider)`
+  width: 580px;
+  height: 380px;
+  text-align: end;
+  padding: 220px 40px 0 0;
+
+  @media screen and (max-width: 768px){
+    padding-top: 10px;
+    height: 100%;
+    padding-right: 0;
+  }
+
+  @media screen and (max-width: 620px) {
+    width: 450px;
+    margin: 0 auto;
+  }
+`;
+
+
 
 
 const ImgBox = styled.div`
@@ -46,7 +94,20 @@ const ImgBox = styled.div`
     height: 360px;
     border-radius: 10px;
     background-color: #fff;
-  }
+
+    @media screen and (max-width: 1199px) and (min-width: 990px){
+      width: 480px;
+    }
+
+    @media screen and (max-width: 989px) and (min-width: 769px){
+      width: 380px;
+    } 
+
+    @media screen and (max-width: 620px) {
+      width: 470px;
+      margin: 0 auto;
+    } 
+  }  
 `;
 
 
@@ -70,8 +131,7 @@ export default class AsNavFor extends Component {
   render() {
     return (
       <SliderContainer>
-        <SlideBox
-          style={{textAlign:"end", padding:"220px 40px 0px 0px"}}
+        <SlideBoxText
           asNavFor={this.state.nav2}
           ref={slider => (this.slider1 = slider)}
         >
@@ -117,7 +177,7 @@ export default class AsNavFor extends Component {
               충청남도 서산시
             </p>
           </div>
-        </SlideBox>
+        </SlideBoxText>
         <SlideBox
           asNavFor={this.state.nav1}
           ref={slider => (this.slider2 = slider)}
