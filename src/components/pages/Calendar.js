@@ -26,9 +26,15 @@ function Calendar(props) {
 
   let count = 0;
 
+  let clickedDate = '';
+  
   const clickCount = (e) => {
-    console.log(e.event._instance.range.start);
+    clickedDate = e.event.start;
+    count++
+    // console.log(e.event.start);
   }
+  console.log(clickedDate);
+  console.log(count);
 
   return (
     <CalendarContainer>
@@ -38,7 +44,7 @@ function Calendar(props) {
         locale={'ko'}
         weekends
         events={calendarItems}
-        eventClick={clickCount}
+        eventClick={() => clickCount}
       />
     </CalendarContainer>
   );
