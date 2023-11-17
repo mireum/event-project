@@ -9,7 +9,7 @@ function Loading(props) {
         autoplay
         loop
         mode="normal"
-        src="https://lottie.host/c404786e-2d84-4239-a092-5fa55366d5a7/DRPRrsgJH4.json"
+        src="https://lottie.host/524cba8b-ecec-4489-8cf3-59cc8197ae10/ZuTjPIgN2L.json"
         style={{ height: '78vh' }}
       />
     </>
