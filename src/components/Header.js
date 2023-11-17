@@ -124,7 +124,6 @@ function Header(props) {
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 				
-
 			</HeaderWrap>
 			
 			<Outlet />
