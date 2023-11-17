@@ -7,15 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getFindWord } from '../features/findSlice';
 
+const SectionBox = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+`;
+
 const FinderContainer = styled.div`
   width: 1000px;
   height: 170px;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   z-index: 999;
   position: absolute;
-  top: 120%;
+  top: 105%;
   left: 8%;
   background: #F8F9FF;
   padding: 20px;
@@ -40,22 +43,30 @@ function Finder(props) {
     props.setShowFind(false);
     dispatch(getFindWord(value));
   };
+  
+  const handleClick = () => {
+    props.setShowFind(false);
+  };
 
   return (
-    <FinderContainer>
-      <InputGroup className="mb-3">
-        <Form.Control
-          placeholder="검색어를 입력해주세요"
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-          value={value}
-          onChange={(e)=>{setValue(e.target.value)}}
-        />
-        <StyledSubmitBtn variant="outline-secondary" id="button-addon2" onClick={() => {handleSubmit()}} >
-          검색하기
-        </StyledSubmitBtn>
-      </InputGroup>
-    </FinderContainer>
+    <SectionBox onClick={() => {handleClick()}}>
+      <FinderContainer onClick={(e) => e.stopPropagation()}>
+        <InputGroup className="mb-3">
+          <Form.Control
+            placeholder="검색어를 입력해주세요"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            value={value}
+            onChange={(e)=>{setValue(e.target.value)}}
+            onKeyUp={(e) => { if (e.key === 'Enter') {handleSubmit()} }}
+          />
+          <StyledSubmitBtn variant="outline-secondary" id="button-addon2" onClick={() => {handleSubmit()}}>
+            검색하기
+          </StyledSubmitBtn>
+        </InputGroup>
+      </FinderContainer>
+
+    </SectionBox>
   );
 }
 

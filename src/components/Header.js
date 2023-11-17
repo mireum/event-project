@@ -110,7 +110,7 @@ function Header(props) {
 						/> */}
 					</HeaderLeft>
 
-					<HeaderCenter>
+					<HeaderCenter onClick={() => navigate('/')}>
 					</HeaderCenter>
 
 					<HeaderRight>
