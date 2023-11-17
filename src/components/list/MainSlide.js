@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,8 +9,6 @@ import mainImg_3 from "../../images/main/mainSlideImg_3.png";
 import mainImg_4 from "../../images/main/mainSlideImg_4.jpg";
 import mainImg_5 from "../../images/main/mainSlideImg_5.jpg";
 import mainImg_6 from "../../images/main/mainSlideImg_6.jpg";
-import { useSelector } from "react-redux";
-import { selectEventList } from "../../api/eventListSlice";
 
 
 const SliderContainer = styled.div`
@@ -102,9 +100,6 @@ const SlideBoxText = styled(Slider)`
   } 
 `;
 
-
-
-
 const ImgBox = styled.div`
   width: 580px;
   height: 360px;
@@ -140,12 +135,14 @@ const ImgBox = styled.div`
 export default class AsNavFor extends Component {
   constructor(props) {
     super(props);
+    const items = this.props;
     this.state = {
       nav1: null,
       nav2: null
     };
   }
-
+  
+  
   componentDidMount() {
     this.setState({
       nav1: this.slider1,
@@ -153,7 +150,7 @@ export default class AsNavFor extends Component {
     });
   }
 
-
+  
   render() {
     return (
       <SliderContainer>
@@ -162,45 +159,45 @@ export default class AsNavFor extends Component {
           ref={slider => (this.slider1 = slider)}
         >
           <div>
-            <h3>휴애리 동백 축제</h3>
+            <h3>삼척비치썸페스티벌</h3>
             <p>
-              2023.11.14 ~ 2024.01.31<br/>
-              제주도 서귀포시
+              2023-07-26 ~ 2023-07-30<br/>
+              강원특별자치도 삼척시
             </p>
           </div>
           <div>
-            <h3>이월드 일루미네이션</h3>
+            <h3>더 어텀 시즌 아트&플레이 페스타</h3>
             <p>
-              2023.11.17 ~ 2023.12.31<br/>
-              대구 달서구
+              2023-09-02 ~ 2023-09-02<br/>
+              경기도 평택시
             </p>
           </div>
           <div>
-            <h3>도시이야기 페스티벌-말걸음을 잇다</h3>
+            <h3>2023 청춘대로</h3>
             <p>
-              2023.10.01 ~ 2023.11.27<br/>
-              경기도 부천시
+              2023-09-21 ~ 2023-09-22<br/>
+              서울특별시 광진구
             </p>
           </div>
           <div>
-            <h3>연천율무축제</h3>
+            <h3>원주삼토페스티벌</h3>
             <p>
-              2023.11.10 ~ 2023.11.12<br/>
-              경기도 연천군
+              2023-09-14 ~ 2023-09-17<br/>
+              강원도 원주시
             </p>
           </div>
           <div>
-            <h3>서울 발레 페스티벌</h3>
+            <h3>선농대제</h3>
             <p>
-              2023.11.08 ~ 2023.11.12<br/>
-              서울 송파구
+              2023-04-22 ~ 2023-04-22<br/>
+              서울특별시 동대문구
             </p>
           </div>
           <div>
-            <h3>서산 국화 축제</h3>
+            <h3>구례300리벚꽃축제</h3>
             <p>
-              2023.11.03 ~ 2023.11.12<br/>
-              충청남도 서산시
+              2023-03-31 ~ 2023-04-02<br/>
+              전라남도 구례군
             </p>
           </div>
         </SlideBoxText>
@@ -215,7 +212,7 @@ export default class AsNavFor extends Component {
           autoplay={true}
           arrows={false}
         >
-          <ImgBox>
+          <ImgBox onClick={undefined}>
             <img src={mainImg_1}/>
           </ImgBox>
           <ImgBox>

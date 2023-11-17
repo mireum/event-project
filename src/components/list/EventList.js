@@ -160,7 +160,7 @@ function EventList(props) {
           <MainDetailSearch />
         </DetailSearchStyle>
         <SlideBox>
-          <AsNavFor />
+          <AsNavFor/>
         </SlideBox>
         <Row>
           { filteredEventList.length >= 1
