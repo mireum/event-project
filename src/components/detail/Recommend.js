@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectEventList } from '../../api/eventListSlice';
 
+
 const StyledContainer = styled(Container)`
   max-width: 1200px;
   padding-top: 20px;

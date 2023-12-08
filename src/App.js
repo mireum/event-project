@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import React, { useEffect } from 'react';
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -9,6 +10,7 @@ import Detail from './components/detail/Detail';
 import BookMark from './components/BookMark';
 import Calendar from './components/pages/Calendar';
 import FindPage from './components/FindPage';
+import axios from 'axios';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -28,6 +30,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  useEffect(() => {
+    try {
+      const festival = async () => {
+      const result = await axios.get('http://localhost:8088');
+      console.log(result);
+      }
+      festival();
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
   return (
     <>
