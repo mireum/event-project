@@ -34,7 +34,7 @@ function App() {
     try {
       const festival = async () => {
       const result = await axios.get('http://localhost:8088');
-      console.log(result);
+      // console.log(result);
       }
       festival();
     } catch (err) {
