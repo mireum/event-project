@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import styled, { createGlobalStyle } from "styled-components";
@@ -9,6 +8,7 @@ import Detail from './components/detail/Detail';
 import BookMark from './components/BookMark';
 import Calendar from './components/pages/Calendar';
 import FindPage from './components/FindPage';
+import Register from './components/pages/Register';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -40,6 +40,7 @@ function App() {
           <Route path='/find' element={<FindPage />} />
           <Route index element={<EventList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
+          <Route path='/register' element={<Register />} />
 
         </Route>
       </Routes>
