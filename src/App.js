@@ -9,6 +9,8 @@ import Detail from './components/detail/Detail';
 import BookMark from './components/BookMark';
 import Calendar from './components/pages/Calendar';
 import FindPage from './components/FindPage';
+import Login from './components/Login';
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -32,7 +34,6 @@ function App() {
   return (
     <>
       <GlobalStyle />
-
       <Routes>
         <Route path='/' element={<Header />}>
           <Route path='/bookmark' element={<BookMark />} />
@@ -40,7 +41,7 @@ function App() {
           <Route path='/find' element={<FindPage />} />
           <Route index element={<EventList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
-
+          <Route path='/login' element={<Login />} />
         </Route>
       </Routes>
     </>
