@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import EventListItem from '../list/EventListItem';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { selectSelectedListItem } from '../../api/eventListSlice';
+import { selectEventList } from '../../api/eventListSlice';
+
 
 const StyledContainer = styled(Container)`
   max-width: 1200px;
@@ -23,7 +24,7 @@ const StyledContainer = styled(Container)`
 
 function Recommend(props) {
   const { EventListId } = useParams();
-  const seletedList = useSelector(selectSelectedListItem);
+  const seletedList = useSelector(selectEventList);
 
   let id = Number(EventListId);
   let randomInt = Math.floor(Math.random() * 10);
