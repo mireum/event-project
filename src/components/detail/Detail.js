@@ -6,6 +6,7 @@ import Map from './Map';
 import Recommend from './Recommend';
 import { getSelectedList, selectSelectedListItem } from '../../api/eventListSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Comments from './Comments';
 
 
 function Detail(props) {
@@ -29,6 +30,7 @@ function Detail(props) {
 				<FestivalInfo detailItem={detailItem} />
 				<Map />
 				<Recommend />
+				<Comments />
 			</>
 		);
 	}
