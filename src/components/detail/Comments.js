@@ -61,8 +61,7 @@ const FormBox = styled.form`
 
 function Comments(props) {
   const { detailItem } = props;
-  console.log(detailItem);
-  console.log(detailItem._id);
+
   return (
     <CommentContainer>
       {/* for (let i = 0; i < Comments.length; i++) {
@@ -80,7 +79,7 @@ function Comments(props) {
         <p>콘텐트</p>
       </CommentBox>
       <CommentRegistBox>
-        <FormBox id='comment-form' action='/post/comment' method='post'>
+        <FormBox id='comment-form' action='http://localhost:8088/post/comment' method='post'>
           <input type="hidden" name="postId" value={detailItem._id} />
           <input type='text' name='content' />
           <button type='submit'>등록</button>
