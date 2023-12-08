@@ -11,6 +11,7 @@ import BookMark from './components/BookMark';
 import Calendar from './components/pages/Calendar';
 import FindPage from './components/FindPage';
 import axios from 'axios';
+import Reserv from './components/pages/Reserv';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -53,6 +54,7 @@ function App() {
           <Route path='/find' element={<FindPage />} />
           <Route index element={<EventList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
+          <Route path='/detail/:EventListId/reserv' element={<Reserv />} />
 
         </Route>
       </Routes>

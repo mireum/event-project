@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import styled from 'styled-components';
-import { getSelectedList, selectSelectedListItem } from '../../api/eventListSlice';
+import { getEventList, selectEventList } from '../../api/eventListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 import EventListItem from '../list/EventListItem';
-import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import axios from 'axios';
 
 const CalendarContainer = styled.div`
   max-width: 1200px;
@@ -67,20 +67,28 @@ const StyledContainer = styled(Container)`
 
 function Calendar(props) {
 
-  const seletedList = useSelector(selectSelectedListItem);
+  const selectedList = useSelector(selectEventList);
 	const dispatch = useDispatch();
 
-	// localStorage에 eventlist 불러오기
-	useEffect (() => {
-		const dbEventList = JSON.parse(localStorage.getItem('eventlist')) || [];
-		dispatch(getSelectedList(dbEventList));
-	}, [])
+  useEffect(() => {
+    const festivalApiData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8088/list');
+        dispatch(getEventList(response.data));
+      } catch (err) {
+        console.error(err);  
+      }
+    };
+    festivalApiData();
+  }, []);
 
-  const calendarItemstsSet = new Set(seletedList.map(item => item.fstvlStartDate));
+  console.log(selectedList);
+  const calendarItemstsSet = new Set(selectedList.map(item => item.fstvlStartDate));
+  console.log(calendarItemstsSet);
   const calendarItemstsArr = Array.from(calendarItemstsSet)
+  console.log(calendarItemstsArr);
   const calendarItemsts = [];
   calendarItemstsArr.map(item => calendarItemsts.push({ date: item }))
-  console.log(calendarItemsts);
 
   const [date, setDate] = useState(''); 
 
@@ -104,8 +112,7 @@ function Calendar(props) {
 
   const eventDate = `${dates.getFullYear()}-${dateMonth}-${dateDate}`;
 
-  const selectEventList = seletedList.filter(item => item.fstvlStartDate == eventDate);
-  console.log(selectEventList);
+  const selectEventLists = selectedList.filter(item => item.fstvlStartDate == eventDate);
 
   return (
     <>
@@ -127,9 +134,9 @@ function Calendar(props) {
         />
       </CalendarContainer>
       <StyledContainer>
-        <h2>{selectEventList.length >= 1 && `${dates.getMonth()+1}월 ${dates.getDate()}일 축제 리스트`}</h2>
+        <h2>{selectEventLists.length >= 1 && `${dates.getMonth()+1}월 ${dates.getDate()}일 축제 리스트`}</h2>
         <Row>
-          {selectEventList.map(item => <EventListItem key={item.id} item={item} />)}
+          {selectEventLists.map(item => <EventListItem key={item.id} item={item} />)}
         </Row>
       </StyledContainer>
     </>

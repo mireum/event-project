@@ -5,7 +5,7 @@ import location from "../../images/location.png";
 import megaphone from "../../images/megaphone.png";
 import computer from "../../images/computer.png";
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
 import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
@@ -102,10 +102,15 @@ const FestivalInfoTitle = styled.div`
 `;
 
 const HpLink = styled.a`
+	border: 1px;
+	border-radius: 50px;
+	padding: 10px;
 	text-decoration: none;
+	background-color: #ededed;
 	color: #7a45e5;
 	cursor: pointer;
 	font-weight: bold;
+	margin-right: 30px;
 `;
 
 const FestivalInfoTextWrapper = styled.div`
@@ -150,11 +155,12 @@ const LikeBox = styled.div`
 
 function FestivalInfo(props) {
 	console.log(props);
-	const { detailItem: { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type } } = props;
+	const { detailItem: { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type, id } } = props;
 
 	const [likeBtn, setLikeBtn] = useState(false);
   const dispatch = useDispatch();
   const bookmarkList = useSelector(likedList);
+	const navigate = useNavigate();
 
 	const handleLike = (item) => {
     if (likeBtn) {
@@ -199,6 +205,7 @@ function FestivalInfo(props) {
 					<li>
 						<span className='computer imgstyle'></span>
 						<HpLink onClick={() => window.open(homepageUrl)} target='_black'>공식 홈페이지</HpLink>
+						<HpLink onClick={() => {navigate(`/detail/${id}/reserv`)}} target='_black'>예약하기</HpLink>
 					</li>
 				</ul>
 				<LikeBox className='cursor-pointer' onClick={() => {handleLike(props.detailItem)}}>
