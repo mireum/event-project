@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import React, { useEffect } from 'react';
@@ -11,6 +10,7 @@ import BookMark from './components/BookMark';
 import Calendar from './components/pages/Calendar';
 import FindPage from './components/FindPage';
 import axios from 'axios';
+import Login from './components/Login';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -34,7 +34,7 @@ function App() {
     try {
       const festival = async () => {
       const result = await axios.get('http://localhost:8088');
-      // console.log(result);
+      console.log(result);
       }
       festival();
     } catch (err) {
@@ -48,6 +48,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Header />}>
+          <Route path='/login' element={<Login />} />
           <Route path='/bookmark' element={<BookMark />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/find' element={<FindPage />} />
