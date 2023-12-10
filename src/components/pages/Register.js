@@ -67,8 +67,8 @@ function Register(props) {
 
   const handleSubmit = async (e) => {
     try {
-    e.prventDefault();
-      await axios.post('http://localhost:8088/register', { username, password, pw, email });
+    e.preventDefault();
+      await axios.post('http://localhost:8088/user/register', { username, password, pw, email });
     } catch (err) {
       console.error(err);
     }
@@ -77,7 +77,7 @@ function Register(props) {
   return (
     <RegisterWrap>
       <h3>회원가입</h3>
-      <RegisterForm onSubmit={handleSubmit}>
+      <RegisterForm>
         <label htmlFor='username'>
           아이디
           <input type='text' name='username' id='username' value={username} onChange={handleChange}/>
