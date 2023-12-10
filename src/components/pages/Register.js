@@ -67,7 +67,7 @@ function Register(props) {
 
   const handleSubmit = async (e) => {
     try {
-      e.prventDefault();
+    e.prventDefault();
       await axios.post('http://localhost:8088/register', { username, password, pw, email });
     } catch (err) {
       console.error(err);
@@ -80,19 +80,19 @@ function Register(props) {
       <RegisterForm onSubmit={handleSubmit}>
         <label htmlFor='username'>
           아이디
-          <input type='text' name='username' id='username' defaultValue={username || ''} onChange={handleChange}/>
+          <input type='text' name='username' id='username' value={username} onChange={handleChange}/>
         </label>
         <label htmlFor='password'>
           비밀번호
-          <input type='password' name='password' id='password' defaultValue={password || ''} onChange={handleChange}/>
+          <input type='password' name='password' id='password' autoComplete="off" value={password} onChange={handleChange}/>
         </label>
         <label htmlFor='pw'>
           비밀번호 확인
-          <input type='password' name='pw' id='pw'  defaultValue={pw || ''} onChange={handleChange}/>
+          <input type='password' name='pw' id='pw' autoComplete="off" value={pw} onChange={handleChange}/>
         </label>
         <label htmlFor="email">
           이메일
-          <input type="email" id="email" name="email" placeholder="'@'를 포함해주세요" defaultValue={email || ''} onChange={handleChange}/>
+          <input type="email" id="email" name="email" placeholder="'@'를 포함해주세요" value={email} onChange={handleChange}/>
         </label>
         <button type='submit' onClick={() => {handleSubmit()}}>회원가입</button>
       </RegisterForm>

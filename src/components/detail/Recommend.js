@@ -5,7 +5,6 @@ import EventListItem from '../list/EventListItem';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectSelectedListItem } from '../../api/eventListSlice';
-import { param } from 'jquery';
 
 const StyledContainer = styled(Container)`
   max-width: 1200px;
