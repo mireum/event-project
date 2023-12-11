@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 
@@ -23,7 +23,6 @@ const RegisterForm = styled.form`
     display: flex;
     justify-content: space-between;
     input {
-      /* border-radius: 5px; */
       border: none;
       border-bottom: 1px solid #7a45e5;
       outline: none;
@@ -45,33 +44,75 @@ const RegisterForm = styled.form`
   }
 `;
 
+// function Register(props) {
+//   const [ inputs, setInput ] = useState({
+//     username: '',
+//     password: '',
+//     pw: '',
+//     email: ''
+//   }); 
+
 function Register(props) {
-  const [ inputs, setInput ] = useState({
-    username: '',
-    password: '',
-    pw: '',
-    email: ''
-  }); 
+  const [ username, setUsername ] = useState(''); 
+  const [ password, setPassword ] = useState(''); 
+  const [ pw, setPw ] = useState(''); 
+  const [ email, setEmail ] = useState(''); 
 
-  const { username, password, pw, email } = inputs;
+  const handleChangeUsername = (e) => {
+    setUsername(e.target.value);
+  };
 
-  // useEffect(() => {
-  //   if (!inputs) {
-  //     setInput();
-  //   }
-  // }, []);
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-  const handleChange = (e) => {
-    setInput(e.target.value);
+  const handleChangePw = (e) => {
+    setPw(e.target.value);
+  };
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
   };
 
   const handleSubmit = async (e) => {
-    try {
     e.preventDefault();
-      await axios.post('http://localhost:8088/user/register', { username, password, pw, email });
+    const userid = [...username];
+    const emails = [...email];
+
+
+    try {
+      if (!username || !password || !pw || !email) {
+        return alert('회원정보를 입력해주세요!');
+      } else if (password !== pw) {
+        return alert('비밀번호가 일치하지 않습니다!');
+      }
+
+      // 회원가입 정규표현식 //
+      
+      const expIdText = /^[A-Za-z]{4,16}$/;
+      if(!expIdText.test(JSON.stringify(userid.value))){      
+      alert('아이디는 4자 이상 16자 이하의 대소문자로 시작하는 조합입니다');
+      userid.focus();
+      return false;
+      }
+      const expEmailText = /^[A-Za-z-0-9\-\]+@[A-Ja-z-0-9\-\]+.[A-Ja-z-0-9]+$/;
+      if(!expEmailText.test(JSON.stringify(emails.value))){
+      alert('이메일 형식을 확인하세요!');
+      // emails.focus();
+      return false;
+      }
+
+      const result = await axios.post('http://localhost:8088/user/register', { username, password, pw, email });
+      if (!result.data.flag) {
+        return alert(result.data.message);
+      }
     } catch (err) {
       console.error(err);
     }
+    setUsername('');
+    setPassword('');
+    setPw('');
+    setEmail('');
   };
 
   return (
@@ -80,21 +121,21 @@ function Register(props) {
       <RegisterForm>
         <label htmlFor='username'>
           아이디
-          <input type='text' name='username' id='username' value={username} onChange={handleChange}/>
+          <input type='text' name='username' id='username' value={username} onChange={handleChangeUsername}/>
         </label>
         <label htmlFor='password'>
           비밀번호
-          <input type='password' name='password' id='password' autoComplete="off" value={password} onChange={handleChange}/>
+          <input type='password' name='password' id='password' autoComplete="off" value={password} onChange={handleChangePassword}/>
         </label>
         <label htmlFor='pw'>
           비밀번호 확인
-          <input type='password' name='pw' id='pw' autoComplete="off" value={pw} onChange={handleChange}/>
+          <input type='password' name='pw' id='pw' autoComplete="off" value={pw} onChange={handleChangePw}/>
         </label>
         <label htmlFor="email">
           이메일
-          <input type="email" id="email" name="email" placeholder="'@'를 포함해주세요" value={email} onChange={handleChange}/>
+          <input type="text" id="email" name="email" value={email} onChange={handleChangeEmail}/>
         </label>
-        <button type='submit' onClick={() => {handleSubmit()}}>회원가입</button>
+        <button type='submit' onClick={handleSubmit}>회원가입</button>
       </RegisterForm>
     </RegisterWrap>
   );
