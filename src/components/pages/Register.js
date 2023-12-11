@@ -55,7 +55,6 @@ const RegisterForm = styled.form`
 function Register(props) {
   const [ username, setUsername ] = useState(''); 
   const [ password, setPassword ] = useState(''); 
-  const [ pw, setPw ] = useState(''); 
   const [ email, setEmail ] = useState(''); 
 
   const handleChangeUsername = (e) => {
@@ -64,10 +63,6 @@ function Register(props) {
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
-  };
-
-  const handleChangePw = (e) => {
-    setPw(e.target.value);
   };
 
   const handleChangeEmail = (e) => {
@@ -81,10 +76,8 @@ function Register(props) {
 
 
     try {
-      if (!username || !password || !pw || !email) {
+      if (!username || !password || !email) {
         return alert('회원정보를 입력해주세요!');
-      } else if (password !== pw) {
-        return alert('비밀번호가 일치하지 않습니다!');
       }
 
       // 회원가입 정규표현식 //
@@ -102,7 +95,7 @@ function Register(props) {
       return false;
       }
 
-      const result = await axios.post('http://localhost:8088/user/register', { username, password, pw, email });
+      const result = await axios.post('http://localhost:8088/user/register', { username, password, email });
       if (!result.data.flag) {
         return alert(result.data.message);
       }
@@ -126,10 +119,6 @@ function Register(props) {
         <label htmlFor='password'>
           비밀번호
           <input type='password' name='password' id='password' autoComplete="off" value={password} onChange={handleChangePassword}/>
-        </label>
-        <label htmlFor='pw'>
-          비밀번호 확인
-          <input type='password' name='pw' id='pw' autoComplete="off" value={pw} onChange={handleChangePw}/>
         </label>
         <label htmlFor="email">
           이메일
