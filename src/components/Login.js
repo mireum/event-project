@@ -9,12 +9,8 @@ function Login(props) {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
-    // document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      console.log(e);
-      // const username = e.target.username.value;
-      // const password = e.target.password.value;
-    
+      
       try {
         const result = await axios.post(`http://localhost:8088/user/login`, { username, password },{
           // headers: {
