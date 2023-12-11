@@ -4,7 +4,7 @@ import { getReservList, selectReservList } from '../../api/eventListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Container } from 'react-bootstrap';
+import { Container, Modal } from 'react-bootstrap';
 import { getEventListById } from '../../api/eventListAPI';
 import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 
@@ -63,6 +63,10 @@ function Reserv(props) {
 	const reservItem = useSelector(selectReservList);
   const { fstvlNm, fstvlStartDate, fstvlEndDate, image } = reservItem;
 	
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+  const handleOpenModal = () => setShowModal(true);
+
   useEffect(() => {
     const api = async () => {
       try {
@@ -75,11 +79,15 @@ function Reserv(props) {
     api(); 
   }, [])
 
-  if (fstvlStartDate) {
-    const res = fstvlStartDate.replace(/-/g, '');
-    console.log(typeof(res));
-
+  if (!reservItem) {
+    return null;
   }
+
+  let dateDiff = 0;
+  if (fstvlEndDate) {
+    dateDiff = Number(fstvlEndDate.replace(/-/g, '') - Number(fstvlStartDate.replace(/-/g, '')));
+  }
+  
 
   return (
     <ReservItemContainer>
@@ -96,14 +104,36 @@ function Reserv(props) {
           <h4>예약 정보</h4>
           <img src={image} />
           <p><span>축제명</span><br></br> {fstvlNm}</p>
-          <p><span>날짜</span><br></br> {fstvlStartDate} ~ {fstvlEndDate}</p>
-          <p><span>인원</span> 1명 <button>선택하기</button></p>
+          <p><span>날짜</span><br></br> {dateDiff ? `${fstvlStartDate} ~ ${fstvlEndDate}` : fstvlStartDate }</p>
+          <p><span>인원</span> 0명 <button onClick={handleOpenModal}>선택하기</button></p>
         </div>
         <div>
           <h4>결제</h4>
           <p><span>인원</span></p>
         </div>
       </ReservItemInnerContainer>
+
+      <Modal
+        size="sm"
+        show={showModal}
+        onHide={handleCloseModal}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            인원을 선택하세요
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            성인
+            <button>-</button>
+            0
+            <button>+</button>
+          </p>
+
+        </Modal.Body>
+      </Modal>
     </ReservItemContainer>
   );
 

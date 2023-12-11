@@ -1,13 +1,12 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { likedList, removeLikedItem } from '../features/likedSlice';
+import { useSelector } from 'react-redux';
+// import styled from 'styled-components';
+import { likedList } from '../features/likedSlice';
 import EventListItem from './list/EventListItem';
 
 
 function BookMark(props) {
-	const dispatch = useDispatch();
 	const bookmarkList = useSelector(likedList) || [];
 
 	return (
