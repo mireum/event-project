@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { MdOutlineManageSearch } from "react-icons/md";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiCalendarBlankLight } from "react-icons/pi";
-import { PiHouseLine } from "react-icons/pi";
+import { AiOutlineUser } from "react-icons/ai";
+
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
@@ -127,11 +129,11 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
-				
 			</HeaderWrap>
 			
 			<Outlet />
