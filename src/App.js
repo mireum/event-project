@@ -15,6 +15,7 @@ import Login from './components/Login';
 
 
 
+
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
   body {
@@ -47,7 +48,6 @@ function App() {
   return (
     <>
       <GlobalStyle />
-
       <Routes>
         <Route path='/' element={<Header />}>
           <Route path='/login' element={<Login />} />
@@ -57,7 +57,6 @@ function App() {
           <Route index element={<EventList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
           <Route path='/register' element={<Register />} />
-
         </Route>
       </Routes>
     </>
