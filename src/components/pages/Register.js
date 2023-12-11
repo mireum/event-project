@@ -104,7 +104,6 @@ function Register(props) {
     }
     setUsername('');
     setPassword('');
-    setPw('');
     setEmail('');
   };
 
