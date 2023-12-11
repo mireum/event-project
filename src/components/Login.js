@@ -24,7 +24,7 @@ function Login(props) {
         if (!result.data.flag) {
           return alert(result.data.message);
         }
-        // location.href = '/';
+        // window.location.href = '/';
       } catch (err) {
         console.error(err);
       }

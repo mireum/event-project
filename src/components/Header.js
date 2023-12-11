@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { MdOutlineManageSearch } from "react-icons/md";
@@ -10,6 +10,7 @@ import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
+import axios from 'axios';
 
 
 const HeaderWrap = styled.header`
@@ -103,6 +104,13 @@ const HeaderRight = styled.div`
 `;
 
 function Header(props) {
+	useEffect(() => {
+		async function fetchData() {
+			const result = await axios.get('http://localhost:8088/', { withCredentials: true });
+			console.log('메인:', result);
+		}
+		fetchData();
+	}, []);
 	const navigate = useNavigate();
 	const [showFind, setShowFind] = useState(false);
 	
