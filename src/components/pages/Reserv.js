@@ -4,13 +4,14 @@ import { getReservList, selectReservList } from '../../api/eventListSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
-import { Container, Modal } from 'react-bootstrap';
+import { Button, Container, Modal } from 'react-bootstrap';
 import { getEventListById } from '../../api/eventListAPI';
-import { MdOutlineArrowBackIosNew } from 'react-icons/md';
+import { MdOutlineArrowBackIosNew, MdRemoveCircleOutline } from 'react-icons/md';
 
 const ReservItemContainer = styled(Container)`
   max-width: 1200px;
-  padding: 20px 0 0 0;
+  padding-top: 20px;
+  padding-bottom: 60px;
   
   .bm-icon {
     font-size: 34px;
@@ -51,10 +52,26 @@ const ReservItemInnerContainer = styled.div`
     width: 50%;
 
     button {
-      margin-left: 180px;
+      margin-left: 30px;
+      border: none;
+      color: #fff;
+      background-color: #7a45e5;
     }
   }
 `
+
+const PersonModal = styled(Modal)`
+  margin-top: 200px;
+
+  .count-btn {
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    font-weight: bold;
+    color: #7a45e5;
+    margin: 5px;
+  }
+`;
 
 function Reserv(props) {
   const { EventListId } = useParams();
@@ -63,6 +80,13 @@ function Reserv(props) {
 	const reservItem = useSelector(selectReservList);
   const { fstvlNm, fstvlStartDate, fstvlEndDate, image } = reservItem;
 	
+  const [ count, setCoutn ] = useState({
+    adult: 0,
+    kids: 0,
+    child: 0
+  });
+  const { adult, kids, child } = count;
+  console.log(setCoutn);
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleOpenModal = () => setShowModal(true);
@@ -87,6 +111,8 @@ function Reserv(props) {
   if (fstvlEndDate) {
     dateDiff = Number(fstvlEndDate.replace(/-/g, '') - Number(fstvlStartDate.replace(/-/g, '')));
   }
+
+
   
 
   return (
@@ -105,38 +131,56 @@ function Reserv(props) {
           <img src={image} />
           <p><span>축제명</span><br></br> {fstvlNm}</p>
           <p><span>날짜</span><br></br> {dateDiff ? `${fstvlStartDate} ~ ${fstvlEndDate}` : fstvlStartDate }</p>
-          <p><span>인원</span> 0명 <button onClick={handleOpenModal}>선택하기</button></p>
+          <p><span>인원</span> <button className='ch-btn' onClick={handleOpenModal}>선택</button></p>
         </div>
         <div>
           <h4>결제</h4>
           <p><span>인원</span></p>
+          <p>{adult ? `성인 ${adult}명` : null}</p>
+          <p>{kids ? `어린이 ${kids}명` : null}</p>
+          <p>{child ? `유아 ${child}명` : null}</p>
+          {count && <button>예약하기</button>}
         </div>
       </ReservItemInnerContainer>
 
-      <Modal
-        size="sm"
-        show={showModal}
-        onHide={handleCloseModal}
-        aria-labelledby="example-modal-sizes-title-sm"
-      >
+      <PersonModal show={showModal} onHide={handleCloseModal} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            인원을 선택하세요
-          </Modal.Title>
+          <Modal.Title>인원을 선택해주세요</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            성인
-            <button>-</button>
-            0
-            <button>+</button>
-          </p>
-
+          <div>
+          성인
+          <button className='count-btn' onClick={() => {setCoutn({...count, adult: adult-1})}} disabled={!adult}>-</button>
+          {adult}
+          <button className='count-btn' onClick={() => {setCoutn({...count, adult: adult+1})}}>+</button>
+          </div>
+          <div>
+          어린이
+          <button className='count-btn' onClick={() => {setCoutn({...count, kids: kids-1})}} disabled={!kids}>-</button>
+          {kids}
+          <button className='count-btn' onClick={() => {setCoutn({...count, kids: kids+1})}}>+</button>
+          </div>
+          <div>
+          유아
+          <button className='count-btn' onClick={() => {setCoutn({...count, child: child-1})}} disabled={!child}>-</button>
+          {child}
+          <button className='count-btn' onClick={() => {setCoutn({...count, child: child+1})}}>+</button>
+          </div>
         </Modal.Body>
-      </Modal>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => {setCoutn({...count, adult: 0, kids: 0, child: 0})}}>
+            초기화
+          </Button>
+          <Button variant="primary" onClick={handleCloseModal}>
+            저장
+          </Button>
+        </Modal.Footer>
+      </PersonModal>
+
     </ReservItemContainer>
   );
 
 }
 
 export default Reserv;
+
