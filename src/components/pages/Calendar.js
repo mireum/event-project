@@ -82,11 +82,8 @@ function Calendar(props) {
     festivalApiData();
   }, []);
 
-  console.log(selectedList);
   const calendarItemstsSet = new Set(selectedList.map(item => item.fstvlStartDate));
-  console.log(calendarItemstsSet);
   const calendarItemstsArr = Array.from(calendarItemstsSet)
-  console.log(calendarItemstsArr);
   const calendarItemsts = [];
   calendarItemstsArr.map(item => calendarItemsts.push({ date: item }))
 

@@ -154,7 +154,6 @@ const LikeBox = styled.div`
 `;
 
 function FestivalInfo(props) {
-	console.log(props);
 	const { detailItem: { image, fstvlStartDate, fstvlEndDate, opar, rdnmadr, fstvlCo, mnnstNm, homepageUrl, category, fstvlNm, auspcInsttNm, type, id } } = props;
 
 	const [likeBtn, setLikeBtn] = useState(false);

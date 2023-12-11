@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import React, { useEffect } from 'react';
 import styled, { createGlobalStyle } from "styled-components";
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import Header from './components/Header';
 import EventList from './components/list/EventList';
 import Detail from './components/detail/Detail';
@@ -35,7 +35,6 @@ function App() {
     try {
       const festival = async () => {
       const result = await axios.get('http://localhost:8088');
-      console.log(result);
       }
       festival();
     } catch (err) {
