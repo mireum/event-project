@@ -36,12 +36,12 @@ function Login(props) {
   };
 
   return (
-    <form id="login-form" class="form-box" method="post" onSubmit={handleSubmit}>
+    <form id="login-form" method="post" onSubmit={handleSubmit}>
       <h4>로그인</h4>
       
-      <label for="username">ID</label>
+      <label htmlFor="username">ID</label>
       <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} name="username" />
-      <label for="password">PW</label>
+      <label htmlFor="password">PW</label>
       <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" />
       <button type="submit">로그인</button>
     </form>
