@@ -63,7 +63,7 @@ const HeaderLeft = styled.div`
 	.bm-icon:hover {
 		color: #FF5151;
 	}
-`;
+`; 
 
 const HeaderCenter = styled.div`
 	display: flex;
