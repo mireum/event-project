@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { MdOutlineManageSearch } from "react-icons/md";
@@ -104,13 +104,17 @@ const HeaderRight = styled.div`
 `;
 
 function Header(props) {
-	useEffect(() => {
+	const [username, setUsername] = useState('');
+
+	useLayoutEffect(() => {
 		async function fetchData() {
-			const result = await axios.get('http://localhost:8088/', { withCredentials: true });
+			const result = await axios.get('http://localhost:8088/');
 			console.log('메인:', result);
+			setUsername(result.data.username);
+			console.log(username);
 		}
 		fetchData();
-	}, []);
+	});
 	const navigate = useNavigate();
 	const [showFind, setShowFind] = useState(false);
 	
@@ -136,7 +140,9 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						{username ? <span>{username}님</span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						}
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}
