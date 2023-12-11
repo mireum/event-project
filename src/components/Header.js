@@ -10,11 +10,8 @@ import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
-<<<<<<< HEAD
 import axios from 'axios';
-=======
 import { AiOutlineUser } from "react-icons/ai";
->>>>>>> 4db7b289088122b4c694f7a56fbcdc3613db86ee
 
 
 const HeaderWrap = styled.header`
