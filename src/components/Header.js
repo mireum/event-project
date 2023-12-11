@@ -11,7 +11,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
-import { AiOutlineUser } from "react-icons/ai";
 
 
 const HeaderWrap = styled.header`
