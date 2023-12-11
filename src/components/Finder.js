@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getFindWord } from '../features/findSlice';
+import axios from 'axios';
 
 const SectionBox = styled.div`
   width: 100vw;
@@ -43,7 +44,13 @@ function Finder(props) {
 		inputEl.current.focus();
 	}, []);
   
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    try {
+      await axios.post('http://localhost:8088/search', { value })
+    } catch (err) {
+      console.error(err);
+    }
+
     navigate('/find');
     props.setShowFind(false);
     dispatch(getFindWord(value));

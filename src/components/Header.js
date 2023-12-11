@@ -10,6 +10,7 @@ import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
+import { AiOutlineUser } from "react-icons/ai";
 
 
 const HeaderWrap = styled.header`
@@ -111,6 +112,9 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
+						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
+							navigate('/login');
+						}}/>
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
