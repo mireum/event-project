@@ -5,34 +5,42 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider, useDispatch } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import store from "./app/store";
+import { store } from "./app/store";
 import ScrollToTop from './components/ScrollToTop';
-import persistStore from 'redux-persist/es/persistStore';
-import { PersistGate } from 'redux-persist/integration/react';
 import axios from 'axios';
-import { setUser } from './features/userSlice';
+import { selectId, setUser } from './features/userSlice';
+// import persistStore from 'redux-persist/es/persistStore';
+// import { PersistGate } from 'redux-persist/integration/react';
 
-export let persistor = persistStore(store);
+// export let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 if (document.cookie.match('connect.sid')) {
+  console.log(document.cookie.match('connect.sid'));
   const id = document.cookie.match('connect.sid').input.split('%')[1].split('.')[0].slice(2);
-  const result = await axios.post('http://localhost:8088/user/loginCheck', {id}, {withCredentials: true});
-  console.log('새로고침:',result);
-  const user = JSON.parse(result.data.user.session).passport.user;
-  console.log(user);
-  // store.dispatch(setUser(user));
+    try {
+    const userData = await axios.post('http://localhost:8088/user/loginCheck', {id}, {withCredentials: true});
+    console.log('새로고침:', userData);
+    const info = userData.data.user;
+    console.log(info);
+    const objt = {id: info, username: 'name'}
+    store.dispatch(setUser(objt));
+    store.getState(selectId);
+  } catch (err) {
+    console.error(err);
+  };
 }
+
 
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    {/* <PersistGate loading={null} persistor={persistor}> */}
       <BrowserRouter>
         <ScrollToTop/>
         <App />
       </BrowserRouter>
-    </PersistGate>
+    {/* </PersistGate> */}
   </Provider>
 );
 

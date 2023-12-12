@@ -23,4 +23,4 @@ export const { setUser } = userSlice.actions;
 export const selectId = (state) => state.user.id;
 export const selectUsername = (state) => state.user.username;
 
-export default userSlice;
+export default userSlice.reducer;

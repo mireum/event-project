@@ -12,6 +12,8 @@ import FindPage from './components/FindPage';
 import Register from './components/pages/Register';
 import axios from 'axios';
 import Login from './components/Login';
+import { useSelector } from 'react-redux';
+import { selectId, selectUsername } from './features/userSlice';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -29,8 +31,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 `;
-
 function App() {
+  const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
+  console.log(userId);
+  console.log(userName);
+
   useEffect(() => {
     try {
       const festival = async () => {
