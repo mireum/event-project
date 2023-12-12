@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { MdOutlineManageSearch } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiCalendarBlankLight } from "react-icons/pi";
 import { AiOutlineUser } from "react-icons/ai";
@@ -87,7 +87,7 @@ const HeaderRight = styled.div`
 	}
 
 	.bm-icon:hover {
-		color: #FF5151;
+		color: #7a45e5;
 	}
 
 	.fill {
@@ -120,12 +120,8 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
-							navigate('/login');
-						}}/>
 						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bookmark') }} > 
-							<GoHeartFill className='fill'/>
+							onClick={() => { navigate('/bookmark') }}> 
 						</GoHeart>
 					</HeaderLeft>
 
@@ -136,10 +132,11 @@ function Header(props) {
 							className='bm-icon cursor-pointer' 
 							onClick={() => { navigate('/calendar') }} 
 						/>
-						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<AiOutlineUser className='bm-icon cursor-pointer' 
+							onClick={() => { navigate('/login')}}
+						/>
 					</HeaderRight>
-
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 			</HeaderWrap>

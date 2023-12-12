@@ -35,6 +35,7 @@ body{
   margin-bottom: 16px;
   border-radius: 6px;
   background-color: #F8F8F8;
+  outline: none;
 }
 #login-form > input::placeholder{
   color: #D2D2D2;
