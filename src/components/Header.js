@@ -104,19 +104,23 @@ const HeaderRight = styled.div`
 `;
 
 function Header(props) {
-	const [username, setUsername] = useState('');
-
-	useLayoutEffect(() => {
-		async function fetchData() {
-			const result = await axios.get('http://localhost:8088/');
-			console.log('메인:', result);
-			setUsername(result.data.username);
-			console.log(username);
-		}
-		fetchData();
-	});
+	const [user, setUser] = useState('');
 	const navigate = useNavigate();
 	const [showFind, setShowFind] = useState(false);
+
+	useEffect(() => {
+		try {
+			async function fetchData() {
+				const result = await axios.get('http://localhost:8088/');
+				setUser(result.data.username);
+				console.log('result:', result);
+				console.log(user);
+			}
+			fetchData();
+		} catch (err) {
+			console.error(err);
+		}
+	}, []);
 	
 	return (
 		<>
@@ -140,7 +144,7 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						{username ? <span>{username}님</span> : 
+						{user ? <span>{user}님</span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						}
 					</HeaderRight>
