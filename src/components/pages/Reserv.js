@@ -6,7 +6,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Button, Container, Modal } from 'react-bootstrap';
 import { getEventListById } from '../../api/eventListAPI';
-import { MdOutlineArrowBackIosNew, MdRemoveCircleOutline } from 'react-icons/md';
+import { MdOutlineArrowBackIosNew, MdOutlineReport } from 'react-icons/md';
+import { GoCreditCard } from "react-icons/go";
+import { IoIosPhonePortrait } from "react-icons/io";
 
 const ReservItemContainer = styled(Container)`
   max-width: 1200px;
@@ -28,6 +30,8 @@ const ReservItemContainer = styled(Container)`
     }
   }
 
+  .pay-modal {
+  }
 `;
 
 const ReservItemInnerContainer = styled.div`
@@ -35,7 +39,7 @@ const ReservItemInnerContainer = styled.div`
   display: flex;
 
   h4 {
-    width: 500px;
+    width: 90%;
     font-weight: bold;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
@@ -62,6 +66,15 @@ const ReservItemInnerContainer = styled.div`
     }
   }
 
+  .date-info-text {
+    display: none;
+  }
+
+  .date-info:hover > .date-info-text {
+      display: block;
+      color: yellow;
+  }
+
   .pay-title {
     display: flex;
     justify-content: space-between;
@@ -70,6 +83,16 @@ const ReservItemInnerContainer = styled.div`
   .pay-content {
     display: flex;
     justify-content: space-between;
+  }
+
+  .reserv-btn-container {
+    width: 90%;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
   }
 `
 
@@ -92,12 +115,70 @@ const PersonModal = styled(Modal)`
   }
 `;
 
+const PayModal = styled(Modal)`
+  margin-top: 160px;
+
+  .pay-info-container {
+    border-radius: 10px;
+    background-color: #5882FA;
+    padding: 16px;
+
+    .pay-total-container {
+    border-radius: 10px;
+    background-color: #2E64FE;
+    }
+    
+    span {
+    color: #ccc;
+    }
+
+    p {
+      color: #fff;
+      margin: 0 auto;
+    }
+  }
+
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+  }
+
+  .pay-type-container {
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    padding: 16px;
+
+    .pay-type {
+      display: flex;
+      text-align: center;
+
+      div {
+        padding: 0 8px;
+
+        &.active {
+          background-color: #ccc;
+        }
+      }
+
+      button {
+        border: none;
+        background: none;
+        font-size: 30px;
+      }
+    }
+  }
+
+`;
+
 function Reserv(props) {
   const { EventListId } = useParams();
 	const dispatch = useDispatch();
   const navigate = useNavigate();
 	const reservItem = useSelector(selectReservList);
-  const { fstvlNm, fstvlStartDate, fstvlEndDate, image, price } = reservItem;
+  const { fstvlNm, fstvlStartDate, fstvlEndDate, image, price, mnnstNm } = reservItem;
 	
   const [ count, setCoutn ] = useState({
     adult: 0,
@@ -105,9 +186,14 @@ function Reserv(props) {
     child: 0
   });
   const { adult, kids, child } = count;
+  
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleOpenModal = () => setShowModal(true);
+  
+  const [showPayModal, setShowPayModal] = useState(false);
+  const handleOpenPayModal = () => setShowPayModal(true);
+  const [payBtn, setPayBtn] = useState('');
 
   useEffect(() => {
     const api = async () => {
@@ -130,7 +216,21 @@ function Reserv(props) {
     dateDiff = Number(fstvlEndDate.replace(/-/g, '') - Number(fstvlStartDate.replace(/-/g, '')));
   }
 
+  let payTotal = 0;
+  if (adult || kids || child) {
+    payTotal = (price * adult + price/2 * kids + price/5 * child).toLocaleString('ko-KR')
+  }
 
+  const handleSubmitPay = async () => {
+    setShowPayModal(false);
+
+    try {
+      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn})
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  
   return (
     <ReservItemContainer>
       <h2>
@@ -146,7 +246,8 @@ function Reserv(props) {
           <h4>예약 정보</h4>
           <img src={image} />
           <p><span>축제명</span><br></br> {fstvlNm}</p>
-          <p><span>날짜</span><br></br> {dateDiff ? `${fstvlStartDate} ~ ${fstvlEndDate}` : fstvlStartDate }</p>
+          
+          <p><span>날짜</span> <MdOutlineReport className='date-info'><div className='date-info-text'>축제 일정 아무때나 방문하셔도 됩니다.</div></MdOutlineReport><br></br> {dateDiff ? `${fstvlStartDate} ~ ${fstvlEndDate}` : fstvlStartDate }</p>
           <p><span>인원</span> <button className='ch-btn' onClick={handleOpenModal}>선택</button></p>
         </div>
         <div className='pay-container'>
@@ -160,7 +261,7 @@ function Reserv(props) {
               <>
                 <div className='pay-content'>
                   <p>성인 {adult}명</p>
-                  <p>{price * adult}</p>
+                  <p>{(price * adult).toLocaleString('kr-KR')}</p>
                 </div>
               </>
               : null    
@@ -170,7 +271,7 @@ function Reserv(props) {
               <>
               <div className='pay-content'>
                 <p>어린이 {kids}명</p>
-                <p>{price/2 * kids}</p>
+                <p>{(price/2 * kids).toLocaleString('kr-KR')}</p>
               </div>
               </>
               : null    
@@ -180,12 +281,17 @@ function Reserv(props) {
               <>
               <div className='pay-content'>
                 <p>유아 {child}명</p>
-                <p>{price/5 * child}</p>
+                <p>{(price/5 * child).toLocaleString('kr-KR')}</p>
               </div>
               </>
               : null    
             }
-          {adult || kids || child ? <button>예약하기</button> : null}
+          {adult || kids || child 
+            ? <div className='reserv-btn-container'>
+                <p><span>{payTotal}원</span></p>
+                <button onClick={handleOpenPayModal}>결제하기</button>
+              </div> 
+            : null}
         </div >
       </ReservItemInnerContainer>
 
@@ -235,6 +341,49 @@ function Reserv(props) {
         </Modal.Footer>
       </PersonModal>
 
+      <PayModal show={showPayModal} onHide={() => setShowPayModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            결제
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className='pay-info-container'>
+            <div className='flex-between'>
+              <span>축제명</span> 
+              <p>{fstvlNm}</p>
+              </div>
+            <div className='flex-between'>
+              <span>판매자</span> 
+              <p>{mnnstNm}</p>
+            </div>
+            <div className='flex-between pay-total-container'>
+              <span>결제금액</span>  
+              <p>{payTotal}원</p>
+            </div>
+          </div>
+          <div className='pay-type-container'>
+            <h4>결제수단 선택</h4>
+            <div className='pay-type'>
+              <div className={payBtn === 'card' && 'active'}>
+                <button onClick={() => {setPayBtn('card')}}><GoCreditCard /></button>
+                <p>카드결제</p>
+              </div>
+              <div className={payBtn === 'phone' && 'active'}>
+                <button onClick={() => {setPayBtn('phone')}}><IoIosPhonePortrait /></button>
+                <p>핸드폰결제</p>
+              </div>
+            </div>
+          </div>
+
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSubmitPay} disabled={!payBtn}>
+            결제
+          </Button>
+        </Modal.Footer>
+      </PayModal>
     </ReservItemContainer>
   );
 

@@ -12,7 +12,7 @@ export const getEventListById = async (id) => {
     } else {
       throw new Error(`api error: ${response.status} ${response.statusText}`);
     }
-  } catch (error) { // 서버가 죽었거나, 인터넷이 끊겼거나, URL이 잘못됐을 때 뜸
+  } catch (error) {
      console.error(error);
    }
 };
