@@ -42,7 +42,7 @@ function App() {
       console.error(err);
     }
   });
-
+ 
   return (
     <>
       <GlobalStyle />
