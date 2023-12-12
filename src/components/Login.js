@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Login.css'
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../features/userSlice';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');  
   
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -15,11 +19,15 @@ function Login() {
         withCredentials: true
       });
       console.log(result); 
-  
+
       if (!result.data.flag) {
         return alert(result.data.message);
       }
-      window.location.href = '/';
+      // if (!localStorage.getItem('user')) {
+      //   dispatch(setUser({id:result.data.user._id, username:result.data.user.username}));
+      // }
+
+      // window.location.href = '/';
     } catch (err) {
       console.error(err);
     }
