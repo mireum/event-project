@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import { IoSearch } from "react-icons/io5";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiCalendarBlankLight } from "react-icons/pi";
-import { AiOutlineUser } from "react-icons/ai";
+import { RiMenu3Fill } from "react-icons/ri";
 
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
+import HamburgerBar from './pages/HamburgerBar';
 
 
 
@@ -102,7 +103,21 @@ const HeaderRight = styled.div`
 	.sh-icon {
 		font-size: 40px;
 	}
+	.active {
+		width: 30%;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 200;
+		background-color: #f8f8f8;
+		padding: 10px;
+		box-sizing: border-box;
+		transition:  0.5s;
+  }
 `;
+
+
 
 function Header(props) {
 	useEffect(() => {
@@ -113,16 +128,21 @@ function Header(props) {
 		fetchData();
 	}, []);
 	const navigate = useNavigate();
-	const [showFind, setShowFind] = useState(false);
-	
-	return (
+	const [ showFind, setShowFind ] = useState(false);
+	const [ showHamburger, setShowHamburger ] = useState(false);
+
+	const handleChange = () => {
+		setShowHamburger(!showHamburger);
+	};
+
+		return (
 		<>
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }}> 
-						</GoHeart>
+						</GoHeart> 
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
@@ -133,9 +153,8 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						<AiOutlineUser className='bm-icon cursor-pointer' 
-							onClick={() => { navigate('/login')}}
-						/>
+						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {handleChange()}} />
+						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} />  }
 					</HeaderRight>
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
