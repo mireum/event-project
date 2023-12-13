@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -7,50 +8,70 @@ const RegisterWrap = styled.div`
 	max-width: 1200px;
 	margin: 0 auto;
 	padding-top: 50px;
-  h3 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 50px;
-  }
+  
 `;
 
 const RegisterForm = styled.form`
-  width: 350px;
+  border: 1px solid #eee;
+  width: 400px;
+  padding: 40px;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   margin: 0 auto;
+  h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #6A24FE;
+  }
   label {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    color: #999999;
     input {
-      border: none;
-      border-bottom: 1px solid #7a45e5;
+      width: 100%;
       outline: none;
+      background-color: #F8F8F8;
+      height: 48px;
+      padding: 0 10px;
+      border-radius: 6px;
+      box-sizing: border-box;
+
     }
   }
   label + label {
     margin-top: 15px;
   }
   button {
-    width: 100px;
+    width: 100%;
     border: none;
-    background-color: #7a45e5;
+    background-color: #6A24FE;
     color: #fff;
-    font-size: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    align-self: flex-end;
+    font-size: 24px;
+    padding: 5px 0;
     margin-top: 20px;
   }
 `;
 
-// function Register(props) {
-//   const [ inputs, setInput ] = useState({
-//     username: '',
-//     password: '',
-//     pw: '',
-//     email: ''
-//   }); 
+const LoginLink = styled.div`
+  p {
+    margin: 25px 0 0;
+  }
+  #link {
+    color: #0f0f0f;
+    text-decoration: none;
+    font-size: 17px;
+    color: #6A24FE;
+  }
+  #link:hover {
+    font-weight: bold;
+  }
+  #link:active {
+    color: #290083;
+  }
+`;
 
 function Register(props) {
   const [ username, setUsername ] = useState(''); 
@@ -118,25 +139,29 @@ function Register(props) {
 
   return (
     <RegisterWrap>
-      <h3>회원가입</h3>
       <RegisterForm>
+        <h3>회원가입</h3>
         <label htmlFor='username'>
-          아이디
+          아이디:
           <input type='text' name='username' id='username' value={username} onChange={handleChangeUsername}/>
         </label>
         <label htmlFor='password'>
-          비밀번호
+          비밀번호:
           <input type='password' name='password' id='password' autoComplete="off" value={password} onChange={handleChangePassword}/>
         </label>
         <label htmlFor='pw'>
-          비밀번호
+          비밀번호 확인:
           <input type='password' name='pw' id='pw' autoComplete="off" value={pw} onChange={handleChangePw}/>
         </label>
         <label htmlFor="email">
-          이메일
+          이메일:
           <input type="email" id="email" name="email" value={email} onChange={handleChangeEmail}/>
         </label>
         <button type='submit' onClick={handleSubmit}>회원가입</button>
+        <LoginLink>
+          <p>계정이 있으신가요?</p>
+          <Link to='/login' id='link'>로그인</Link>
+        </LoginLink>
       </RegisterForm>
     </RegisterWrap>
   );

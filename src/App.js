@@ -12,9 +12,10 @@ import FindPage from './components/FindPage';
 import Register from './components/pages/Register';
 import axios from 'axios';
 import Login from './components/Login';
+
+import Board from './components/Board';
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';
-
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -36,7 +37,7 @@ function App() {
   useEffect(() => {
     try {
       const festival = async () => {
-      const result = await axios.get('http://localhost:8088');
+      const result = await axios.get('http://localhost:8088', {withCredentials: true});
       }
       festival();
     } catch (err) {
@@ -56,6 +57,7 @@ function App() {
           <Route index element={<EventList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/board' element={<Board />} />
         </Route>
       </Routes>
     </>
