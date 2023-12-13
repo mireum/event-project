@@ -179,7 +179,6 @@ function Header(props) {
 						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						} 
-					</HeaderRight>
 
 
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
@@ -190,6 +189,7 @@ function Header(props) {
 						{/* <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/> */}
 						{/* } */}
 
+					</HeaderRight>
 					
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
