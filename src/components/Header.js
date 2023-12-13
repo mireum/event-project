@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { MdOutlineManageSearch } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiCalendarBlankLight } from "react-icons/pi";
-import { AiOutlineUser } from "react-icons/ai";
+import { RiMenu3Fill } from "react-icons/ri";
 
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
+<<<<<<< HEAD
 import { useDispatch, useSelector } from 'react-redux';
 import { selectId, selectUsername, setUser } from "../features/userSlice";
 import { useCookies } from "react-cookie";
+=======
+
+import HamburgerBar from './pages/HamburgerBar';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { selectId, selectUsername, setUser } from "../features/userSlice";
+import { MdOutlineManageSearch } from 'react-icons/md';
+import { AiOutlineUser } from 'react-icons/ai';
+import Login from './Login';
+>>>>>>> af997d3dfff7b7dafbffdd68437f3fad0a50e1bf
 
 
 const HeaderWrap = styled.header`
@@ -65,7 +76,7 @@ const HeaderLeft = styled.div`
 	.bm-icon:hover {
 		color: #FF5151;
 	}
-`;
+`; 
 
 const HeaderCenter = styled.div`
 	display: flex;
@@ -89,7 +100,7 @@ const HeaderRight = styled.div`
 	}
 
 	.bm-icon:hover {
-		color: #FF5151;
+		color: #7a45e5;
 	}
 
 	.fill {
@@ -104,14 +115,32 @@ const HeaderRight = styled.div`
 	.sh-icon {
 		font-size: 40px;
 	}
+	.active {
+		width: 30%;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 200;
+		background-color: #f8f8f8;
+		padding: 10px;
+		box-sizing: border-box;
+		transition:  0.5s;
+  }
 `;
 
+
+
 function Header(props) {
+	const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
 	const navigate = useNavigate();
+
 	const [log, setLog] = useState('');
 	const [showFind, setShowFind] = useState(false);
 	const user = useSelector(selectUsername);
 	const dispatch = useDispatch();
+	const [ showHamburger, setShowHamburger ] = useState(false);
 
 	useEffect(() => {
 		setLog(user);
@@ -129,18 +158,16 @@ function Header(props) {
 		// navigate('/');
 	};
 
+
 	return (
 		<>
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
-							navigate('/login');
-						}}/>
-						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bookmark') }} > 
-							<GoHeartFill className='fill'/>
-						</GoHeart>
+						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
+							userId && userName ? navigate('/bookmark') : navigate('/login')
+							}} 
+						/>} */}
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
@@ -150,22 +177,28 @@ function Header(props) {
 							className='bm-icon cursor-pointer' 
 							onClick={() => { navigate('/calendar') }} 
 						/>
+<<<<<<< HEAD
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span>:  
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						}
 						<button onClick={logoutFunc}>로그아웃</button>
+=======
+						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
+						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
+						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
+						{/* {user ? <span>{user}님</span> :  */}
+						{/* <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/> */}
+						{/* } */}
+>>>>>>> af997d3dfff7b7dafbffdd68437f3fad0a50e1bf
 					</HeaderRight>
-
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 			</HeaderWrap>
-			
 			<Outlet />
-
 			<Footer />
 		</>
-
 	);
 }
 

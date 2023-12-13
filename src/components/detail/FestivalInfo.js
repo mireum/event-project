@@ -5,10 +5,11 @@ import location from "../../images/location.png";
 import megaphone from "../../images/megaphone.png";
 import computer from "../../images/computer.png";
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
 import { PiHeartStraightBold, PiHeartStraightFill } from 'react-icons/pi';
+import { selectId, selectUsername } from '../../features/userSlice';
 
 const FestivalInfoWrapper = styled.div`
 	max-width: 1200px;
@@ -155,15 +156,23 @@ function FestivalInfo(props) {
 	const [likeBtn, setLikeBtn] = useState(false);
   const dispatch = useDispatch();
   const bookmarkList = useSelector(likedList);
+	const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
+	const navigate = useNavigate();
 
 	const handleLike = (item) => {
-    if (likeBtn) {
-      setLikeBtn(prev=>!prev);
-      dispatch(removeLikedItem(item.id));
-    } else {
-      setLikeBtn(prev=>!prev);
-      dispatch(addLikedItem(item));
+		if (userId && userName) {
+			if (likeBtn) {
+				setLikeBtn(prev=>!prev);
+				dispatch(removeLikedItem(item.id));
+			} else {
+				setLikeBtn(prev=>!prev);
+				dispatch(addLikedItem(item));
+			}
+		} else {
+      navigate('/login');
     }
+    
   };
 
 	useEffect(() => {
