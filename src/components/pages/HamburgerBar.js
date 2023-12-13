@@ -41,7 +41,6 @@ const MenuWrapper = styled.div`
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 199;
-    display: none;
   }
 `;
 
@@ -61,8 +60,8 @@ function HamburgerBar(props) {
 
 
   return (
-    <div className='overlay'>
-      <MenuWrapper className={show ? 'active' : 'hidden'}>
+    <div className='overlay' onClick={() => {handleChange()}} >
+      <MenuWrapper className={show ? 'active' : 'hidden'} onClick={(e) => {e.stopPropagation()}}>
         <div className="iconsWrap">
           <AiOutlineUser 
             className='icons cursor-pointer' 
