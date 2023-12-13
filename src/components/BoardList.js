@@ -3,19 +3,28 @@ import { findOne } from 'domutils';
 import React, { useEffect, useState } from 'react';
 
 
-function BoardList(props) {
+function BoardList() {
 
   const [ BoardList, setBoardList ] = useState([]);
-
+  const [boardContent, setBoardContent] = useState({
+    title: '',
+    content: ''
+  });
   useEffect(() => {
-    try {
-      const response = axios.get('http://localhost:8088/board/list');
-      
-      
-    } catch (err) {
-      console.error(err);
+    const getBoardList = async () => {
+      try {
+        const response = await axios.post(`http://localhost:8088/board/list`, {
+          title: boardContent.title,
+          content: boardContent.content
+        })
+        console.log(response.title);
+        console.log(response.content);
+      } catch (err) {
+        console.error(err);
+      }
     }
-  }, []);
+    getBoardList();
+    }, []);
   return (
     <section>
       <div class="board_list">
@@ -31,9 +40,9 @@ function BoardList(props) {
           <tbody>
             <tr class="table_list">
               <td class="list_subject" id="list_subject">
-                <a href="/boardRead?id={{board.id}}">제목</a>
+                <a href="/boardRead?id={{board.id}}">{BoardList.title}</a>
               </td>
-              <td class="list_writer" id="list_writer">작성자</td>
+              <td class="list_writer" id="list_writer">{BoardList.content}</td>
               <td class="list_date">작성일</td>
               <td class="list_watch">조회수</td>
             </tr>
