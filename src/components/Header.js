@@ -11,8 +11,11 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
+
 import HamburgerBar from './pages/HamburgerBar';
 
+import { useDispatch } from 'react-redux';
+import { setUser } from "../features/userSlice";
 
 
 const HeaderWrap = styled.header`
@@ -120,13 +123,6 @@ const HeaderRight = styled.div`
 
 
 function Header(props) {
-	useEffect(() => {
-		async function fetchData() {
-			const result = await axios.get('http://localhost:8088/', { withCredentials: true });
-			console.log('메인:', result);
-		}
-		fetchData();
-	}, []);
 	const navigate = useNavigate();
 	const [ showFind, setShowFind ] = useState(false);
 	const [ showHamburger, setShowHamburger ] = useState(false);
@@ -135,7 +131,24 @@ function Header(props) {
 		setShowHamburger(!showHamburger);
 	};
 
-		return (
+	// const dispatch = useDispatch();
+	// const [user, setUser] = useState('');
+
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		try {
+	// 			const result = await axios.get('http://localhost:8088/user/login');
+	// 			setUser(result.data.username);
+	// 			console.log('result:', result);
+	// 		}
+	// 	  catch (err) {
+	// 			console.error(err);
+	// 		}
+	// 		fetchData();
+	// 	}
+	// }, []);
+	
+	return (
 		<>
 			<HeaderWrap>
 				<HeaderInner>
@@ -155,16 +168,17 @@ function Header(props) {
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {handleChange()}} />
 						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} />  }
+						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						{/* {user ? <span>{user}님</span> :  */}
+						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						{/* } */}
 					</HeaderRight>
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 			</HeaderWrap>
-			
 			<Outlet />
-
 			<Footer />
 		</>
-
 	);
 }
 
