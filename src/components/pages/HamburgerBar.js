@@ -4,15 +4,34 @@ import styled from 'styled-components';
 
 import { IoClose } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
+import { useSelector } from 'react-redux';
+import { selectId, selectUsername } from '../../features/userSlice';
 
+const Background = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  .layout {
+    /* pointer-events: none;  */
+    position: fixed;
+    width: 70%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+`;
 
 const MenuWrapper = styled.div`
   width: 30%;
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   right: -30%;
-  z-index: 200;
+  z-index: 199;
   background-color: #f8f8f8;
   padding: 10px;
   box-sizing: border-box;
@@ -35,54 +54,67 @@ const MenuWrapper = styled.div`
       color: #7a45e5;
     }
   }
-  .overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 199;
-  }
 `;
 
 const MenuList = styled.div`
-  
+  ul {
+    padding: 0;
+  }
+  li {
+    padding-bottom: 10px;
+    list-style: none;
+  }
+  li .link {
+    font-size: 30px;
+    text-decoration: none;
+    color: #222;
+  }
+  li .link:hover {
+    color: #7a45e5;
+  }
 `;
 
 
 function HamburgerBar(props) {
 	const navigate = useNavigate();
-  
+  const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
   const { show, setShow } = props;
 
-  const handleChange = () => {
-    setShow(!show)
-  }
+  // const handleChange = () => {
+  //   setShow(!show)
+  // }
 
 
   return (
-    <div className='overlay' onClick={() => {handleChange()}} >
-      <MenuWrapper className={show ? 'active' : 'hidden'} onClick={(e) => {e.stopPropagation()}}>
-        <div className="iconsWrap">
+    <Background onClick={(e) => {
+      props.setShow(prev => !prev);
+      e.stopPropagation();
+      }} >
+      <MenuWrapper className={show ? 'active' : 'hidden'} >
+        <div className="iconsWrap" onClick={() => {props.setShow(prev => !prev)}}>
           <AiOutlineUser 
             className='icons cursor-pointer' 
             onClick={() => { 
-              navigate('/login');
-              handleChange();
+              userId && userName ? navigate('/') : navigate('/login');
+              props.setShow(prev => !prev);
             }} 
           />
-          <IoClose className='icons cursor-pointer' onClick={() => {handleChange()}}/>
+          <IoClose className='icons cursor-pointer' onClick={() => {props.setShow(prev => !prev)}}/>
         </div>
         <MenuList>
           <ul>
-            <li><Link to={'/board'}>후기 게시판</Link></li>
-            <li onClick={() => {handleChange()}}>
-              <Link to={'/bookmark'}>찜한 축제/전시</Link>
+            <li><Link className='link' to={'/board'}>후기 게시판</Link></li>
+            <li onClick={() => {
+                userId && userName ? navigate('/bookmark') : navigate('/login')
+              }}>
+              <Link className='link' to={'/bookmark'}>찜한 축제/전시</Link>
             </li>
           </ul>
         </MenuList>
-        </MenuWrapper>
-    </div>
-    
+      </MenuWrapper>
+      <div className='layout'></div>
+    </Background>
   );
 }
 

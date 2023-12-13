@@ -14,8 +14,11 @@ import axios from 'axios';
 
 import HamburgerBar from './pages/HamburgerBar';
 
-import { useDispatch } from 'react-redux';
-import { setUser } from "../features/userSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectId, selectUsername, setUser } from "../features/userSlice";
+import { MdOutlineManageSearch } from 'react-icons/md';
+import { AiOutlineUser } from 'react-icons/ai';
+import Login from './Login';
 
 
 const HeaderWrap = styled.header`
@@ -123,13 +126,15 @@ const HeaderRight = styled.div`
 
 
 function Header(props) {
+	const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
 	const navigate = useNavigate();
 	const [ showFind, setShowFind ] = useState(false);
 	const [ showHamburger, setShowHamburger ] = useState(false);
 
-	const handleChange = () => {
-		setShowHamburger(!showHamburger);
-	};
+	// const handleChange = () => {
+	// 	setShowHamburger(!showHamburger);
+	// };
 
 	// const dispatch = useDispatch();
 	// const [user, setUser] = useState('');
@@ -153,9 +158,10 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bookmark') }}> 
-						</GoHeart> 
+						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
+							userId && userName ? navigate('/bookmark') : navigate('/login')
+							}} 
+						/>} */}
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
@@ -166,11 +172,11 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {handleChange()}} />
-						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} />  }
-						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
+						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
+						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
 						{/* {user ? <span>{user}님</span> :  */}
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						{/* <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/> */}
 						{/* } */}
 					</HeaderRight>
 					{showFind && <Finder setShowFind={setShowFind} />}
