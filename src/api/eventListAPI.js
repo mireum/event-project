@@ -4,7 +4,6 @@ import axios from "axios";
 export const getEventLists = async () => {
   try {
     const response = await axios.get(`http://localhost:8088/list`);
-    console.log(response);
 
     if (response.status === 200) {
       return response.data;

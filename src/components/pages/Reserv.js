@@ -9,6 +9,7 @@ import { getEventListById } from '../../api/eventListAPI';
 import { MdOutlineArrowBackIosNew, MdOutlineReport } from 'react-icons/md';
 import { GoCreditCard } from "react-icons/go";
 import { IoIosPhonePortrait } from "react-icons/io";
+import { selectId, selectUsername } from '../../features/userSlice';
 
 const ReservItemContainer = styled(Container)`
   max-width: 1200px;
@@ -48,11 +49,12 @@ const ReservItemInnerContainer = styled.div`
   p {
     padding-top: 16px;
     line-height: 30px;
+    font-size: 16px;
   }
 
   span {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   div {
@@ -63,6 +65,7 @@ const ReservItemInnerContainer = styled.div`
       border: none;
       color: #fff;
       background-color: #7a45e5;
+      padding: 0 10px;
     }
   }
 
@@ -106,6 +109,7 @@ const PersonModal = styled(Modal)`
     font-weight: bold;
     color: #7a45e5;
     margin: 5px 10px;
+    padding: 0 6px;
   }
 
   .content-modal {
@@ -178,6 +182,8 @@ function Reserv(props) {
 	const dispatch = useDispatch();
   const navigate = useNavigate();
 	const reservItem = useSelector(selectReservList);
+  const userName = useSelector(selectUsername);
+  const userId = useSelector(selectId);
   const { fstvlNm, fstvlStartDate, fstvlEndDate, image, price, mnnstNm } = reservItem;
 	
   const [ count, setCoutn ] = useState({
@@ -225,7 +231,7 @@ function Reserv(props) {
     setShowPayModal(false);
 
     try {
-      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn})
+      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName})
     } catch (err) {
       console.error(err);
     }

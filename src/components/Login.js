@@ -1,47 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from "react-redux";
+import '../Login.css'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../features/userSlice';
 
-function Login(props) {
-  // const dispatch = useDispatch();
-
+function Login() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');  
+  
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      
+    e.preventDefault();
+
+    if (!username) {
+      alert('아이디를 입력하세요')
+    } else if (!password) {
+      alert('비밀번호를 입력하세요')
+    } else {
       try {
         const result = await axios.post(`http://localhost:8088/user/login`, { username, password },{
-          // headers: {
-          //   'Content-Type': 'application/json',
-          //   'Access-Control-Allow-Origin': '*',
-          // },
           withCredentials: true
         });
-        console.log(result); 
-    
-        if (!result.data.flag) {
-          return alert(result.data.message);
+        dispatch(setUser({id: result.data.id, username: result.data.username}))
+
+        if (result.data.username && state) {
+          navigate(`${state.from.pathname}`);
+        } else {
+          navigate('/');
         }
-        // location.href = '/';
       } catch (err) {
         console.error(err);
+        // alert(err.response.data);
       }
-    // });
-  };
+    }
+};
 
-  return (
-    <form id="login-form" method="post" onSubmit={handleSubmit}>
-      <h4>로그인</h4>
-      
-      <label htmlFor="username">ID</label>
-      <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} name="username" />
-      <label htmlFor="password">PW</label>
-      <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" />
-      <button type="submit">로그인</button>
-    </form>
-  );
+
+return(
+  <div className='main'>
+    <div className='login-wrapper'>
+      <h2>로그인</h2>
+      <form method='post' id='login-form' onSubmit={handleSubmit}>
+        <label htmlFor='username'>아이디 : </label>
+        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} name="username" />
+        <label htmlFor='password'>패스워드 : </label>
+        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} name="password" />
+        <label htmlFor='remember-check'>
+          <input type='checkbox' id='remember-check' />
+          <span>아이디 저장하기</span>
+        </label>
+        <div className='btn-wrap'>
+          <button type='submit'>로그인</button>
+        </div>
+        <div className='register_link'>
+          <p>회원이 아니신가요?</p>
+          <Link to='/register' id='link'>회원가입</Link>
+        </div>
+      </form>
+    </div>
+  </div>
+  )
 }
 
 export default Login;

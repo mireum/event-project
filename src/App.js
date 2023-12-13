@@ -13,7 +13,10 @@ import Register from './components/pages/Register';
 import axios from 'axios';
 import Reserv from './components/pages/Reserv';
 import Login from './components/Login';
-
+import { useSelector } from 'react-redux';
+import { selectId, selectUsername } from './features/userSlice';
+import RequireAuth from './auth/RequireAuth';
+import ReservInfo from './components/pages/ReservInfo';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -31,8 +34,12 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 `;
-
 function App() {
+  const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
+  console.log(userId);
+  console.log(userName);
+
   useEffect(() => {
     try {
       const festival = async () => {
@@ -47,7 +54,6 @@ function App() {
   return (
     <>
       <GlobalStyle />
-
       <Routes>
         <Route path='/' element={<Header />}>
           <Route path='/login' element={<Login />} />
@@ -56,8 +62,15 @@ function App() {
           <Route path='/find' element={<FindPage />} />
           <Route index element={<EventList />} />
           <Route path='/detail/:EventListId' element={<Detail />} />
-          <Route path='/detail/:EventListId/reserv' element={<Reserv />} />
+          <Route 
+            path='/detail/:EventListId/reserv' 
+            element={
+              <RequireAuth>
+                <Reserv />
+              </RequireAuth>
+            } />
           <Route path='/register' element={<Register />} />
+          <Route path='/user/reserv/info' element={<ReservInfo />} />
         </Route>
       </Routes>
     </>

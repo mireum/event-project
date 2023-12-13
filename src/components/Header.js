@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { MdOutlineManageSearch } from "react-icons/md";
@@ -10,6 +10,9 @@ import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setUser } from "../features/userSlice";
 
 
 const HeaderWrap = styled.header`
@@ -104,13 +107,32 @@ const HeaderRight = styled.div`
 
 function Header(props) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	// const [user, setUser] = useState('');
 	const [showFind, setShowFind] = useState(false);
+
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		try {
+	// 			const result = await axios.get('http://localhost:8088/user/login');
+	// 			setUser(result.data.username);
+	// 			console.log('result:', result);
+	// 		}
+	// 	  catch (err) {
+	// 			console.error(err);
+	// 		}
+	// 		fetchData();
+	// 	}
+	// }, []);
 	
 	return (
 		<>
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
+						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
+							navigate('/login');
+						}}/>
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
@@ -125,7 +147,9 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						{/* {user ? <span>{user}님</span> :  */}
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						{/* } */}
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}
