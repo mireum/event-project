@@ -15,6 +15,7 @@ import Login from './components/Login';
 import Board from './components/Board';
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';
+import BoardList from './components/BoardList';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -61,6 +62,7 @@ function App() {
           <Route path='/detail/:EventListId' element={<Detail />} />
           <Route path='/register' element={<Register />} />
           <Route path='/board' element={<Board />} />
+          <Route path='/board/list' element={<BoardList />} />
         </Route>
       </Routes>
     </>
