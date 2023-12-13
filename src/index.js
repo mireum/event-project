@@ -23,10 +23,7 @@ if (document.cookie.match('connect.sid')) {
     const userData = await axios.post('http://localhost:8088/user/loginCheck', {id}, {withCredentials: true});
     console.log('새로고침:', userData);
     const info = userData.data.user;
-    console.log(info);
-    const objt = {id: info, username: 'name'}
-    store.dispatch(setUser(objt));
-    store.getState(selectId);
+    store.dispatch(setUser({id: info._id, username: info.username}));
   } catch (err) {
     console.error(err);
   };
