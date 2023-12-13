@@ -11,8 +11,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser } from "../features/userSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUsername, setUser } from "../features/userSlice";
 
 
 const HeaderWrap = styled.header`
@@ -111,6 +111,7 @@ function Header(props) {
 	// const [user, setUser] = useState('');
 	const [showFind, setShowFind] = useState(false);
 
+	const user = useSelector(selectUsername);
 	// useEffect(() => {
 	// 	async function fetchData() {
 	// 		try {
@@ -124,15 +125,27 @@ function Header(props) {
 	// 		fetchData();
 	// 	}
 	// }, []);
+
+	const handleLogout = async () => {
+		try {
+			const result = await axios.post('http://localhost:8088/user/logout');
+			console.log(result);
+		} catch (err) {
+			console.error(err);
+		}
+	}
 	
 	return (
 		<>
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
-							navigate('/login');
-						}}/>
+						{	user
+							? <button onClick={handleLogout}>로그아웃</button>
+							: <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
+								navigate('/login');
+								}}/>
+						}
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
@@ -147,9 +160,9 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						{/* {user ? <span>{user}님</span> :  */}
+						{user ? <span>{user}님</span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
-						{/* } */}
+						}
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}
