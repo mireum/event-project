@@ -1,5 +1,21 @@
 import axios from "axios";
 
+// 전체 리스트 추출
+export const getEventLists = async () => {
+  try {
+    const response = await axios.get(`http://localhost:8088/list`);
+    console.log(response);
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error(`api error: ${response.status} ${response.statusText}`);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 // 특정 리스트 추출
 export const getEventListById = async (id) => {
   const num = Number(id);

@@ -188,7 +188,7 @@ function Reserv(props) {
   const { adult, kids, child } = count;
   
   const [showModal, setShowModal] = useState(false);
-  const handleCloseModal = () => setShowModal(false);
+  const handleCloseModal = () => {setShowModal(false)};
   const handleOpenModal = () => setShowModal(true);
   
   const [showPayModal, setShowPayModal] = useState(false);
@@ -196,7 +196,7 @@ function Reserv(props) {
   const [payBtn, setPayBtn] = useState('');
 
   useEffect(() => {
-    const api = async () => {
+    const eventList = async () => {
       try {
         const result = await getEventListById(EventListId);
         dispatch(getReservList(result));
@@ -204,7 +204,7 @@ function Reserv(props) {
         console.error(err);
       }
     }
-    api(); 
+    eventList(); 
   }, [])
 
   if (!reservItem) {
@@ -341,7 +341,7 @@ function Reserv(props) {
         </Modal.Footer>
       </PersonModal>
 
-      <PayModal show={showPayModal} onHide={() => setShowPayModal(false)}>
+      <PayModal show={showPayModal} onHide={() => {setShowPayModal(false); setPayBtn('');}}>
         <Modal.Header closeButton>
           <Modal.Title>
             결제
