@@ -11,20 +11,17 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
-<<<<<<< HEAD
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectId, selectUsername, setUser } from "../features/userSlice";
 import { useCookies } from "react-cookie";
-=======
 
 import HamburgerBar from './pages/HamburgerBar';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { selectId, selectUsername, setUser } from "../features/userSlice";
 import { MdOutlineManageSearch } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 import Login from './Login';
->>>>>>> af997d3dfff7b7dafbffdd68437f3fad0a50e1bf
+
 
 
 const HeaderWrap = styled.header`
@@ -177,13 +174,12 @@ function Header(props) {
 							className='bm-icon cursor-pointer' 
 							onClick={() => { navigate('/calendar') }} 
 						/>
-<<<<<<< HEAD
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span>:  
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						}
 						<button onClick={logoutFunc}>로그아웃</button>
-=======
+
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
 						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
@@ -191,7 +187,7 @@ function Header(props) {
 						{/* {user ? <span>{user}님</span> :  */}
 						{/* <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/> */}
 						{/* } */}
->>>>>>> af997d3dfff7b7dafbffdd68437f3fad0a50e1bf
+
 					</HeaderRight>
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
