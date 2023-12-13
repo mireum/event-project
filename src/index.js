@@ -9,7 +9,6 @@ import { store } from "./app/store";
 import ScrollToTop from './components/ScrollToTop';
 import axios from 'axios';
 import { selectId, setUser } from './features/userSlice';
-import { CookiesProvider } from "react-cookie";
 // import persistStore from 'redux-persist/es/persistStore';
 // import { PersistGate } from 'redux-persist/integration/react';
 
@@ -40,14 +39,12 @@ if (localStorage.getItem('user')) {
 
 root.render(
   <Provider store={store}>
-    <CookiesProvider>
       {/* <PersistGate loading={null} persistor={persistor}> */}
       <BrowserRouter>
         <ScrollToTop/>
         <App />
       </BrowserRouter>
       {/* </PersistGate> */}  
-    </CookiesProvider>
   </Provider>
 );
 
