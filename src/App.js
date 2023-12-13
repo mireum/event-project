@@ -12,6 +12,7 @@ import FindPage from './components/FindPage';
 import Register from './components/pages/Register';
 import axios from 'axios';
 import Login from './components/Login';
+
 import Board from './components/Board';
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';

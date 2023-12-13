@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { MdOutlineManageSearch } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiCalendarBlankLight } from "react-icons/pi";
-import { AiOutlineUser } from "react-icons/ai";
+import { RiMenu3Fill } from "react-icons/ri";
 
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser } from "../features/userSlice";
+
+import HamburgerBar from './pages/HamburgerBar';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { selectId, selectUsername, setUser } from "../features/userSlice";
+import { MdOutlineManageSearch } from 'react-icons/md';
+import { AiOutlineUser } from 'react-icons/ai';
+import Login from './Login';
 
 
 const HeaderWrap = styled.header`
@@ -64,7 +70,7 @@ const HeaderLeft = styled.div`
 	.bm-icon:hover {
 		color: #FF5151;
 	}
-`;
+`; 
 
 const HeaderCenter = styled.div`
 	display: flex;
@@ -88,7 +94,7 @@ const HeaderRight = styled.div`
 	}
 
 	.bm-icon:hover {
-		color: #FF5151;
+		color: #7a45e5;
 	}
 
 	.fill {
@@ -103,13 +109,35 @@ const HeaderRight = styled.div`
 	.sh-icon {
 		font-size: 40px;
 	}
+	.active {
+		width: 30%;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 200;
+		background-color: #f8f8f8;
+		padding: 10px;
+		box-sizing: border-box;
+		transition:  0.5s;
+  }
 `;
 
+
+
 function Header(props) {
+	const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const [ showFind, setShowFind ] = useState(false);
+	const [ showHamburger, setShowHamburger ] = useState(false);
+
+	// const handleChange = () => {
+	// 	setShowHamburger(!showHamburger);
+	// };
+
+	// const dispatch = useDispatch();
 	// const [user, setUser] = useState('');
-	const [showFind, setShowFind] = useState(false);
 
 	// useEffect(() => {
 	// 	async function fetchData() {
@@ -130,13 +158,10 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
-							navigate('/login');
-						}}/>
-						<GoHeart className='bm-icon cursor-pointer'
-							onClick={() => { navigate('/bookmark') }} > 
-							<GoHeartFill className='fill'/>
-						</GoHeart>
+						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
+							userId && userName ? navigate('/bookmark') : navigate('/login')
+							}} 
+						/>} */}
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
@@ -146,21 +171,20 @@ function Header(props) {
 							className='bm-icon cursor-pointer' 
 							onClick={() => { navigate('/calendar') }} 
 						/>
-						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
+						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
+						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
 						{/* {user ? <span>{user}님</span> :  */}
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						{/* <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/> */}
 						{/* } */}
 					</HeaderRight>
-
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 			</HeaderWrap>
-			
 			<Outlet />
-
 			<Footer />
 		</>
-
 	);
 }
 
