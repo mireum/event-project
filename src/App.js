@@ -13,7 +13,8 @@ import Register from './components/pages/Register';
 import axios from 'axios';
 import Login from './components/Login';
 import Board from './components/Board';
-
+import { useSelector } from 'react-redux';
+import { selectId, selectUsername } from './features/userSlice';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -30,13 +31,16 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 `;
-
 function App() {
+  const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
+  console.log(userId);
+  console.log(userName);
+
   useEffect(() => {
     try {
       const festival = async () => {
       const result = await axios.get('http://localhost:8088');
-      // console.log(result);
       }
       festival();
     } catch (err) {
