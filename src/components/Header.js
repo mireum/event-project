@@ -11,8 +11,9 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser } from "../features/userSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectId, selectUsername, setUser } from "../features/userSlice";
+import { useCookies } from "react-cookie";
 
 
 const HeaderWrap = styled.header`
@@ -107,24 +108,27 @@ const HeaderRight = styled.div`
 
 function Header(props) {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	// const [user, setUser] = useState('');
+	const [log, setLog] = useState('');
 	const [showFind, setShowFind] = useState(false);
+	const user = useSelector(selectUsername);
+	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		try {
-	// 			const result = await axios.get('http://localhost:8088/user/login');
-	// 			setUser(result.data.username);
-	// 			console.log('result:', result);
-	// 		}
-	// 	  catch (err) {
-	// 			console.error(err);
-	// 		}
-	// 		fetchData();
-	// 	}
-	// }, []);
-	
+	useEffect(() => {
+		setLog(user);
+
+	}, []);
+
+	const logoutFunc = async () => {
+		const id = document.cookie.match('connect.sid').input.split('%')[1].split('.')[0].slice(2);
+		console.log(id);
+		const result = await axios.post('http://localhost:8088/user/logout', {id});
+		// if (result.data.flag) {}
+		
+		console.log(result);
+		dispatch(setUser({id: '', username: ''}));
+		// navigate('/');
+	};
+
 	return (
 		<>
 			<HeaderWrap>
@@ -147,9 +151,10 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						{/* {user ? <span>{user}님</span> :  */}
+						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span>:  
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
-						{/* } */}
+						}
+						<button onClick={logoutFunc}>로그아웃</button>
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}

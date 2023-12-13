@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     try {
       const festival = async () => {
-      const result = await axios.get('http://localhost:8088');
+      const result = await axios.get('http://localhost:8088', {withCredentials: true});
       }
       festival();
     } catch (err) {
