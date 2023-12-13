@@ -32,10 +32,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
-  const userId = useSelector(selectId);
-  const userName = useSelector(selectUsername);
-  console.log(userId);
-  console.log(userName);
 
   useEffect(() => {
     try {

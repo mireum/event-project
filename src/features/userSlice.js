@@ -12,8 +12,6 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.id = action.payload.id;
       state.username = action.payload.username;
-      console.log(initialState.id);
-      console.log(initialState.username);
     },
   },
 });

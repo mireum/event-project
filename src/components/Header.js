@@ -11,8 +11,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser } from "../features/userSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUsername, setUser } from "../features/userSlice";
 
 
 const HeaderWrap = styled.header`
@@ -108,8 +108,21 @@ const HeaderRight = styled.div`
 function Header(props) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	// const [user, setUser] = useState('');
 	const [showFind, setShowFind] = useState(false);
+
+	const logoutFunc = async () => {
+		// const id = document.cookie.match('connect.sid').input.split('%')[1].split('.')[0].slice(2);
+		// const id = localStorage.removeItem('user');
+		const id = localStorage.clear();
+		const result = await axios.post('http://localhost:8088/user/logout', {}, {withCredentials: true});
+
+		dispatch(setUser({id: '', username: ''}));
+	};
+
+	const log = useSelector(selectUsername);
+	// useEffect(() => {
+	// 	setInfo(log);
+	// }, []);
 
 	// useEffect(() => {
 	// 	async function fetchData() {
@@ -147,9 +160,9 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						{/* {user ? <span>{user}님</span> :  */}
+						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
-						{/* } */}
+						} 
 					</HeaderRight>
 
 					{showFind && <Finder setShowFind={setShowFind} />}
