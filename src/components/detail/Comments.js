@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { selectId, selectUsername } from '../../features/userSlice';
@@ -68,6 +68,21 @@ function Comments(props) {
   // const { detailItem } = props;
 
   const [ content, setContent ] = useState('');
+  const [ comments, setComments ] =useState([]);
+
+  
+  useEffect(() => {
+    const commentList = async () => {
+      try {
+        const result = await axios.get('http://localhost:8088/post/comment');
+        // console.log(result.data.result);
+        return setComments(result.data.list);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    commentList();
+  },[])
 
   const handleChange = (e) => {
     setContent(e.target.value);
@@ -76,12 +91,19 @@ function Comments(props) {
   const handleComment = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8088/post/comment', { content, userId });
+      await axios.post('http://localhost:8088/post/comment', { content, userId, userName });
     } catch (err) {
       console.error(err);
     }
-    // setContent('');
+    setContent('');
   };
+
+  // const addItem = () => {
+  //   const newItem = Math.random();
+  //   setComments(prevItems => [...prevItems, newItem]); // 이전 상태(prevItems)를 이용하여 새로운 아이템을 추가
+  // };
+
+  
 
 
 
@@ -93,14 +115,21 @@ function Comments(props) {
         <p>콘텐트</p>
       </CommentBox>
       } */}
-      <CommentBox>
+      { comments.length > 0 && (
+        comments && comments.map((item, index) => {
+        return(
+          <CommentBox key={index}>
+            <p><strong>{item.author}</strong>  <span>작성시간</span></p> 
+            <p>{item.content}</p>
+          </CommentBox>
+        )
+      })) 
+    }
+      
+      {/* <CommentBox>
         <p><strong>작성자</strong>  <span>작성시간</span></p> 
         <p>콘텐트</p>
-      </CommentBox>
-      <CommentBox>
-        <p><strong>작성자</strong>  <span>작성시간</span></p> 
-        <p>콘텐트</p>
-      </CommentBox>
+      </CommentBox> */}
       <CommentRegistBox>
         <FormBox id='comment-form'>
           {/* <input type="hidden" name="postId" value={postId} onChange={handlePostId}/> */}
