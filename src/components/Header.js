@@ -131,8 +131,6 @@ function Header(props) {
 	const [ showHamburger, setShowHamburger ] = useState(false);
 
 	const logoutFunc = async () => {
-		// const id = document.cookie.match('connect.sid').input.split('%')[1].split('.')[0].slice(2);
-		// const id = localStorage.removeItem('user');
 		const id = localStorage.clear();
 		const result = await axios.post('http://localhost:8088/user/logout', {}, {withCredentials: true});
 
@@ -140,21 +138,6 @@ function Header(props) {
 	};
 
 	const log = useSelector(selectUsername);
-
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		try {
-	// 			const result = await axios.get('http://localhost:8088/user/login');
-	// 			setUser(result.data.username);
-	// 			console.log('result:', result);
-	// 		}
-	// 	  catch (err) {
-	// 			console.error(err);
-	// 		}
-	// 		fetchData();
-	// 	}
-	// }, []);
-
 
 	return (
 		<>
