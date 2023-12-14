@@ -9,6 +9,7 @@ import store from '../app/store';
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');  
+  const [email, setEmail] = useState('');
   
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -23,13 +24,13 @@ function Login() {
       alert('비밀번호를 입력하세요')
     } else {
     try {
-      const result = await axios.post(`http://localhost:8088/user/login`, { username, password },{
+      const result = await axios.post(`http://localhost:8088/user/login`, { username, password, email },{
         withCredentials: true
       });
 
       localStorage.setItem('user', JSON.stringify(result.data.user));
 
-      dispatch(setUser({id:result.data.user._id, username:result.data.user.username}));
+      dispatch(setUser({id:result.data.user._id, username:result.data.user.username, email:result.data.user.email}));
 
         if (result.data.username && state) {
           navigate(`${state.from.pathname}`);

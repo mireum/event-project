@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectEmail, selectUsername } from '../features/userSlice';
+import { selectEmail, selectId, selectUsername } from '../features/userSlice';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 
 const StyledContainer = styled(Container)`
@@ -64,8 +65,15 @@ const ProfileForm = styled.form`
 
 function Profile(props) {
   const navigate = useNavigate();
+  const id = useSelector(selectId);
   const name = useSelector(selectUsername);
   const email = useSelector(selectEmail);
+
+  const resign = async (e) => {
+    e.preventdefault();
+    const result = await axios.post('http://localhost:8088/user/resign', {id});
+    console.log(result.data);
+  };
 
   return (
     <StyledContainer>
@@ -81,7 +89,7 @@ function Profile(props) {
           </label>
           <div className='buttonBox'>
             <button type='button' onClick={() => {navigate('/profilePw')}}>비밀번호 변경</button>
-            <button>회원 탈퇴</button>
+            <button onClick={resign}>회원 탈퇴</button>
           </div>
 
       </ProfileForm>
