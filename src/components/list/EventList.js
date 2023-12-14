@@ -9,6 +9,7 @@ import { getEventList, selectEventList } from '../../api/eventListSlice';
 import { searchButton, searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import AsNavFor from './MainSlide';
 import Loading from '../pages/Loading';
+import { getEventLists } from '../../api/eventListAPI';
 
 
 const StyledContainer = styled(Container)`
@@ -53,19 +54,19 @@ function EventList(props) {
     setShowList(showList + 6);
   }
 
-  useEffect(() => {
-    const festivalApiData = async () => {
-      setLoding(true)
+  useEffect (() => {
+    const eventList = async () => {
+      setLoding(true);
       try {
-        const response = await axios.get('http://localhost:8088/list');
-        dispatch(getEventList(response.data))
+        const result = await getEventLists();
+        dispatch(getEventList(result));
       } catch (err) {
-        console.error(err);  
+        console.error(err);
       }
-      setLoding(false)
-    };
-    festivalApiData();
-  }, []);
+      setLoding(false);
+    } 
+    eventList();
+	}, [])
 
   // eventListSlice의 eventListItem 호출
   const eventLists = useSelector(selectEventList);

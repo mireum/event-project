@@ -1,35 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Login.css'
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { selectId, setUser } from '../features/userSlice';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectId, selectUsername, setUser } from '../features/userSlice';
 import store from '../app/store';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');  
   
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const dispatch = useDispatch();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if (!username) {
+      alert('아이디를 입력하세요')
+    } else if (!password) {
+      alert('비밀번호를 입력하세요')
+    } else {
     try {
       const result = await axios.post(`http://localhost:8088/user/login`, { username, password },{
         withCredentials: true
       });
-      // console.log(result.data.user); 
-      if (!result.data.flag) {
-        return alert(result.data.message);
-      }
+
       localStorage.setItem('user', JSON.stringify(result.data.user));
 
       dispatch(setUser({id:result.data.user._id, username:result.data.user.username}));
 
-      // window.location.href = '/';
-    } catch (err) {
-      console.error(err);
+        if (result.data.user.username && state) {
+          navigate(`${state.from.pathname}`);
+        } else {
+          navigate('/');
+        }
+      } catch (err) {
+        console.error(err);
+        // alert(err.response.data);
+      }
     }
 };
 
