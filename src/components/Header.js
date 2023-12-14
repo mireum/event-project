@@ -161,7 +161,7 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-					</HeaderRight>
+					{/* </HeaderRight> */}
 
 
 						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
