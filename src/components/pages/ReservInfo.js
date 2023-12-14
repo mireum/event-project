@@ -9,7 +9,7 @@ function ReservInfo(props) {
   const [reserv, setReserv] = useState([]); 
 
   useEffect(() => {
-    const reserv = async () => {
+    const reservs = async () => {
       try {
         const result = await axios.get('http://localhost:8088/user/reserv/info', {params: {userId}})
         setReserv(result.data);
@@ -17,9 +17,9 @@ function ReservInfo(props) {
         console.error(err);
       }
     }
-    reserv();
+    reservs();
   }, [])
-
+  
   return (
     <>
       {reserv.map(item => item.fstvlNm)}   

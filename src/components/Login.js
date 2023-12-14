@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Login.css'
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { selectId, setUser } from '../features/userSlice';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectId, selectUsername, setUser } from '../features/userSlice';
 import store from '../app/store';
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,7 +31,7 @@ function Login() {
 
       dispatch(setUser({id:result.data.user._id, username:result.data.user.username}));
 
-        if (result.data.username && state) {
+        if (result.data.user.username && state) {
           navigate(`${state.from.pathname}`);
         } else {
           navigate('/');
