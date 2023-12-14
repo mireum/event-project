@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectEmail, selectUsername } from '../features/userSlice';
+import { selectId } from '../features/userSlice';
 import { useNavigate } from 'react-router';
 
 
@@ -12,7 +13,7 @@ const StyledContainer = styled(Container)`
 	padding-top: 50px;
 `;
 
-const ProfileForm = styled.form`
+const ProfileForm = styled.div`
   border: 1px solid #eee;
   width: 400px;
   padding: 40px;
@@ -46,6 +47,7 @@ const ProfileForm = styled.form`
   }
   .buttonBox {
     display: flex;
+    justify-content: end;
     button {
       width: 50%;
       border: none;
@@ -56,37 +58,46 @@ const ProfileForm = styled.form`
       margin-top: 20px;
       border-radius: 5px;
     }
-    button + button {
-      margin-left: 10px;
-    }
   }
 `;
 
-function Profile(props) {
+function ProfilePw(props) {
+  const [password, setPassword] = useState('');
+  const [confirmWord, setConfirmWord] = useState('');
+  const id = useSelector(selectId);
   const navigate = useNavigate();
-  const name = useSelector(selectUsername);
-  const email = useSelector(selectEmail);
+
+  const newPw = async (e) => {
+    e.preventDefault();
+    if (!password || !confirmWord) {
+      return alert('새로운 비밀번호를 입력해주세요!');
+    }
+    if (password == confirmWord) {
+      const result = await axios.post('http://localhost:8088/user/profilePw', {id, password});
+      if (result.data.flag) {
+        navigate('/');
+      }
+    }
+  };
 
   return (
     <StyledContainer>
       <ProfileForm>
-        <h3>내 정보</h3>
+        <h3>비밀번호 변경</h3>
           <label>
-            이름
-            <input type='text' placeholder={name} disabled/>
+            새로운 비밀번호
+            <input type='password' value={password} name='password' onChange={(e) => {setPassword(e.target.value)}}/>
           </label>
           <label>
-            이메일
-            <input type='text' placeholder={email} disabled/>
+            새로운 비밀번호 확인
+            <input type='password' value={confirmWord} onChange={(e) => {setConfirmWord(e.target.value)}} />
           </label>
           <div className='buttonBox'>
-            <button type='button' onClick={() => {navigate('/profilePw')}}>비밀번호 변경</button>
-            <button>회원 탈퇴</button>
+            <button onClick={newPw}>비밀번호 저장</button>
           </div>
-
       </ProfileForm>
     </StyledContainer>
   );
 }
 
-export default Profile;
+export default ProfilePw;

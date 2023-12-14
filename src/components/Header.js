@@ -164,7 +164,7 @@ function Header(props) {
 					{/* </HeaderRight> */}
 
 
-						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
+						{log ? <span className='cursor-pointer' onClick={() => navigate('/profile')}>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						} 
 

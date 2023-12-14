@@ -20,6 +20,7 @@ import { selectId, selectUsername } from './features/userSlice';
 import RequireAuth from './auth/RequireAuth';
 import ReservInfo from './components/pages/ReservInfo';
 import Profile from './components/Profile';
+import ProfilePw from './components/ProfilePw';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -56,6 +57,7 @@ function App() {
         <Route path='/' element={<Header />}>
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/profilePw' element={<ProfilePw />} />
           <Route path='/bookmark' element={<BookMark />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/find' element={<FindPage />} />
