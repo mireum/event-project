@@ -6,9 +6,13 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import '../Board.css';
 
 function Board () {
+
   const [boardContent, setBoardContent] = useState({
     title: '',
-    content: ''
+    content: '',
+    date: '',
+    view: '',
+    writer: '',
   });
   
   // const [viewContent, setViewContent] = useState([]);
@@ -19,13 +23,16 @@ function Board () {
   //     setViewContent(response.data);
   //   })
   // }, [viewContent])
-  
+
   const submitReview = async (e) => {
     try {
       e.preventDefault();
       const result = await axios.post(`http://localhost:8088/board`, {
         title: boardContent.title,
-        content: boardContent.content
+        content: boardContent.content,
+        date: boardContent.date,
+        view: boardContent.view,
+        writer: boardContent.writer
       })
       if (result.data.flag) {
         alert('등록 완료!');
@@ -65,9 +72,21 @@ function Board () {
           onChange={getValue}
           name='title'
           />
+          <input className="title-input1"
+          type='text'
+          placeholder='작성일'
+          onChange={getValue}
+          name='date'
+          />
+          <input className="title-input1"
+          type='text'
+          placeholder='작성자'
+          onChange={getValue}
+          name='writer'
+          />
         <CKEditor
           editor={ClassicEditor}
-          data=""
+          data=''
           onReady={editor => {
           }}
           onChange={(event, editor) => {

@@ -1,0 +1,37 @@
+.list_form {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+.board_list {
+  width: 1200px;
+  margin: 0 auto;
+  font-size: 16px;
+  
+}
+.board_list_p {
+  font-size: 24px;
+  color: #6A24FE;
+  font-weight: bold;
+  text-align: center;
+}
+
+.submit-buttons {
+  width: 80px;
+  font-size: 24px;
+  padding: 5px 0;
+  background-color: #6A24FE;
+  color: #fff;
+}
+
+.submit-buttons:hover {
+  background-color: #631cfc;
+}
+
+.submit-buttons:active {
+  background-color: #580ef8;
+}
+
+.table_main {
+  width: 1200px;
+}
