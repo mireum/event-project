@@ -129,7 +129,7 @@ function Header(props) {
 	const handleLogout = async () => {
 		try {
 			const result = await axios.post('http://localhost:8088/user/logout');
-			console.log(result);
+			dispatch(setUser({id: result.data.id, username: result.data.username}))
 		} catch (err) {
 			console.error(err);
 		}
