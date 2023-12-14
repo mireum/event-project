@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectId, selectUsername } from '../../features/userSlice';
+import axios from 'axios';
 
 const CommentContainer = styled.div`
   max-width: 1200px;
@@ -60,7 +63,32 @@ const FormBox = styled.form`
 // 좋아요 싫어요
 
 function Comments(props) {
-  const { detailItem } = props;
+  const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
+  // const { detailItem } = props;
+
+  const [ content, setContent ] = useState('');
+  const [ postId, setPostId ] = useState('');
+
+  const handleChange = (e) => {
+    setContent(e.target.value);
+  };
+
+  const handlePostId = (e) => {
+    setPostId(e.target.value);
+  };
+
+  const handleComment = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:8088/post/comment', { content, userId });
+    } catch (err) {
+      console.error(err);
+    }
+    // setContent('');
+  };
+
+
 
   return (
     <CommentContainer>
@@ -79,10 +107,10 @@ function Comments(props) {
         <p>콘텐트</p>
       </CommentBox>
       <CommentRegistBox>
-        <FormBox id='comment-form' action='http://localhost:8088/post/comment' method='post'>
-          <input type="hidden" name="postId" value={detailItem._id} />
-          <input type='text' name='content' />
-          <button type='submit'>등록</button>
+        <FormBox id='comment-form'>
+          {/* <input type="hidden" name="postId" value={postId} onChange={handlePostId}/> */}
+          <input type='text' name='content' value={content} onChange={handleChange} />
+          <button type='submit' onClick={handleComment}>등록</button>
         </FormBox>
 
       </CommentRegistBox>

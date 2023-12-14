@@ -165,16 +165,17 @@ function Header(props) {
 							userId && userName ? navigate('/bookmark') : navigate('/login')
 							}} 
 						/>} */}
+						<PiCalendarBlankLight 
+							className='bm-icon cursor-pointer' 
+							onClick={() => { navigate('/calendar') }} 
+						/>
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
 
 					<HeaderRight>
-						<PiCalendarBlankLight 
-							className='bm-icon cursor-pointer' 
-							onClick={() => { navigate('/calendar') }} 
-						/>
-						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						
+						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
 
 						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
