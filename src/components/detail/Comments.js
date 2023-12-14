@@ -68,14 +68,9 @@ function Comments(props) {
   // const { detailItem } = props;
 
   const [ content, setContent ] = useState('');
-  const [ postId, setPostId ] = useState('');
 
   const handleChange = (e) => {
     setContent(e.target.value);
-  };
-
-  const handlePostId = (e) => {
-    setPostId(e.target.value);
   };
 
   const handleComment = async (e) => {
