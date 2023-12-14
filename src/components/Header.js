@@ -13,13 +13,10 @@ import logo from "../images/logo.png";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectId, selectUsername, setUser } from "../features/userSlice";
-
 import HamburgerBar from './pages/HamburgerBar';
-
 import { MdOutlineManageSearch } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 import Login from './Login';
-
 
 const HeaderWrap = styled.header`
 	position: sticky;
@@ -144,10 +141,16 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
+						<GoHeart className='bm-icon cursor-pointer'
+							onClick={() => { navigate('/bookmark') }} > 
+							<GoHeartFill className='fill'/>
+						</GoHeart>
+
 						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
 							userId && userName ? navigate('/bookmark') : navigate('/login')
 							}} 
 						/>} */}
+
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
@@ -158,20 +161,16 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+					</HeaderRight>
+
 
 						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						} 
 
-
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
 						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
-						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
-						{/* {user ? <span>{user}님</span> :  */}
-						{/* <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/> */}
-						{/* } */}
-
 					</HeaderRight>
 					
 					{showFind && <Finder setShowFind={setShowFind} />}
