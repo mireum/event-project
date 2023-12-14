@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { MdOutlineManageSearch } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { PiCalendarBlankLight } from "react-icons/pi";
-import { AiOutlineUser } from "react-icons/ai";
+import { RiMenu3Fill } from "react-icons/ri";
 
 import Finder from './Finder';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -12,8 +12,11 @@ import Footer from './Footer';
 import logo from "../images/logo.png";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUsername, setUser } from "../features/userSlice";
-
+import { selectId, selectUsername, setUser } from "../features/userSlice";
+import HamburgerBar from './pages/HamburgerBar';
+import { MdOutlineManageSearch } from 'react-icons/md';
+import { AiOutlineUser } from 'react-icons/ai';
+import Login from './Login';
 
 const HeaderWrap = styled.header`
 	position: sticky;
@@ -64,7 +67,7 @@ const HeaderLeft = styled.div`
 	.bm-icon:hover {
 		color: #FF5151;
 	}
-`;
+`; 
 
 const HeaderCenter = styled.div`
 	display: flex;
@@ -88,7 +91,7 @@ const HeaderRight = styled.div`
 	}
 
 	.bm-icon:hover {
-		color: #FF5151;
+		color: #7a45e5;
 	}
 
 	.fill {
@@ -103,53 +106,51 @@ const HeaderRight = styled.div`
 	.sh-icon {
 		font-size: 40px;
 	}
+	.active {
+		width: 30%;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 200;
+		background-color: #f8f8f8;
+		padding: 10px;
+		box-sizing: border-box;
+		transition:  0.5s;
+  }
 `;
+
 
 function Header(props) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	// const [user, setUser] = useState('');
 	const [showFind, setShowFind] = useState(false);
+	const [ showHamburger, setShowHamburger ] = useState(false);
 
-	const user = useSelector(selectUsername);
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		try {
-	// 			const result = await axios.get('http://localhost:8088/user/login');
-	// 			setUser(result.data.username);
-	// 			console.log('result:', result);
-	// 		}
-	// 	  catch (err) {
-	// 			console.error(err);
-	// 		}
-	// 		fetchData();
-	// 	}
-	// }, []);
+	const logoutFunc = async () => {
+		const id = localStorage.clear();
+		const result = await axios.post('http://localhost:8088/user/logout', {}, {withCredentials: true});
 
-	const handleLogout = async () => {
-		try {
-			const result = await axios.post('http://localhost:8088/user/logout');
-			dispatch(setUser({id: result.data.id, username: result.data.username}))
-		} catch (err) {
-			console.error(err);
-		}
-	}
-	
+		dispatch(setUser({id: '', username: ''}));
+	};
+
+	const log = useSelector(selectUsername);
+
 	return (
 		<>
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						{	user
-							? <button onClick={handleLogout}>로그아웃</button>
-							: <AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {
-								navigate('/login');
-								}}/>
-						}
 						<GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
 						</GoHeart>
+
+						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
+							userId && userName ? navigate('/bookmark') : navigate('/login')
+							}} 
+						/>} */}
+
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
@@ -160,20 +161,24 @@ function Header(props) {
 							onClick={() => { navigate('/calendar') }} 
 						/>
 						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
-						{user ? <span>{user}님</span> : 
-						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
-						}
 					</HeaderRight>
 
+
+						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
+						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
+						} 
+
+						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
+						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
+					</HeaderRight>
+					
 					{showFind && <Finder setShowFind={setShowFind} />}
 				</HeaderInner>
 			</HeaderWrap>
-			
 			<Outlet />
-
 			<Footer />
 		</>
-
 	);
 }
 

@@ -13,11 +13,12 @@ import Register from './components/pages/Register';
 import axios from 'axios';
 import Reserv from './components/pages/Reserv';
 import Login from './components/Login';
+
+import Board from './components/Board';
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';
 import RequireAuth from './auth/RequireAuth';
 import ReservInfo from './components/pages/ReservInfo';
-
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -35,15 +36,11 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
-  const userId = useSelector(selectId);
-  const userName = useSelector(selectUsername);
-  console.log(userId);
-  console.log(userName);
 
   useEffect(() => {
     try {
       const festival = async () => {
-      const result = await axios.get('http://localhost:8088');
+      const result = await axios.get('http://localhost:8088', {withCredentials: true});
       }
       festival();
     } catch (err) {
@@ -71,6 +68,8 @@ function App() {
             } />
           <Route path='/register' element={<Register />} />
           <Route path='/user/reserv/info' element={<ReservInfo />} />
+          <Route path='/board' element={<Board />} />
+
         </Route>
       </Routes>
     </>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { addLikedItem, likedList, removeLikedItem } from '../../features/likedSlice';
+import { selectId, selectUsername } from '../../features/userSlice';
 
 const ItemImage = styled.img`
   width: 100%;
@@ -53,15 +54,22 @@ function EventListItem(props) {
   const [likeBtn, setLikeBtn] = useState(false);
   const dispatch = useDispatch();
   const bookmarkList = useSelector(likedList);
+  const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
 
   const handleLike = (item) => {
-    if (likeBtn) {
-      setLikeBtn(prev=>!prev);
-      dispatch(removeLikedItem(item.id));
+    if (userId && userName) {
+      if (likeBtn) {
+        setLikeBtn(prev=>!prev);
+        dispatch(removeLikedItem(item.id));
+      } else {
+        setLikeBtn(prev=>!prev);
+        dispatch(addLikedItem(item));
+      }
     } else {
-      setLikeBtn(prev=>!prev);
-      dispatch(addLikedItem(item));
+      navigate('/login');
     }
+    
   };
 
   useEffect(() => {

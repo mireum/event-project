@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Login.css'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../features/userSlice';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { selectId, setUser } from '../features/userSlice';
+import store from '../app/store';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -21,11 +22,14 @@ function Login() {
     } else if (!password) {
       alert('비밀번호를 입력하세요')
     } else {
-      try {
-        const result = await axios.post(`http://localhost:8088/user/login`, { username, password },{
-          withCredentials: true
-        });
-        dispatch(setUser({id: result.data.id, username: result.data.username}))
+    try {
+      const result = await axios.post(`http://localhost:8088/user/login`, { username, password },{
+        withCredentials: true
+      });
+
+      localStorage.setItem('user', JSON.stringify(result.data.user));
+
+      dispatch(setUser({id:result.data.user._id, username:result.data.user.username}));
 
         if (result.data.username && state) {
           navigate(`${state.from.pathname}`);

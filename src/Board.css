@@ -1,0 +1,49 @@
+body {
+  box-sizing:  border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+;
+
+#board-form {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.board {
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.board > h1 {
+  color:#6A24FE;
+  font-weight: bold;
+  text-align: center;
+}
+.form-wrapper .title-input {
+  width: 1200px;
+  height: 40px;
+  border: 1px solid var(--ck-color-base-border);
+}
+
+.submit-button {
+  width: 100%;
+  font-size: 24px;
+  padding: 5px 0;
+  background-color: #6A24FE;
+  color: #fff;
+}
+
+.submit-button:hover {
+  background-color: #631cfc;
+}
+
+.submit-button:active {
+  background-color: #580ef8;
+}
