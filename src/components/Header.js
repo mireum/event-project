@@ -132,6 +132,7 @@ function Header(props) {
 		const result = await axios.post('http://localhost:8088/user/logout', {}, {withCredentials: true});
 
 		dispatch(setUser({id: '', username: ''}));
+		navigate('/');
 	};
 
 	const log = useSelector(selectUsername);
