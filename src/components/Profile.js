@@ -97,6 +97,9 @@ function Profile(props) {
             <input type='text' placeholder={email} disabled/>
           </label>
           <div className='buttonBox'>
+           <button type='button' onClick={() => {navigate('/profile/reserv/info')}}>예약 확인</button>
+          </div>
+          <div className='buttonBox'>
             <button type='button' onClick={() => {navigate('/profilePw')}}>비밀번호 변경</button>
             <button type='button' onClick={resign}>회원 탈퇴</button>
           </div>

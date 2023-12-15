@@ -80,8 +80,14 @@ function App() {
                 <Reserv />
               </RequireAuth>
             } />
+          <Route 
+            path='/profile/reserv/info' 
+            element={
+              <RequireAuth>
+                <ReservInfo />
+              </RequireAuth>
+            } />
           <Route path='/register' element={<Register />} />
-          <Route path='/user/reserv/info' element={<ReservInfo />} />
           <Route path='/board' element={<Board />} />
 
         </Route>

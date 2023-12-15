@@ -241,7 +241,7 @@ function Reserv(props) {
   }
 
   const handleReservResult = () => {
-    navigate('/user/reserv/info');
+    navigate('/profile/reserv/info');
   }
   
   return (

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectId } from '../../features/userSlice';
+import { selectId, selectUsername } from '../../features/userSlice';
 import styled from 'styled-components';
 import { Button, Modal, Table } from 'react-bootstrap';
 
@@ -13,6 +13,10 @@ const ReservInfoContainer = styled.div`
     margin-bottom: 30px;
   }
 
+  .reserv-user {
+    margin-bottom: 10px;
+  }
+  
   .cancel-btn {
     background: #fff;
     width: 100%;
@@ -22,6 +26,7 @@ const ReservInfoContainer = styled.div`
 
 function ReservInfo(props) {
   const userId = useSelector(selectId);
+  const userName = useSelector(selectUsername);
 
   const [reserv, setReserv] = useState([]);
   // const [deleteReserv, setDeleteReserv] = useState([]);
@@ -61,7 +66,8 @@ function ReservInfo(props) {
   return (
     <>
       <ReservInfoContainer>
-        <h2 className='reserv-title'>예약 확인</h2>
+        <h2 className='reserv-title'>예약 정보</h2>
+        <h4 className='reserv-user'>{`${userName}님의 예약`}</h4>
         <Table striped="columns">
           <thead>
             <tr>
