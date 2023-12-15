@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 if (localStorage.getItem('user')) {
   const user = JSON.parse(localStorage.getItem('user'));
-  const id = document.cookie.match('connect.sid').input.split('%')[1].split('.')[0].slice(2);
+  const id = document.cookie.match('connect.sid')?.input.split('%')[1].split('.')[0].slice(2);
   const result = await axios.post('http://localhost:8088/user/loginCheck', {id}, {withCredentials: true});
   console.log(result.data);
   store.dispatch(setUser({id: user._id, username: user.username, email: user.email}));

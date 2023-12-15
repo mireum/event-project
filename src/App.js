@@ -39,16 +39,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 function App() {
 
-  useEffect(() => {
-    try {
-      const festival = async () => {
-      const result = await axios.get('http://localhost:8088', {withCredentials: true});
-      }
-      festival();
-    } catch (err) {
-      console.error(err);
-    }
-  });
+  // useEffect(() => {
+  //   try {
+  //     const festival = async () => {
+  //     const result = await axios.get('http://localhost:8088', {withCredentials: true});
+  //     }
+  //     festival();
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // });
 
   return (
     <>

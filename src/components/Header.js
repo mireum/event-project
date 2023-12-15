@@ -132,7 +132,7 @@ function Header(props) {
 		const result = await axios.post('http://localhost:8088/user/logout', {}, {withCredentials: true});
 
 		dispatch(setUser({id: '', username: ''}));
-		navigate('/')
+		navigate('/');
 	};
 
 	const log = useSelector(selectUsername);
@@ -142,26 +142,26 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<GoHeart className='bm-icon cursor-pointer'
+						{/* <GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
-						</GoHeart>
+						</GoHeart> */}
 
 						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
 							userId && userName ? navigate('/bookmark') : navigate('/login')
 							}} 
 						/>} */}
-
+						<PiCalendarBlankLight 
+							className='bm-icon cursor-pointer' 
+							onClick={() => { navigate('/calendar') }} 
+						/>
 					</HeaderLeft>
 
 					<HeaderCenter onClick={() => navigate('/')} />
 
 					<HeaderRight>
-						<PiCalendarBlankLight 
-							className='bm-icon cursor-pointer' 
-							onClick={() => { navigate('/calendar') }} 
-						/>
-						<MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						
+						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
 
 
 						{log ? <span className='cursor-pointer' onClick={() => navigate('/profile')}>{log}님</span> : 
