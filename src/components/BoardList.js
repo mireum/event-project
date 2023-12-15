@@ -1,12 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './BoardList.css';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function BoardList() {
-  const date = new Date();
-  const [ BoardList, setBoardList ] = useState([]);
+  
 
+  
+  const [ BoardList, setBoardList ] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
       const getBoardList = async () => {
@@ -47,7 +51,7 @@ function BoardList() {
               return(
                 <tr className="table_list" key={index}>
                   <td className="list_subject" id="list_subject">
-                    <a href="/boardRead?id={{board.id}}">{item.title}</a>
+                    <a href="/board/listpage">{item.title}</a>
                   </td>
                   {/* <td className="list_content" id="list_content" >{text}</td> */}
                   <td className="list_writer" id="list_writer" >{item.writer}</td>
@@ -58,7 +62,7 @@ function BoardList() {
             })}
           </tbody>
         </table>
-        <button className='submit-buttons'>글 쓰기</button>
+        <button className='submit-buttons' onClick={() => {navigate('/board')}}>글 쓰기</button>
       </div>
     </section>
   );
@@ -66,6 +70,3 @@ function BoardList() {
 
 export default BoardList;
 
-{/* <tbody key={index}>
-  
-</tbody>  */}

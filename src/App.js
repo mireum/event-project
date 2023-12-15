@@ -16,6 +16,7 @@ import Board from './components/Board';
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';
 import BoardList from './components/BoardList';
+import BoardListPage from './components/BoardListPage';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -63,6 +64,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/board' element={<Board />} />
           <Route path='/board/list' element={<BoardList />} />
+          <Route path='/board/listpage' element={<BoardListPage />} />
         </Route>
       </Routes>
     </>

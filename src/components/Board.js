@@ -10,7 +10,6 @@ function Board () {
   const [boardContent, setBoardContent] = useState({
     title: '',
     content: '',
-    date: '',
     view: '',
     writer: '',
   });
@@ -25,12 +24,15 @@ function Board () {
   // }, [viewContent])
 
   const submitReview = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
+      const today = new Date();
+      const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+
       const result = await axios.post(`http://localhost:8088/board`, {
         title: boardContent.title,
         content: boardContent.content,
-        date: boardContent.date,
+        date: formattedDate,
         view: boardContent.view,
         writer: boardContent.writer
       })
