@@ -19,6 +19,8 @@ import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';
 import RequireAuth from './auth/RequireAuth';
 import ReservInfo from './components/pages/ReservInfo';
+import Profile from './components/Profile';
+import ProfilePw from './components/ProfilePw';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -54,6 +56,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Header />}>
           <Route path='/login' element={<Login />} />
+          <Route path='/profile' 
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            } />
+          <Route path='/profilePw' 
+            element={
+              <RequireAuth>
+                <ProfilePw />
+              </RequireAuth>
+            } />
           <Route path='/bookmark' element={<BookMark />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/find' element={<FindPage />} />
@@ -66,8 +80,14 @@ function App() {
                 <Reserv />
               </RequireAuth>
             } />
+          <Route 
+            path='/profile/reserv/info' 
+            element={
+              <RequireAuth>
+                <ReservInfo />
+              </RequireAuth>
+            } />
           <Route path='/register' element={<Register />} />
-          <Route path='/user/reserv/info' element={<ReservInfo />} />
           <Route path='/board' element={<Board />} />
 
         </Route>

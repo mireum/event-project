@@ -164,9 +164,10 @@ function Header(props) {
 						{/* <MdOutlineManageSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
 
 
-						{log ? <span>{log}님   <button onClick={logoutFunc}>로그아웃</button></span> : 
+						{log ? <span className='cursor-pointer' onClick={() => navigate('/profile')}>{log}님</span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						} 
+						{log ? <button onClick={logoutFunc}>로그아웃</button> : undefined}
 
 						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
 						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />

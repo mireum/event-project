@@ -201,6 +201,8 @@ function Reserv(props) {
   const handleOpenPayModal = () => setShowPayModal(true);
   const [payBtn, setPayBtn] = useState('');
 
+  const [showResultModal, setShowResultModal] = useState(false);
+
   useEffect(() => {
     const eventList = async () => {
       try {
@@ -229,12 +231,17 @@ function Reserv(props) {
 
   const handleSubmitPay = async () => {
     setShowPayModal(false);
-
+    setShowResultModal(true);
     try {
       await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName})
     } catch (err) {
       console.error(err);
     }
+
+  }
+
+  const handleReservResult = () => {
+    navigate('/profile/reserv/info');
   }
   
   return (
@@ -381,8 +388,6 @@ function Reserv(props) {
               </div>
             </div>
           </div>
-
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleSubmitPay} disabled={!payBtn}>
@@ -390,6 +395,28 @@ function Reserv(props) {
           </Button>
         </Modal.Footer>
       </PayModal>
+
+      <Modal
+        size="sm"
+        show={showResultModal}
+        onHide={() => setShowResultModal(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+        style={{marginTop: '180px'}}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="example-modal-sizes-title-sm">
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{fontWeight: 'bold'}}>예약을 완료 하였습니다!<br/>예약페이지로 이동하시겠습니까?</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowResultModal(false)} >
+              닫기
+            </Button>
+            <Button variant="primary" onClick={handleReservResult} >
+              확인
+            </Button>
+        </Modal.Footer>
+        </Modal>      
     </ReservItemContainer>
   );
 
