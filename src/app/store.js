@@ -1,11 +1,9 @@
-import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from "../features/searchSlice";
 import eventListReducer from "../api/eventListSlice";
 import likedReducer from "../features/likedSlice";
 import findReducer from "../features/findSlice";
 import userRedecer from "../features/userSlice";
-// import { persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
 
 export const store = configureStore({
   reducer: {

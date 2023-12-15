@@ -9,7 +9,7 @@ import { selectEventList } from '../../api/eventListSlice';
 
 const StyledContainer = styled(Container)`
   max-width: 1200px;
-  padding-top: 20px;
+  padding: 20px 0 0 0;
 
   & h2 {
     font-weight: bold;
@@ -19,7 +19,6 @@ const StyledContainer = styled(Container)`
       text-align: center;
     }
   }
-  
 `;
 
 function Recommend(props) {

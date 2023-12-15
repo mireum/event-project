@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const MapItemContainer = styled(Container)`
   max-width: 1200px;
+  padding: 0;
 `;
 
 const MapItemInner = styled.div`
