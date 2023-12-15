@@ -65,7 +65,9 @@ const FormBox = styled.form`
 function Comments(props) {
   const userId = useSelector(selectId);
   const userName = useSelector(selectUsername);
-  // const { detailItem } = props;
+  const { detailItem } = props;
+  // console.log(detailItem);
+  const _id = detailItem._id;
 
   const [ content, setContent ] = useState('');
   const [ comments, setComments ] =useState([]);
@@ -74,9 +76,9 @@ function Comments(props) {
   useEffect(() => {
     const commentList = async () => {
       try {
-        const result = await axios.get('http://localhost:8088/post/comment');
-        // console.log(result.data.result);
-        return setComments(result.data.list);
+        const result = await axios.get('http://localhost:8088/post/comment', { params: { detailId: _id } });
+        console.log(result.data); 
+        setComments(result.data);
       } catch (err) {
         console.error(err);
       }
@@ -91,20 +93,14 @@ function Comments(props) {
   const handleComment = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8088/post/comment', { content, userId, userName });
+      await axios.post('http://localhost:8088/post/comment', { content, userId, userName, _id });
+      const result = await axios.get('http://localhost:8088/post/comment', { params: { detailId: _id } })
+      setComments(result.data);
     } catch (err) {
       console.error(err);
     }
     setContent('');
   };
-
-  // const addItem = () => {
-  //   const newItem = Math.random();
-  //   setComments(prevItems => [...prevItems, newItem]); // 이전 상태(prevItems)를 이용하여 새로운 아이템을 추가
-  // };
-
-  
-
 
 
   return (
@@ -119,7 +115,7 @@ function Comments(props) {
         comments && comments.map((item, index) => {
         return(
           <CommentBox key={index}>
-            <p><strong>{item.author}</strong>  <span>작성시간</span></p> 
+            <p><strong>{item.author}</strong> <span>작성시간</span></p> 
             <p>{item.content}</p>
           </CommentBox>
         )

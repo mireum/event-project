@@ -142,10 +142,10 @@ function Header(props) {
 			<HeaderWrap>
 				<HeaderInner>
 					<HeaderLeft>
-						<GoHeart className='bm-icon cursor-pointer'
+						{/* <GoHeart className='bm-icon cursor-pointer'
 							onClick={() => { navigate('/bookmark') }} > 
 							<GoHeartFill className='fill'/>
-						</GoHeart>
+						</GoHeart> */}
 
 						{/* {<GoHeart className='bm-icon cursor-pointer'onClick={() => { 
 							userId && userName ? navigate('/bookmark') : navigate('/login')

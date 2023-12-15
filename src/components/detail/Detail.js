@@ -38,7 +38,7 @@ function Detail(props) {
 				<DetailVisual />
 				<FestivalInfo detailItem={detailItem} />
 				<Map />
-				<Comments detailItem={detailItem}/>
+				<Comments detailItem={detailItem} />
 				<Recommend />
 			</>
 		);
