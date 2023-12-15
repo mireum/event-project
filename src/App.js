@@ -92,7 +92,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/board' element={<Board />} />
           <Route path='/board/list' element={<BoardList />} />
-          <Route path='/board/listpage' element={<BoardListPage />} />
+          <Route path='/board/listpage/:postId' element={<BoardListPage />} />
 
 
 

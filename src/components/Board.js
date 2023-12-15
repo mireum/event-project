@@ -4,14 +4,17 @@ import axios from 'axios';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import '../Board.css';
+import { useSelector } from "react-redux";
+import { selectUsername } from "../features/userSlice";
+import { useNavigate } from "react-router";
 
 function Board () {
-
+  const navigate = useNavigate();
+  const named = useSelector(selectUsername);
   const [boardContent, setBoardContent] = useState({
     title: '',
     content: '',
     view: '',
-    writer: '',
   });
   
   // const [viewContent, setViewContent] = useState([]);
@@ -27,14 +30,15 @@ function Board () {
     e.preventDefault();
     try {
       const today = new Date();
+      
       const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
       const result = await axios.post(`http://localhost:8088/board`, {
         title: boardContent.title,
         content: boardContent.content,
-        date: formattedDate,
+        date: today,
         view: boardContent.view,
-        writer: boardContent.writer
+        writer: named
       })
       if (result.data.flag) {
         alert('등록 완료!');
@@ -42,7 +46,7 @@ function Board () {
     } catch (err) {
       console.error(err);
     }
-    window.location.href = 'http://localhost:3000/board'
+    navigate('/board/list');
   };
 
   const getValue = e => {
@@ -74,18 +78,6 @@ function Board () {
           onChange={getValue}
           name='title'
           />
-          <input className="title-input1"
-          type='text'
-          placeholder='작성일'
-          onChange={getValue}
-          name='date'
-          />
-          <input className="title-input1"
-          type='text'
-          placeholder='작성자'
-          onChange={getValue}
-          name='writer'
-          />
         <CKEditor
           editor={ClassicEditor}
           data=''
@@ -107,7 +99,7 @@ function Board () {
           }}
           />
       </div>
-      <button className="submit-button" onClick={submitReview}>입력</button>
+      <button className="submit-button" onClick={submitReview} >입력</button>
     </div>
   </div>
   );

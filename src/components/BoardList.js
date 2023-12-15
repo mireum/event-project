@@ -1,23 +1,24 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './BoardList.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
 function BoardList() {
-  
-
-  
   const [ BoardList, setBoardList ] = useState([]);
   const navigate = useNavigate();
+  const { postId } = useParams();
+  const onclickSubject = () => {
+    axios.post(`http://localhost:8088/board/listpage`);
+  }
+  
 
   useEffect(() => {
       const getBoardList = async () => {
         try {
           const result = await axios.get(`http://localhost:8088/board/list`);
           console.log(result);
-          
           return setBoardList(result.data);
     
         } catch (err) {
@@ -26,6 +27,13 @@ function BoardList() {
       }  
       getBoardList();
     }, []);
+
+  const today = (date) => {
+    const newDate = new Date(date)
+
+    return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일`
+  }
+
   return (
     <section id='list_form'>
       <div className="board_list" >
@@ -41,6 +49,7 @@ function BoardList() {
           </thead> 
           <tbody>
             {BoardList.map((item, index) => {
+              const id = item._id;
               // const array = item.content.split('<p>');
               let text = item.content.replace(/<br\/>/ig, "\n");
               text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
@@ -50,12 +59,10 @@ function BoardList() {
               // console.log(array);
               return(
                 <tr className="table_list" key={index}>
-                  <td className="list_subject" id="list_subject">
-                    <a href="/board/listpage">{item.title}</a>
-                  </td>
+                  <td className="list_subject cursor-pointer" id="list_subject" onClick={() => navigate(`/board/listpage/${item._id}`)}>{item.title}</td>
                   {/* <td className="list_content" id="list_content" >{text}</td> */}
                   <td className="list_writer" id="list_writer" >{item.writer}</td>
-                  <td className="list_date">{item.date}</td>
+                  <td className="list_date">{today(item.date)}</td>
                   <td className="list_view">{item.view}</td>
                 </tr>
               )

@@ -39,8 +39,7 @@ function Login() {
           navigate('/');
         }
       } catch (err) {
-        console.error(err);
-        // alert(err.response.data);
+        alert(err.response.data);
       }
     }
 };
