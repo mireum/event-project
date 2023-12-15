@@ -120,7 +120,7 @@ const PersonModal = styled(Modal)`
 `;
 
 const PayModal = styled(Modal)`
-  margin-top: 160px;
+  margin-top: 140px;
 
   .pay-info-container {
     border-radius: 10px;
@@ -409,7 +409,7 @@ function Reserv(props) {
           </Modal.Header>
           <Modal.Body style={{fontWeight: 'bold'}}>예약을 완료 하였습니다!<br/>예약페이지로 이동하시겠습니까?</Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowResultModal(false)} >
+            <Button variant="secondary" onClick={() => navigate(`/detail/${EventListId}`)} >
               닫기
             </Button>
             <Button variant="primary" onClick={handleReservResult} >

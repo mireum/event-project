@@ -27,7 +27,7 @@ function Login() {
       const result = await axios.post(`http://localhost:8088/user/login`, { username, password, email },{
         withCredentials: true
       });
-
+      console.log(result.data);
       delete result.data.user.password;
       localStorage.setItem('user', JSON.stringify(result.data.user));
 
@@ -39,8 +39,7 @@ function Login() {
           navigate('/');
         }
       } catch (err) {
-        console.error(err);
-        // alert(err.response.data);
+        alert(err.response.data);
       }
     }
 };
