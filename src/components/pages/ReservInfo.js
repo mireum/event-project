@@ -9,7 +9,8 @@ const ReservInfoContainer = styled.div`
   max-width: 1200px;
   margin: 50px auto;
 
-  .last-td {
+  .reserv-title {
+    margin-bottom: 30px;
   }
 
   .cancel-btn {
@@ -23,6 +24,7 @@ function ReservInfo(props) {
   const userId = useSelector(selectId);
 
   const [reserv, setReserv] = useState([]);
+  // const [deleteReserv, setDeleteReserv] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [cancelId, setCancelId] = useState('');
 
@@ -30,6 +32,7 @@ function ReservInfo(props) {
     const reserv = async () => {
       try {
         const result = await axios.get('http://localhost:8088/user/reserv/info', {params: {userId}})
+        console.log(result);
         setReserv(result.data);
       } catch (err) {
         console.error(err);
@@ -42,12 +45,14 @@ function ReservInfo(props) {
     setCancelId(id)
     setShowModal(true);
   };
-
+  
   const handleSubmitCancelPay = async () => {
     setShowModal(false)
-
+    
     try {
-      const result = await axios.post('http://localhost:8088/post/reserv/delete', {cancelId})
+      await axios.post('http://localhost:8088/post/reserv/delete', {cancelId});
+      const result = await axios.get('http://localhost:8088/user/reserv/info', {params: {userId}})
+      setReserv(result.data)
     } catch (err) {
       console.error(err);
     }
@@ -56,6 +61,7 @@ function ReservInfo(props) {
   return (
     <>
       <ReservInfoContainer>
+        <h2 className='reserv-title'>예약 확인</h2>
         <Table striped="columns">
           <thead>
             <tr>
@@ -69,7 +75,7 @@ function ReservInfo(props) {
           </thead>
           {reserv.map((item, index) => {
             return (
-              <tbody>
+              <tbody key={item._id}>
                 <tr>
                   <td>{index+1}</td>
                   <td>{item.fstvlDate}</td>
@@ -92,7 +98,7 @@ function ReservInfo(props) {
         show={showModal}
         onHide={() => setShowModal(false)}
         aria-labelledby="example-modal-sizes-title-sm"
-        style={{marginTop: '100px'}}
+        style={{marginTop: '180px'}}
         >
           <Modal.Header closeButton>
             <Modal.Title id="example-modal-sizes-title-sm">
