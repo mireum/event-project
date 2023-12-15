@@ -56,8 +56,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Header />}>
           <Route path='/login' element={<Login />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/profilePw' element={<ProfilePw />} />
+          <Route path='/profile' 
+            element={
+              <RequireAuth>
+                <Profile />
+              </RequireAuth>
+            } />
+          <Route path='/profilePw' 
+            element={
+              <RequireAuth>
+                <ProfilePw />
+              </RequireAuth>
+            } />
           <Route path='/bookmark' element={<BookMark />} />
           <Route path='/calendar' element={<Calendar />} />
           <Route path='/find' element={<FindPage />} />

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { selectEmail, selectId, selectUsername } from '../features/userSlice';
+import { selectEmail, selectId, selectUsername, setUser } from '../features/userSlice';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 
@@ -68,11 +68,20 @@ function Profile(props) {
   const id = useSelector(selectId);
   const name = useSelector(selectUsername);
   const email = useSelector(selectEmail);
+  const dispatch = useDispatch();
 
   const resign = async (e) => {
-    e.preventdefault();
-    const result = await axios.post('http://localhost:8088/user/resign', {id});
-    console.log(result.data);
+    e.preventDefault();
+    const check = window.confirm('정말 탈퇴하시겠습니까?');
+    if (check) {
+      const result = await axios.post('http://localhost:8088/user/resign', {id});
+      if (result.data.flag) {
+        alert('탈퇴되었습니다!')
+      }
+      localStorage.clear();
+      dispatch(setUser({ id: '', username: '', email: '' }))
+      navigate('/');
+    } else { return }
   };
 
   return (
@@ -89,7 +98,7 @@ function Profile(props) {
           </label>
           <div className='buttonBox'>
             <button type='button' onClick={() => {navigate('/profilePw')}}>비밀번호 변경</button>
-            <button onClick={resign}>회원 탈퇴</button>
+            <button type='button' onClick={resign}>회원 탈퇴</button>
           </div>
 
       </ProfileForm>
