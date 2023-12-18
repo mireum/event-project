@@ -41,6 +41,24 @@ const CommentBox = styled.div`
       margin: 0 5px;
     }
   }
+
+  .update-form {
+    width: 90%;
+  
+    .update-input {
+      width: 90%;
+      padding-left: 5px;
+      margin-bottom: 16px;
+      border-radius: 5px;
+    }
+
+    .update-btn {
+      width: 10%;
+      background-color: #848484;
+      color: #fff;
+    }
+  }
+
 `;
 
 const CommentRegistBox = styled.div`
@@ -82,8 +100,10 @@ function Comments(props) {
   const _id = detailItem._id;
 
   const [ content, setContent ] = useState('');
-  const [ comments, setComments ] =useState([]);
-  const [ commentEdit, setCommentEdit ] =useState(false);
+  const [ comments, setComments ] = useState([]);
+  const [ commentEdit, setCommentEdit ] = useState(false);
+  const [ selectContent, setSelectContent ] =useState(null);
+  const [ updateContent, setUpdateContent ] = useState('');
 
   const today = new Date();
 
@@ -124,6 +144,33 @@ function Comments(props) {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const updateBtnClick = (content) => {
+    setCommentEdit(!commentEdit);
+    setSelectContent(content._id);
+    setUpdateContent(content.content);
+  };
+
+  const handleUpdateChange = (e) => {
+    setUpdateContent(e.target.value);
+  }
+
+  const handleSubmitUpdateContent = async (index) => {
+    try {
+      await axios.post('http://localhost:8088/post/comment/update', { selectContent, updateContent });
+      // 수정 된 값 새로고침 없이 바로 반영하기
+      // 방법 1
+      // const result = await axios.get('http://localhost:8088/post/comment', { params: { detailId: _id } });
+      // setComments(result.data);
+
+      // 방법 2
+      comments[index].content = updateContent;
+
+      setCommentEdit(false);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (
@@ -142,13 +189,16 @@ function Comments(props) {
               <p><strong>{item.author}</strong> <span>{dateFormat(item.date)}</span></p> 
               {userId === item.authorId &&
               <div>
-                <button className='edit-btn' onClick={() => setCommentEdit(!commentEdit)}><MdCreate /></button>
+                <button className='edit-btn' onClick={() => updateBtnClick(item)}><MdCreate /></button>
                 <button className='edit-btn' onClick={() => handleCommentDelete(item._id)}><MdDeleteForever /></button>
               </div>
               }
             </div>
-            {commentEdit
-              ? <input type='text' value={item.content}></input>
+            {selectContent === item._id && commentEdit
+              ? <div className='update-form'>
+                  <input className='update-input' type='text' value={updateContent} name='update-content' onChange={handleUpdateChange} />
+                  <button type='submit' className='update-btn' onClick={() => handleSubmitUpdateContent(index)} >수정</button>
+                </div>
               : <p>{item.content}</p>
             }
             
