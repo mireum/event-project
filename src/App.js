@@ -21,6 +21,7 @@ import RequireAuth from './auth/RequireAuth';
 import ReservInfo from './components/pages/ReservInfo';
 import Profile from './components/Profile';
 import ProfilePw from './components/ProfilePw';
+import Pay from './components/pages/Pay';
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -89,6 +90,7 @@ function App() {
             } />
           <Route path='/register' element={<Register />} />
           <Route path='/board' element={<Board />} />
+          <Route path='/pay' element={<Pay />} />
 
         </Route>
       </Routes>
