@@ -90,7 +90,11 @@ function App() {
               </RequireAuth>
             } />
           <Route path='/register' element={<Register />} />
-          <Route path='/board' element={<Board />} />
+          <Route path='/board' element={
+            <RequireAuth>
+              <Board />
+            </RequireAuth>
+          } />
           <Route path='/board/list' element={<BoardList />} />
           <Route path='/board/listpage/:postId' element={<BoardListPage />} />
 

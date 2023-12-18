@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/store";
 import ScrollToTop from './components/ScrollToTop';
 import axios from 'axios';
-import { selectId, setUser } from './features/userSlice';
+import { setUser } from './features/userSlice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

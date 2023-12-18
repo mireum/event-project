@@ -8,10 +8,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 function BoardList() {
   const [ BoardList, setBoardList ] = useState([]);
   const navigate = useNavigate();
-  const { postId } = useParams();
-  const onclickSubject = () => {
-    axios.post(`http://localhost:8088/board/listpage`);
-  }
+  // const { postId } = useParams();
+  // const onclickSubject = () => {
+  //   axios.post(`http://localhost:8088/board/listpage`);
+  // }
   
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function BoardList() {
   const today = (date) => {
     const newDate = new Date(date)
 
-    return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일`
+    return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 ${newDate.getHours()}:${newDate.getMinutes()}`
   }
 
   return (
