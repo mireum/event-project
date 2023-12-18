@@ -57,12 +57,6 @@ function Finder(props) {
 	}, []);
   
   const handleSubmit = async () => {
-    try {
-      await axios.post('http://localhost:8088/search', { value })
-    } catch (err) {
-      console.error(err);
-    }
-
     navigate('/find');
     setShowFind(false);
     dispatch(getFindWord(value));

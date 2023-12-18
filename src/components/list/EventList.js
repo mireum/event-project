@@ -70,13 +70,13 @@ function EventList(props) {
 
   // eventListSlice의 eventListItem 호출
   const eventLists = useSelector(selectEventList);
-
   const subject = useSelector(searchSubject);
   const month = useSelector(searchMonth);
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
   const button = useSelector(searchButton);
 
+  console.log(eventLists);
   let filteredEventList = [];
   
   if (button) {
@@ -86,7 +86,6 @@ function EventList(props) {
       let filterMonth = true;
       let filterLocation = true;
       let filterCategory = true;
-      
       filterSubject = subject.includes(event.type);
       // filterMonth = month.includes(event.fstvlStartDate.split('-')[1]);
       if (event.hoding) {
