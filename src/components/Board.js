@@ -14,7 +14,7 @@ function Board () {
   const [boardContent, setBoardContent] = useState({
     title: '',
     content: '',
-    view: '',
+    view: 0,
   });
 
   const submitReview = async (e) => {
@@ -53,14 +53,6 @@ function Board () {
     <div className="board">
       <h1>게시판</h1>
       <div className='board-container'>
-        {/* {viewContent.map(element =>
-          <div className="title">
-            <h2>{element.title}</h2>
-            <div className="cont">
-              {ReactHtmlParser(element.content)}
-            </div>
-          </div>
-        )} */}
       </div>
       <div className='form-wrapper'>
         <input className="title-input"
@@ -76,7 +68,6 @@ function Board () {
           }}
           onChange={(event, editor) => {
             const data = editor.getData();
-            console.log({ event, editor, data });
             setBoardContent({
               ...boardContent,
               content: data

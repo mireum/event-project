@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components';
-
+import { MdDelete } from "react-icons/md";
+import { useSelector } from 'react-redux';
+import { selectUsername } from '../features/userSlice';
 
 const BoardPageBox = styled.div`
   max-width: 1200px;
@@ -11,6 +13,7 @@ const BoardPageBox = styled.div`
 
 const InnerBox = styled.div`
   border: 3px solid #6A24FE;
+  position: relative;
 
   h2 {
     padding: 20px;
@@ -24,6 +27,17 @@ const InnerBox = styled.div`
     font-size: 20px;
     padding: 20px;
   }
+  .deleteBtn {
+    position: absolute;
+    font-size: 28px;
+    top: 10%;
+    right: 4%;
+    text-align: end;
+  }
+
+  .deleteBtn:hover {
+    color: red;
+  }
 `;
 
 
@@ -31,6 +45,8 @@ function BoardListPage() {
   const { postId } = useParams();
   const [ post, setPost ] = useState(''); 
   const [ postContent, setPostContent ] = useState('');
+  const username = useSelector(selectUsername);
+  const navigate = useNavigate();
   
   const today = (date) => {
     const newDate = new Date(date)
@@ -50,13 +66,21 @@ function BoardListPage() {
     }
     pages();
   }, []);
-    
+  
+
+  const handleDelete = async () => {
+    const result = await axios.post(`http://localhost:8088/board/listpage/delete`, { postId, username });
+    if (result.data.flag) {
+      alert('삭제되었습니다.');
+    }
+    navigate('/board/list');
+  };
 
   return (
     <BoardPageBox>
       <InnerBox>
-
         <h2 className='list-name'>제목: {post?.title}</h2>
+        {username == post.writer && <span className='deleteBtn cursor-pointer' onClick={handleDelete}><MdDelete /></span>}
         <h5>{post.writer} | <span>{today(post.date)}</span></h5>
         <p>{postContent}</p>
 

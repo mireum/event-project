@@ -76,7 +76,8 @@ function EventList(props) {
   const location = useSelector(searchLocation);
   const category = useSelector(searchCategory);
   const button = useSelector(searchButton);
-
+  console.log(eventLists[0]);
+  // console.log(typeof eventLists[0].fstvlStartDate);
   let filteredEventList = [];
   
   if (button) {
