@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { IoSearch } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineUser } from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from '../../features/userSlice';
+import Finder from '../Finder';
 
 const Background = styled.div`
-  position: fixed;
-  width: 100%;
+  /* position: fixed;
+  width: 30%;
   height: 100%;
-  z-index: 200;
+  right: 0;
+  bottom: 0;
+  z-index: 200; */
   .layout {
-    /* pointer-events: none;  */
     position: fixed;
     width: 70%;
     height: 100%;
@@ -53,6 +56,9 @@ const MenuWrapper = styled.div`
     .icons:hover {
       color: #7a45e5;
     }
+  .search {
+    margin-right: 45%;
+  }  
   }
 `;
 
@@ -72,6 +78,11 @@ const MenuList = styled.div`
   li .link:hover {
     color: #7a45e5;
   }
+  @media screen and (max-width: 768px) {
+    li .link {
+    font-size: 20px;
+  }
+  }
 `;
 
 
@@ -79,12 +90,7 @@ function HamburgerBar(props) {
 	const navigate = useNavigate();
   const userId = useSelector(selectId);
   const userName = useSelector(selectUsername);
-  const { show, setShow } = props;
-
-  // const handleChange = () => {
-  //   setShow(!show)
-  // }
-
+  const { show, setShowFind, showFind } = props;
 
   return (
     <Background onClick={(e) => {
@@ -92,7 +98,7 @@ function HamburgerBar(props) {
       e.stopPropagation();
       }} >
       <MenuWrapper className={show ? 'active' : 'hidden'} >
-        <div className="iconsWrap" onClick={() => {props.setShow(prev => !prev)}}>
+        <div className="iconsWrap" onClick={() => {props.setShow(prev => !prev);}}>
           <AiOutlineUser 
             className='icons cursor-pointer' 
             onClick={() => { 
@@ -100,11 +106,16 @@ function HamburgerBar(props) {
               props.setShow(prev => !prev);
             }} 
           />
+          <IoSearch className='bm-icon cursor-pointer search' onClick={()=> {setShowFind(prev=>!prev)}} />
           <IoClose className='icons cursor-pointer' onClick={() => {props.setShow(prev => !prev)}}/>
         </div>
-        <MenuList>
+        <MenuList >
           <ul>
-            <li><Link className='link' to={'/board'}>후기 게시판</Link></li>
+            <li>
+              { showFind && <Finder setShowFind={setShowFind}/> }    
+              {/* <Finder setShowFind={setShowFind}/> */}
+            </li>
+            <li><Link className='link' to={'/board/list'}>후기 게시판</Link></li>
             <li onClick={() => {
                 userId && userName ? navigate('/bookmark') : navigate('/login')
               }}>
@@ -113,7 +124,7 @@ function HamburgerBar(props) {
           </ul>
         </MenuList>
       </MenuWrapper>
-      <div className='layout'></div>
+      <div className='layout' ></div>
     </Background>
   );
 }

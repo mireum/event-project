@@ -94,18 +94,6 @@ const HeaderRight = styled.div`
 		color: #7a45e5;
 	}
 
-	.fill {
-		font-size: 35px;
-		margin-right: 15px;
-	}
-
-	.fill:hover {
-		display: block;
-	}
-
-	.sh-icon {
-		font-size: 40px;
-	}
 	.active {
 		width: 30%;
 		position: fixed;
@@ -118,6 +106,16 @@ const HeaderRight = styled.div`
 		box-sizing: border-box;
 		transition:  0.5s;
   }
+
+	.btnStyle {
+		margin-left: 5px;
+		padding: 5px;
+		border-radius: 5px;
+	}
+	.btnStyle:hover {
+		background-color: #7a45e5;
+		color: #fff;
+	}
 `;
 
 
@@ -167,14 +165,14 @@ function Header(props) {
 						{log ? <span className='cursor-pointer' onClick={() => navigate('/profile')}>{log}님</span> : 
 						<AiOutlineUser className='bm-icon cursor-pointer' onClick={() => {navigate('/register')}}/>
 						} 
-						{log ? <button onClick={logoutFunc}>로그아웃</button> : undefined}
+						{log ? <button className="btnStyle" onClick={logoutFunc}>로그아웃</button> : undefined}
 
-						<IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} />
+						{/* <IoSearch className='bm-icon cursor-pointer' onClick={()=> {setShowFind(prev=>!prev)}} /> */}
 						<RiMenu3Fill className='bm-icon cursor-pointer' onClick={() => {setShowHamburger(prev=>!prev)}} />
-						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} /> }
+						{ showHamburger && <HamburgerBar show={showHamburger} setShow={setShowHamburger} setShowFind={setShowFind} showFind={showFind} /> }
 					</HeaderRight>
 					
-					{showFind && <Finder setShowFind={setShowFind} />}
+					{/* {showFind && <Finder setShowFind={setShowFind} />} */}
 				</HeaderInner>
 			</HeaderWrap>
 			<Outlet />
