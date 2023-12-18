@@ -29,14 +29,14 @@ function FindPage(props) {
   const findingList = useSelector(selectFindList);
   const findingWord = useSelector(selectFindWord);
 
-  return (
-    <StyledContainer>
-      <h2 style={{margin: '30px 0'}}><span style={{color:'blue'}}>"{findingWord}"</span>에 대한 검색 결과입니다.</h2>  
-      <Row>
-        {findingList.map(item => item.fstvlNm.includes(findingWord) && <EventListItem key={item.id} item={item}/>)}
-      </Row>
-    </StyledContainer>
-  );
-}
+    return (
+      <StyledContainer>
+        <h2 style={{margin: '30px 0'}}><span style={{color:'blue'}}>"{findingWord}"</span>에 대한 검색 결과입니다.</h2>  
+        <Row>
+          {findingList?.map(item => item.fstvlNm.includes(findingWord) && <EventListItem key={item.id} item={item}/>)}
+        </Row>
+      </StyledContainer>
+    );
+  } 
 
 export default FindPage;
