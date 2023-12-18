@@ -18,14 +18,17 @@
 
 .submit-buttons {
   width: 80px;
+  font-weight: bold;
+  margin-top: 20px;
   font-size: 24px;
-  padding: 5px 0;
+  padding: 4px 0;
   background-color: #6A24FE;
+  border-radius: 5px;
   color: #fff;
 }
 
 .submit-buttons:hover {
-  background-color: #631cfc;
+  background-color: hsl(212, 87%, 56%);
 }
 
 .submit-buttons:active {

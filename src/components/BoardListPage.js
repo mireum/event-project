@@ -32,6 +32,11 @@ function BoardListPage() {
   const [ post, setPost ] = useState(''); 
   const [ postContent, setPostContent ] = useState('');
   
+  const today = (date) => {
+    const newDate = new Date(date)
+    return `${newDate.getFullYear()}년 ${newDate.getMonth() + 1}월 ${newDate.getDate()}일 ${newDate.getHours()}:${newDate.getMinutes()}`
+  }
+
   useEffect(() => {
     const pages = async() => {
       const result = await axios.post(`http://localhost:8088/board/listpage`, { postId });
@@ -52,7 +57,7 @@ function BoardListPage() {
       <InnerBox>
 
         <h2 className='list-name'>제목: {post?.title}</h2>
-        <h5>작성자: {post.writer}</h5>
+        <h5>{post.writer} | <span>{today(post.date)}</span></h5>
         <p>{postContent}</p>
 
       </InnerBox>

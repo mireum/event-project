@@ -8,11 +8,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 function BoardList() {
   const [ BoardList, setBoardList ] = useState([]);
   const navigate = useNavigate();
-  // const { postId } = useParams();
-  // const onclickSubject = () => {
-  //   axios.post(`http://localhost:8088/board/listpage`);
-  // }
-  
 
   useEffect(() => {
       const getBoardList = async () => {
@@ -49,27 +44,23 @@ function BoardList() {
           </thead> 
           <tbody>
             {BoardList.map((item, index) => {
-              const id = item._id;
-              // const array = item.content.split('<p>');
               let text = item.content.replace(/<br\/>/ig, "\n");
               text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
               text = text.replace(/(<([^>]+)>)/gi, "");
               text = text.replace(/&nbsp;/gi,"");
 
-              // console.log(array);
               return(
                 <tr className="table_list" key={index}>
                   <td className="list_subject cursor-pointer" id="list_subject" onClick={() => navigate(`/board/listpage/${item._id}`)}>{item.title}</td>
-                  {/* <td className="list_content" id="list_content" >{text}</td> */}
                   <td className="list_writer" id="list_writer" >{item.writer}</td>
                   <td className="list_date">{today(item.date)}</td>
-                  <td className="list_view">{item.view}</td>
+                  <td className="list_view">{item.view || 0}</td>
                 </tr>
               )
             })}
           </tbody>
         </table>
-        <button className='submit-buttons' onClick={() => {navigate('/board')}}>글 쓰기</button>
+        <button className='submit-buttons' onClick={() => {navigate('/board')}}>등록</button>
       </div>
     </section>
   );
