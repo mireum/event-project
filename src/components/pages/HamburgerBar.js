@@ -19,11 +19,11 @@ const Background = styled.div`
     z-index: 200;
     background-color: rgba(0, 0, 0, 0.4);
   }
-  @media screen and (max-width: 768px){
+  /* @media screen and (max-width: 768px){
     .layout {
       width: 50%;
     }
-  }
+  } */
 `;
 
 const MenuWrapper = styled.div`
