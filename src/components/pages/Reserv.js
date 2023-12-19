@@ -230,11 +230,11 @@ function Reserv(props) {
     payTotal = (price * adult + price/2 * kids + price/5 * child).toLocaleString('ko-KR')
   }
 
-  const handleSubmitPay = async () => {
-    setShowPayModal(false);
+  const handleSubmitPay = async (resp) => {
+    // setShowPayModal(false)
     setShowResultModal(true);
     try {
-      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName})
+      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName, resp})
     } catch (err) {
       console.error(err);
     }
@@ -246,10 +246,13 @@ function Reserv(props) {
   }
 
   const handlePay = async () => {
+    payTotal = payTotal.split(',').join('');
+
+    try {
     const response = await Bootpay.requestPayment({
       "application_id": process.env.REACT_APP_PAYKEY,
       "price": Number(payTotal),
-      "order_name": `${fstvlNm}`,
+      "order_name": `문화생활력소 ${fstvlNm}`,
       "order_id": "TEST_ORDER_ID",
       "pg": "kcp",
       "method": ["카드", "핸드폰"],
@@ -274,9 +277,28 @@ function Reserv(props) {
         "escrow": false
       }
     })
-    setShowResultModal(true);
-  }
-  
+    switch (response.event) {
+      case 'issued':
+          break
+      case 'done':
+          handleSubmitPay(response);
+          break
+      case 'confirm': 
+          console.log(response.receipt_id)
+          const confirmedData = await Bootpay.confirm()
+          if(confirmedData.event === 'done') {
+          }
+          break
+    }
+    } catch (e) {
+    console.log(e.message)
+    switch (e.event) {
+      case 'cancel':
+        console.log(e.message)
+      }
+      }
+    }
+
   return (
     <ReservItemContainer>
       <h2>
@@ -336,7 +358,7 @@ function Reserv(props) {
             ? <div className='reserv-btn-container'>
                 <p><span>{payTotal}원</span></p>
                 {/* <button onClick={handleOpenPayModal}>결제하기</button> */}
-                <button onClick={handlePay}>결제하기</button>
+                <button onClick={handlePay}>결제하기</button>/
               </div> 
             : null}
         </div >
