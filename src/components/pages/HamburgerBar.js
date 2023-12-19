@@ -19,11 +19,11 @@ const Background = styled.div`
     z-index: 200;
     background-color: rgba(0, 0, 0, 0.4);
   }
-  /* @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px){
     .layout {
       width: 50%;
     }
-  } */
+  }
 `;
 
 const MenuWrapper = styled.div`
@@ -39,19 +39,16 @@ const MenuWrapper = styled.div`
   transition:  0.5s;
 
   /* @media screen and (max-width: 768px){
-    /* width: 50%; */
-    /* right: -50%; */
+    width: 50%;
+    right: -50%;
     top: 0;
     bottom: 0;
-    @media screen and (max-width: 768px){
-      .active {
-      right: 0;
-      }
-      .hidden {
-        right: -50%;
-      }
+    .active {
+    right: 0;
     }
-    
+    .hidden {
+      right: -50%;
+    }
   } */
 
   .active {
