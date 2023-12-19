@@ -12,7 +12,7 @@ function BoardList() {
   useEffect(() => {
       const getBoardList = async () => {
         try {
-          const result = await axios.get(`http://localhost:8088/board/list`);
+          const result = await axios.get(`http://43.200.245.38/board/list`);
           console.log(result);
           return setBoardList(result.data);
     

@@ -24,7 +24,7 @@ function Board () {
       
       // const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
-      const result = await axios.post(`http://localhost:8088/board`, {
+      const result = await axios.post(`http://43.200.245.38/board`, {
         title: boardContent.title,
         content: boardContent.content,
         date: today,
