@@ -10,6 +10,7 @@ import { MdOutlineArrowBackIosNew, MdOutlineReport } from 'react-icons/md';
 import { GoCreditCard } from "react-icons/go";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { selectId, selectUsername } from '../../features/userSlice';
+import { Bootpay } from '@bootpay/client-js'
 
 const ReservItemContainer = styled(Container)`
   max-width: 1200px;
@@ -229,11 +230,11 @@ function Reserv(props) {
     payTotal = (price * adult + price/2 * kids + price/5 * child).toLocaleString('ko-KR')
   }
 
-  const handleSubmitPay = async () => {
-    setShowPayModal(false);
+  const handleSubmitPay = async (resp) => {
+    // setShowPayModal(false)
     setShowResultModal(true);
     try {
-      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName})
+      await axios.post('http://localhost:8088/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName, resp})
     } catch (err) {
       console.error(err);
     }
@@ -243,7 +244,61 @@ function Reserv(props) {
   const handleReservResult = () => {
     navigate('/profile/reserv/info');
   }
-  
+
+  const handlePay = async () => {
+    payTotal = payTotal.split(',').join('');
+
+    try {
+    const response = await Bootpay.requestPayment({
+      "application_id": process.env.REACT_APP_PAYKEY,
+      "price": Number(payTotal),
+      "order_name": `문화생활력소 ${fstvlNm}`,
+      "order_id": "TEST_ORDER_ID",
+      "pg": "kcp",
+      "method": ["카드", "핸드폰"],
+      "tax_free": 0,
+      "user": {
+        "id": `${userName}`,
+        "username": `${userName}`,
+        "phone": "01000000000",
+        "email": "test@test.com"
+      },
+      "items": [
+        {
+          "id": "item_id",
+          "name": "오",
+          "qty": 1,
+          "price": Number(payTotal)
+        }
+      ],
+      "extra": {
+        "open_type": "iframe",
+        "card_quota": "0,2,3",
+        "escrow": false
+      }
+    })
+    switch (response.event) {
+      case 'issued':
+          break
+      case 'done':
+          handleSubmitPay(response);
+          break
+      case 'confirm': 
+          console.log(response.receipt_id)
+          const confirmedData = await Bootpay.confirm()
+          if(confirmedData.event === 'done') {
+          }
+          break
+    }
+    } catch (e) {
+    console.log(e.message)
+    switch (e.event) {
+      case 'cancel':
+        console.log(e.message)
+      }
+      }
+    }
+
   return (
     <ReservItemContainer>
       <h2>
@@ -302,7 +357,8 @@ function Reserv(props) {
           {adult || kids || child 
             ? <div className='reserv-btn-container'>
                 <p><span>{payTotal}원</span></p>
-                <button onClick={handleOpenPayModal}>결제하기</button>
+                {/* <button onClick={handleOpenPayModal}>결제하기</button> */}
+                <button onClick={handlePay}>결제하기</button>/
               </div> 
             : null}
         </div >
@@ -354,7 +410,7 @@ function Reserv(props) {
         </Modal.Footer>
       </PersonModal>
 
-      <PayModal show={showPayModal} onHide={() => {setShowPayModal(false); setPayBtn('');}}>
+      {/* <PayModal show={showPayModal} onHide={() => {setShowPayModal(false); setPayBtn('');}}>
         <Modal.Header closeButton>
           <Modal.Title>
             결제
@@ -394,7 +450,7 @@ function Reserv(props) {
             결제
           </Button>
         </Modal.Footer>
-      </PayModal>
+      </PayModal> */}
 
       <Modal
         size="sm"

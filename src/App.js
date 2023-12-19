@@ -22,6 +22,7 @@ import RequireAuth from './auth/RequireAuth';
 import ReservInfo from './components/pages/ReservInfo';
 import Profile from './components/Profile';
 import ProfilePw from './components/ProfilePw';
+import Pay from './components/pages/Pay';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -97,8 +98,6 @@ function App() {
           } />
           <Route path='/board/list' element={<BoardList />} />
           <Route path='/board/listpage/:postId' element={<BoardListPage />} />
-
-
 
         </Route>
       </Routes>
