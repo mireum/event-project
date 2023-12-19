@@ -74,7 +74,7 @@ function Profile(props) {
     e.preventDefault();
     const check = window.confirm('정말 탈퇴하시겠습니까?');
     if (check) {
-      const result = await axios.post('https://43.200.245.38/user/resign', {id});
+      const result = await axios.post('http://43.200.245.38/user/resign', {id});
       if (result.data.flag) {
         alert('탈퇴되었습니다!')
       }

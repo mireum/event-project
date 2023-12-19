@@ -36,7 +36,7 @@ function ReservInfo(props) {
   useEffect(() => {
     const reserv = async () => {
       try {
-        const result = await axios.get('https://43.200.245.38/user/reserv/info', {params: {userId}})
+        const result = await axios.get('http://43.200.245.38/user/reserv/info', {params: {userId}})
         console.log(result);
         setReserv(result.data);
       } catch (err) {
@@ -55,8 +55,8 @@ function ReservInfo(props) {
     setShowModal(false)
     
     try {
-      await axios.post('https://43.200.245.38/post/reserv/delete', {cancelId});
-      const result = await axios.get('https://43.200.245.38/user/reserv/info', {params: {userId}})
+      await axios.post('http://43.200.245.38/post/reserv/delete', {cancelId});
+      const result = await axios.get('http://43.200.245.38/user/reserv/info', {params: {userId}})
       setReserv(result.data)
     } catch (err) {
       console.error(err);
