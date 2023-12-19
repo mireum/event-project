@@ -127,7 +127,7 @@ function Header(props) {
 
 	const logoutFunc = async () => {
 		const id = sessionStorage.clear();
-		const result = await axios.post('http://43.200.245.38/user/logout', {}, {withCredentials: true});
+		const result = await axios.post('https://43.200.245.38/user/logout', {}, {withCredentials: true});
 
 		dispatch(setUser({id: '', username: ''}));
 		navigate('/');

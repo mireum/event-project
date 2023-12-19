@@ -73,7 +73,7 @@ function ProfilePw(props) {
       return alert('새로운 비밀번호를 입력해주세요!');
     }
     if (password == confirmWord) {
-      const result = await axios.post('http://43.200.245.38/user/profilePw', {id, password});
+      const result = await axios.post('https://43.200.245.38/user/profilePw', {id, password});
       if (result.data.flag) {
         navigate('/');
       }
