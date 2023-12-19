@@ -234,7 +234,7 @@ function Reserv(props) {
     // setShowPayModal(false)
     setShowResultModal(true);
     try {
-      await axios.post('https://43.200.245.38/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName, resp})
+      await axios.post('http://43.200.245.38/user/reserv', {reservItem, count, payTotal, payBtn, userId, userName, resp})
     } catch (err) {
       console.error(err);
     }
