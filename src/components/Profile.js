@@ -78,7 +78,7 @@ function Profile(props) {
       if (result.data.flag) {
         alert('탈퇴되었습니다!')
       }
-      localStorage.clear();
+      sessionStorage.clear();
       dispatch(setUser({ id: '', username: '', email: '' }))
       navigate('/');
     } else { return }

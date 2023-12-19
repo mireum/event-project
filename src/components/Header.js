@@ -126,7 +126,7 @@ function Header(props) {
 	const [ showHamburger, setShowHamburger ] = useState(false);
 
 	const logoutFunc = async () => {
-		const id = localStorage.clear();
+		const id = sessionStorage.clear();
 		const result = await axios.post('http://localhost:8088/user/logout', {}, {withCredentials: true});
 
 		dispatch(setUser({id: '', username: ''}));
