@@ -69,7 +69,7 @@ const MenuWrapper = styled.div`
       color: #7a45e5;
     }
     .search {
-      margin-right: 45%;
+      margin-right: 70%;
     }  
   }
 `;
