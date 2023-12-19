@@ -135,7 +135,6 @@ function Header(props) {
 
 	const log = useSelector(selectUsername);
 
-	console.log(showFind);
 	return (
 		<>
 			<HeaderWrap>

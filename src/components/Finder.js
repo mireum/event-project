@@ -50,7 +50,7 @@ function Finder(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const inputEl = useRef(null);
-  const { setShowFind } = props;
+  const { setShowFind, setShow } = props;
 
 	useEffect(() => {
 		inputEl.current.focus();
@@ -80,7 +80,10 @@ function Finder(props) {
             onKeyUp={(e) => { if (e.key === 'Enter') {handleSubmit()} }}
             id='input'
           />
-          <StyledSubmitBtn variant="outline-secondary" id="button-addon2" onClick={() => {handleSubmit()}}>
+          <StyledSubmitBtn variant="outline-secondary" id="button-addon2" onClick={() => {
+            handleSubmit();
+            setShow()}}
+            >
             검색
           </StyledSubmitBtn>
         </InputGroup>

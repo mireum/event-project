@@ -10,12 +10,6 @@ import { selectId, selectUsername } from '../../features/userSlice';
 import Finder from '../Finder';
 
 const Background = styled.div`
-  /* position: fixed;
-  width: 30%;
-  height: 100%;
-  right: 0;
-  bottom: 0;
-  z-index: 200; */
   .layout {
     position: fixed;
     width: 70%;
@@ -25,7 +19,11 @@ const Background = styled.div`
     z-index: 200;
     background-color: rgba(0, 0, 0, 0.4);
   }
-  
+  /* @media screen and (max-width: 768px){
+    .layout {
+      width: 50%;
+    }
+  } */
 `;
 
 const MenuWrapper = styled.div`
@@ -39,6 +37,23 @@ const MenuWrapper = styled.div`
   padding: 10px;
   box-sizing: border-box;
   transition:  0.5s;
+
+  /* @media screen and (max-width: 768px){
+    /* width: 50%; */
+    /* right: -50%; */
+    top: 0;
+    bottom: 0;
+    @media screen and (max-width: 768px){
+      .active {
+      right: 0;
+      }
+      .hidden {
+        right: -50%;
+      }
+    }
+    
+  } */
+
   .active {
     right: 0;
   }
@@ -56,9 +71,9 @@ const MenuWrapper = styled.div`
     .icons:hover {
       color: #7a45e5;
     }
-  .search {
-    margin-right: 45%;
-  }  
+    .search {
+      margin-right: 45%;
+    }  
   }
 `;
 
@@ -90,29 +105,29 @@ function HamburgerBar(props) {
 	const navigate = useNavigate();
   const userId = useSelector(selectId);
   const userName = useSelector(selectUsername);
-  const { show, setShowFind, showFind } = props;
+  const { show, setShow, setShowFind, showFind } = props;
 
   return (
     <Background onClick={(e) => {
-      props.setShow(prev => !prev);
+      setShow(prev => !prev);
       e.stopPropagation();
       }} >
       <MenuWrapper className={show ? 'active' : 'hidden'} >
-        <div className="iconsWrap" onClick={() => {props.setShow(prev => !prev);}}>
+        <div className="iconsWrap" onClick={() => {setShow(prev => !prev);}}>
           <AiOutlineUser 
             className='icons cursor-pointer' 
             onClick={() => { 
-              userId && userName ? navigate('/') : navigate('/login');
-              props.setShow(prev => !prev);
+              userId && userName ? navigate('/profile') : navigate('/login');
+              setShow(prev => !prev);
             }} 
           />
           <IoSearch className='bm-icon cursor-pointer search' onClick={()=> {setShowFind(prev=>!prev)}} />
-          <IoClose className='icons cursor-pointer' onClick={() => {props.setShow(prev => !prev)}}/>
+          <IoClose className='icons cursor-pointer' onClick={() => {setShow(prev => !prev)}}/>
         </div>
         <MenuList >
           <ul>
             <li>
-              { showFind && <Finder setShowFind={setShowFind}/> }    
+              { showFind && <Finder setShowFind={setShowFind} setShow={setShow} /> }    
               {/* <Finder setShowFind={setShowFind}/> */}
             </li>
             <li><Link className='link' to={'/board/list'}>후기 게시판</Link></li>
