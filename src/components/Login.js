@@ -29,7 +29,7 @@ function Login() {
       });
       console.log(result.data);
       delete result.data.user.password;
-      localStorage.setItem('user', JSON.stringify(result.data.user));
+      sessionStorage.setItem('user', JSON.stringify(result.data.user));
 
       dispatch(setUser({id:result.data.user._id, username:result.data.user.username, email:result.data.user.email}));
 

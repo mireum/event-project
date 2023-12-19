@@ -13,15 +13,17 @@ import Register from './components/pages/Register';
 import axios from 'axios';
 import Reserv from './components/pages/Reserv';
 import Login from './components/Login';
-
 import Board from './components/Board';
 import { useSelector } from 'react-redux';
 import { selectId, selectUsername } from './features/userSlice';
+import BoardList from './components/BoardList';
+import BoardListPage from './components/BoardListPage';
 import RequireAuth from './auth/RequireAuth';
 import ReservInfo from './components/pages/ReservInfo';
 import Profile from './components/Profile';
 import ProfilePw from './components/ProfilePw';
 import Pay from './components/pages/Pay';
+
 
 const GlobalStyle = createGlobalStyle`
   /* 글로벌 스타일 */
@@ -89,8 +91,13 @@ function App() {
               </RequireAuth>
             } />
           <Route path='/register' element={<Register />} />
-          <Route path='/board' element={<Board />} />
-          <Route path='/pay' element={<Pay />} />
+          <Route path='/board' element={
+            <RequireAuth>
+              <Board />
+            </RequireAuth>
+          } />
+          <Route path='/board/list' element={<BoardList />} />
+          <Route path='/board/listpage/:postId' element={<BoardListPage />} />
 
         </Route>
       </Routes>

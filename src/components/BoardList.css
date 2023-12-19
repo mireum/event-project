@@ -1,0 +1,40 @@
+/* #list_form {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+} */
+.board_list {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 16px;
+  
+}
+.board_list_p {
+  font-size: 24px;
+  color: #6A24FE;
+  font-weight: bold;
+  text-align: center;
+}
+
+.submit-buttons {
+  width: 80px;
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 24px;
+  padding: 4px 0;
+  background-color: #6A24FE;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.submit-buttons:hover {
+  background-color: hsl(212, 87%, 56%);
+}
+
+.submit-buttons:active {
+  background-color: #580ef8;
+}
+
+.table_main {
+  width: 1200px;
+}

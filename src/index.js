@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/store";
 import ScrollToTop from './components/ScrollToTop';
 import axios from 'axios';
-import { selectId, setUser } from './features/userSlice';
+import { setUser } from './features/userSlice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-if (localStorage.getItem('user')) {
-  const user = JSON.parse(localStorage.getItem('user'));
+if (sessionStorage.getItem('user')) {
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const id = document.cookie.match('connect.sid')?.input.split('%')[1].split('.')[0].slice(2);
   const result = await axios.post('http://localhost:8088/user/loginCheck', {id}, {withCredentials: true});
   console.log(result.data);

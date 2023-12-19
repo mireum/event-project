@@ -9,26 +9,37 @@ import { getFindWord } from '../features/findSlice';
 import axios from 'axios';
 
 const SectionBox = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
+  width: 100%;
+  /* height: 100vh; */
+  /* position: fixed; */
 `;
 
 const FinderContainer = styled.div`
-  width: 1000px;
-  height: 170px;
+  width: 100%;
+  /* height: 170px; */
   z-index: 999;
-  position: absolute;
+  /* position: absolute;
   top: 105%;
-  left: 8%;
-  background: #F8F9FF;
-  padding: 20px;
+  left: 8%; */
+  /* background: #F8F9FF; */
+  /* padding: 20px; */
+  box-sizing: border-box;
   border-radius: 10px;
+  #input {
+    font-size: 14px;
+    /* outline-color: #7a45e5; */
+    box-sizing: border-box;
+  }
+  #input:focus {
+    /* outline: 2px solid #7a45e5; */
+    box-shadow: 0 0 0 0.1rem #7a45e5;
+    
+  }
 `;
 
 const StyledSubmitBtn = styled(Button)`
   &:hover {
-    border: none;
+    box-sizing: border-box;
     background: #7a45e5;
   }
 `;
@@ -39,6 +50,7 @@ function Finder(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const inputEl = useRef(null);
+  const { setShowFind, setShow } = props;
 
 	useEffect(() => {
 		inputEl.current.focus();
@@ -46,12 +58,12 @@ function Finder(props) {
   
   const handleSubmit = async () => {
     navigate('/find');
-    props.setShowFind(false);
+    setShowFind(false);
     dispatch(getFindWord(value));
   };
   
   const handleClick = () => {
-    props.setShowFind(false);
+    setShowFind(false);
   };
 
   return (
@@ -66,9 +78,13 @@ function Finder(props) {
             value={value}
             onChange={(e)=>{setValue(e.target.value)}}
             onKeyUp={(e) => { if (e.key === 'Enter') {handleSubmit()} }}
+            id='input'
           />
-          <StyledSubmitBtn variant="outline-secondary" id="button-addon2" onClick={() => {handleSubmit()}}>
-            검색하기
+          <StyledSubmitBtn variant="outline-secondary" id="button-addon2" onClick={() => {
+            handleSubmit();
+            setShow()}}
+            >
+            검색
           </StyledSubmitBtn>
         </InputGroup>
       </FinderContainer>
