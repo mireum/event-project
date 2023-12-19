@@ -55,7 +55,7 @@ function BoardListPage() {
 
   useEffect(() => {
     const pages = async() => {
-      const result = await axios.post(`http://43.200.245.38/board/listpage`, { postId });
+      const result = await axios.post(`https://43.200.245.38/board/listpage`, { postId });
       console.log(result.data.data);
       setPost(result.data.data);
       let text = result.data.data.content.replace(/<br\/>/ig, "\n");
@@ -69,7 +69,7 @@ function BoardListPage() {
   
 
   const handleDelete = async () => {
-    const result = await axios.post(`http://43.200.245.38/board/listpage/delete`, { postId, username });
+    const result = await axios.post(`https://43.200.245.38/board/listpage/delete`, { postId, username });
     if (result.data.flag) {
       alert('삭제되었습니다.');
     }

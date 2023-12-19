@@ -122,7 +122,7 @@ function Register(props) {
       return false;
       }
       if (expIdText && expEmailText) {
-        const result = await axios.post('http://43.200.245.38/user/register', { username, password, email });
+        const result = await axios.post('https://43.200.245.38/user/register', { username, password, email });
         if (!result.data.flag) {
           return alert(result.data.message);
         }
