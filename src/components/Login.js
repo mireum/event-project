@@ -27,13 +27,12 @@ function Login() {
       const result = await axios.post(`http://43.200.245.38/user/login`, { username, password, email },{
         withCredentials: true
       });
-      console.log(result.data);
       delete result.data.user.password;
       sessionStorage.setItem('user', JSON.stringify(result.data.user));
 
       dispatch(setUser({id:result.data.user._id, username:result.data.user.username, email:result.data.user.email}));
 
-        if (result.data.user.username && state) {
+        if (state) {
           navigate(`${state.from.pathname}`);
         } else {
           navigate('/');
