@@ -24,7 +24,7 @@ function Login() {
       alert('비밀번호를 입력하세요')
     } else {
     try {
-      const result = await axios.post(`http://43.200.245.38/user/login`, { username, password, email },{
+      const result = await axios.post(`${process.env.REACT_APP_SERVER_ADDR}/user/login`, { username, password, email },{
         withCredentials: true
       });
       delete result.data.user.password;

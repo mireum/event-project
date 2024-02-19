@@ -110,7 +110,7 @@ function Comments(props) {
   useEffect(() => {
     const commentList = async () => {
       try {
-        const result = await axios.get('http://43.200.245.38/post/comment', { params: { detailId: _id } });
+        const result = await axios.get(`${process.env.REACT_APP_SERVER_ADDR}/post/comment`, { params: { detailId: _id } });
         setComments(result.data);
       } catch (err) {
         console.error(err);
@@ -127,7 +127,7 @@ function Comments(props) {
     e.preventDefault();
     try {
       await axios.post('http://43.200.245.38/post/comment', { content, userId, userName, _id, today });
-      const result = await axios.get('http://43.200.245.38/post/comment', { params: { detailId: _id } })
+      const result = await axios.get(`${process.env.REACT_APP_SERVER_ADDR}/post/comment`, { params: { detailId: _id } })
       setComments(result.data);
     } catch (err) {
       console.error(err);
@@ -138,8 +138,8 @@ function Comments(props) {
   const handleCommentDelete = async (id) => {
     try {
       console.log(_id);
-      await axios.post('http://43.200.245.38/post/comment/delete', { id, userId });
-      const result = await axios.get('http://43.200.245.38/post/comment', { params: { detailId: _id } });
+      await axios.post(`${process.env.REACT_APP_SERVER_ADDR}/post/comment/delete`, { id, userId });
+      const result = await axios.get(`${process.env.REACT_APP_SERVER_ADDR}/post/comment`, { params: { detailId: _id } });
       setComments(result.data);
     } catch (err) {
       console.error(err);
@@ -158,7 +158,7 @@ function Comments(props) {
 
   const handleSubmitUpdateContent = async (index) => {
     try {
-      await axios.post('http://43.200.245.38/post/comment/update', { selectContent, updateContent });
+      await axios.post(`${process.env.REACT_APP_SERVER_ADDR}/post/comment/update`, { selectContent, updateContent });
       // 수정 된 값 새로고침 없이 바로 반영하기
       // 방법 1
       // const result = await axios.get('http://43.200.245.38/post/comment', { params: { detailId: _id } });

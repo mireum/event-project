@@ -73,7 +73,7 @@ function Calendar(props) {
   useEffect(() => {
     const festivalApiData = async () => {
       try {
-        const response = await axios.get('http://43.200.245.38/list');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_ADDR}/list`);
         dispatch(getEventList(response.data));
       } catch (err) {
         console.error(err);  

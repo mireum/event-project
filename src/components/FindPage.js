@@ -4,7 +4,6 @@ import { getEventListForFind, selectFindList, selectFindWord } from '../features
 import EventListItem from './list/EventListItem';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-import axios from 'axios';
 import { getEventLists } from '../api/eventListAPI';
 
 const StyledContainer = styled(Container)`

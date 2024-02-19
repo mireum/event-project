@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getFindWord } from '../features/findSlice';
-import axios from 'axios';
 
 const SectionBox = styled.div`
   width: 100%;

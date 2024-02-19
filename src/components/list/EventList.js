@@ -4,7 +4,6 @@ import EventListItem from './EventListItem';
 import styled from 'styled-components';
 import MainDetailSearch from '../MainDetailSearch';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { getEventList, selectEventList } from '../../api/eventListSlice';
 import { searchButton, searchCategory, searchLocation, searchMonth, searchSubject } from '../../features/searchSlice';
 import AsNavFor from './MainSlide';

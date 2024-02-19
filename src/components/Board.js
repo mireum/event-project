@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { selectUsername } from "../features/userSlice";
 import { useNavigate } from "react-router";
 
+const SERVER_ADDR = process.env.REACT_APP_SERVER_ADDR;
+
 function Board () {
   const navigate = useNavigate();
   const named = useSelector(selectUsername);
@@ -24,7 +26,7 @@ function Board () {
       
       // const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
-      const result = await axios.post(`http://43.200.245.38/board`, {
+      const result = await axios.post(`${SERVER_ADDR}/board`, {
         title: boardContent.title,
         content: boardContent.content,
         date: today,
