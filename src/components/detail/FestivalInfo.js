@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import calender from "../../images/calender.png";
-import location from "../../images/location.png";
-import megaphone from "../../images/megaphone.png";
-import computer from "../../images/computer.png";
+import calender from "../../images/calender.jpg";
+import location from "../../images/location.jpg";
+import megaphone from "../../images/megaphone.jpg";
+import computer from "../../images/computer.jpg";
 import styled from 'styled-components';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

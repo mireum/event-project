@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logobottom from "../images/logo-bottom.png";
+import logobottom from "../images/logo-bottom.jpg";
 
 const FooterInner = styled.div`
 	max-width: 1200px;
