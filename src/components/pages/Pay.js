@@ -5,7 +5,8 @@ function Pay(props) {
 
   useEffect( async () => {
     const response = await Bootpay.requestPayment({
-      "application_id": process.env.REACT_APP_PAYKEY,
+      // process.env.REACT_APP_PAYKEY
+      "application_id": '658bd091d25985001e0cf94b',
       "price": 1000,
       "order_name": "오?",
       "order_id": "TEST_ORDER_ID",

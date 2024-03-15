@@ -250,7 +250,8 @@ function Reserv(props) {
 
     try {
     const response = await Bootpay.requestPayment({
-      "application_id": process.env.REACT_APP_PAYKEY,
+      // process.env.REACT_APP_PAYKEY
+      "application_id": '658bd091d25985001e0cf94b',
       "price": Number(payTotal),
       "order_name": `문화생활력소 ${fstvlNm}`,
       "order_id": "TEST_ORDER_ID",
